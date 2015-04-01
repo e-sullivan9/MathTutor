@@ -77,10 +77,19 @@ public class TestGeneral extends JPanel implements PanelTemplate{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public void next(){
+        int temp=0;
+        if(index<test.size()-1){
         cl.next(this);
-        index=(index+1)%test.size();
+        index=(index+1);
+        
+        }
+        else{
+            for(int i=0;i<test.size();i++){
+                temp+=test.get(i).isCorrect();
+            }
+        JOptionPane.showMessageDialog(null,"Finish + the number Correct: "+ temp +" out of 6");
+        }
     }
-    
     
     public class GeneralTestPanel extends JLayeredPane implements PanelTemplate{
     JPanel top,bot,questionPane,help1,help2;
@@ -88,11 +97,13 @@ public class TestGeneral extends JPanel implements PanelTemplate{
     JLabel questionLabel,correct,wrong;
     ArrayList<JLabel> answerL;
     String correctAnswer;
+    boolean isCorrect;
     public GeneralTestPanel(String question, String[] answers, String correctAnswer) {
         setBackground(new Color(144,210,144));
         buildTop();
         buildBot();
         buildBack();
+        isCorrect=false;
         
         questionLabel.setIcon(new ImageIcon(question));
         for(int i = 0; i < answers.length; ++i)
@@ -193,6 +204,13 @@ public class TestGeneral extends JPanel implements PanelTemplate{
     public void back() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    public int isCorrect(){
+        if(isCorrect){
+            return 1;
+        }
+        else
+            return 0;
+    }
      public class AnswerHandler extends MouseAdapter {
         public void mouseClicked(MouseEvent e)  
     {  
@@ -201,6 +219,7 @@ public class TestGeneral extends JPanel implements PanelTemplate{
             if(answerL.get(0).getText().equals(correctAnswer)){
                 setLayer(correct,300);
                 repaint();
+                isCorrect=true;
             }
             else{
                 setLayer(wrong,300);
@@ -212,6 +231,7 @@ public class TestGeneral extends JPanel implements PanelTemplate{
             if(answerL.get(1).getText().equals(correctAnswer)){
                 setLayer(correct,300);
                 repaint();
+                isCorrect=true;
             }
             else{
                 setLayer(wrong,300);
@@ -222,16 +242,19 @@ public class TestGeneral extends JPanel implements PanelTemplate{
             if(answerL.get(2).getText().equals(correctAnswer)){
                 setLayer(correct,300);
                 repaint();
+                isCorrect=true;
             }
             else{
                 setLayer(wrong,300);
                 repaint();
+                isCorrect=true;
             }
         }
         if(e.getSource()==answerP.get(3)){
             if(answerL.get(3).getText().equals(correctAnswer)){
                 setLayer(correct,300);
                 repaint();
+                isCorrect=true;
             }
             else{
                 setLayer(wrong,300);
