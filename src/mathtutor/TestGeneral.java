@@ -83,9 +83,9 @@ public class TestGeneral extends JPanel implements PanelTemplate{
     
     
     public class GeneralTestPanel extends JLayeredPane implements PanelTemplate{
-    JPanel top,bot,questionPane,correct,wrong,help1,help2;
+    JPanel top,bot,questionPane,help1,help2;
     ArrayList<JPanel> answerP;
-    JLabel questionLabel;
+    JLabel questionLabel,correct,wrong;
     ArrayList<JLabel> answerL;
     String correctAnswer;
     public GeneralTestPanel(String question, String[] answers, String correctAnswer) {
@@ -153,8 +153,8 @@ public class TestGeneral extends JPanel implements PanelTemplate{
         
     }
     public void buildBack(){
-    correct = new JPanel();
-    wrong = new JPanel();
+    correct = new JLabel(new ImageIcon("correct.png"));
+    wrong = new JLabel(new ImageIcon("incorrect.png"));
     help1 = new JPanel();
     help2 = new JPanel();
     
@@ -169,12 +169,10 @@ public class TestGeneral extends JPanel implements PanelTemplate{
     help2.addMouseListener(new AnswerHandler());
     help2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     
-    correct.setBackground(Color.GREEN);
     correct.setBounds(155,70,300,150);
     correct.addMouseListener(new AnswerHandler());
     correct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     
-    wrong.setBackground(Color.red);
     wrong.setBounds(155,70,300,150);
     wrong.addMouseListener(new AnswerHandler());
     wrong.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -198,6 +196,7 @@ public class TestGeneral extends JPanel implements PanelTemplate{
      public class AnswerHandler extends MouseAdapter {
         public void mouseClicked(MouseEvent e)  
     {  
+       if(getLayer(correct)!=300||getLayer(wrong)!=300){
         if(e.getSource()==answerP.get(0)){
             if(answerL.get(0).getText().equals(correctAnswer)){
                 setLayer(correct,300);
@@ -239,6 +238,7 @@ public class TestGeneral extends JPanel implements PanelTemplate{
                 repaint();
             }
         }
+       }
         if(e.getSource()==help1){
             setLayer(help1,-300);
         }
