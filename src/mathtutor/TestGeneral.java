@@ -84,11 +84,13 @@ public class TestGeneral extends PanelTemplate{
                 add(new Reward(temp));
                 cl.next(this);
             }
+
         }
     }
     
     public class GeneralTestPanel extends JLayeredPane{
     JPanel top,bot,questionPane,help1,help2;
+    HelpPane hp;
     ArrayList<JPanel> answerP;
     JLabel questionLabel,correct,wrong;
     ArrayList<JLabel> answerL;
@@ -99,15 +101,18 @@ public class TestGeneral extends PanelTemplate{
         buildTop();
         buildBot();
         buildBack();
+        
         isCorrect=false;
         
         questionLabel.setIcon(new ImageIcon(question));
         for(int i = 0; i < answers.length; ++i)
             answerL.get(i).setText(answers[i]);
         this.correctAnswer = correctAnswer;
-        
+        hp = new HelpPane();
+        hp.setBounds(0, 360, 625, 216);
         add(top,Integer.valueOf(0));
         add(bot,Integer.valueOf(0));
+        add(hp,Integer.valueOf(300));
     }
     private void buildTop() {
         top = new JPanel();
