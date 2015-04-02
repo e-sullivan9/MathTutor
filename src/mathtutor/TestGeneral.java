@@ -208,6 +208,37 @@ public class TestGeneral extends PanelTemplate{
     }
      public class AnswerHandler extends MouseAdapter {
         @Override
+        public void mouseEntered(MouseEvent e){
+            if(e.getSource()==answerP.get(0)){
+                answerP.get(0).setBackground(new Color(255,150,15));
+            }
+            if(e.getSource()==answerP.get(1)){
+                answerP.get(1).setBackground(new Color(255,150,15));
+            }
+            if(e.getSource()==answerP.get(2)){
+                answerP.get(2).setBackground(new Color(255,150,15));
+            }
+            if(e.getSource()==answerP.get(3)){
+                answerP.get(3).setBackground(new Color(255,150,15));
+            }
+        }
+        @Override
+        public void mouseExited(MouseEvent e){
+            if(e.getSource()==answerP.get(0)){
+                answerP.get(0).setBackground(Color.GREEN);
+            }
+            if(e.getSource()==answerP.get(1)){
+                answerP.get(1).setBackground(Color.GREEN);
+            }
+            if(e.getSource()==answerP.get(2)){
+                answerP.get(2).setBackground(Color.GREEN);
+            }
+            if(e.getSource()==answerP.get(3)){
+                answerP.get(3).setBackground(Color.GREEN);
+            }
+        }
+        
+        @Override
         public void mouseClicked(MouseEvent e)  
     {  
        if(getLayer(correct)!=300||getLayer(wrong)!=300){
