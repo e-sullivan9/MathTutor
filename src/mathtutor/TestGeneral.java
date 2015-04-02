@@ -175,19 +175,12 @@ public class TestGeneral extends PanelTemplate{
     public void buildBack(){
     correct = new JLabel(new ImageIcon("correct.png"));
     wrong = new JLabel(new ImageIcon("incorrect.png"));
-    help1 = new JPanel();
-    help2 = new JPanel();
+    help1 = new HelpPane();
     
     
-    help1.setBackground(Color.BLUE);
-    help1.setBounds(0,0,600,300);
+    help1.setBounds(0,170,600,212);
     help1.addMouseListener(new AnswerHandler());
     help1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    
-    help2.setBackground(Color.BLUE);
-    help2.setBounds(0, 300, 600, 300);
-    help2.addMouseListener(new AnswerHandler());
-    help2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     
     correct.setBounds(155,70,300,205);
     correct.addMouseListener(new AnswerHandler());
@@ -200,7 +193,6 @@ public class TestGeneral extends PanelTemplate{
     add(wrong, Integer.valueOf(-300));
     add(help1,Integer.valueOf(-300));
     add(correct, Integer.valueOf(-300));
-    add(help2, Integer.valueOf(-300));
     
 }
     public void help() {
@@ -221,7 +213,7 @@ public class TestGeneral extends PanelTemplate{
      public class AnswerHandler extends MouseAdapter {
         @Override
         public void mouseEntered(MouseEvent e){
-            if(getLayer(hp)!=300){
+            if(getLayer(correct)!=300&&getLayer(wrong)!=300&&(getLayer(hp)!=300)&&getLayer(help1)!=300){
             if(e.getSource()==answerP.get(0)){
                 answerP.get(0).setBackground(new Color(255,150,15));
             }
@@ -238,7 +230,7 @@ public class TestGeneral extends PanelTemplate{
         }
         @Override
         public void mouseExited(MouseEvent e){
-            if(getLayer(hp)!=300){
+            if(getLayer(correct)!=300&&getLayer(wrong)!=300&&getLayer(hp)!=300&&getLayer(help1)!=300){
             if(e.getSource()==answerP.get(0)){
                 answerP.get(0).setBackground(Color.GREEN);
             }
@@ -257,7 +249,7 @@ public class TestGeneral extends PanelTemplate{
         @Override
         public void mouseClicked(MouseEvent e)  
     {  
-       if(getLayer(correct)!=300&&getLayer(wrong)!=300&&(getLayer(hp)!=300)){
+       if(getLayer(correct)!=300&&getLayer(wrong)!=300&&getLayer(hp)!=300&&getLayer(help1)!=300){
         if(e.getSource()==answerP.get(0)){
             if(answerL.get(0).getText().equals(correctAnswer)){
                 setLayer(correct,300);

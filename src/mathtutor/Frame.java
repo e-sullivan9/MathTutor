@@ -22,6 +22,7 @@ public class Frame extends JFrame{
         p = new AccountPanel();
         currentPanel  = new TestGeneral("Counting-Questions.txt");
         setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
         add(p,BorderLayout.WEST);
         add(currentPanel,BorderLayout.CENTER);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
