@@ -6,12 +6,13 @@
 
 package mathtutor;
 
-import javax.swing.JPanel;
-
 /**
  *
  * @author Eric Sullivan
  */
-public abstract class PanelTemplate extends JPanel implements Panel {
+public interface Panel {
+    
+    public void help();
+    public void back();
 
 }

@@ -19,7 +19,7 @@ import java.util.Scanner;
  *
  * @author Eric Sullivan
  */
-public class TestGeneral extends JPanel implements PanelTemplate{
+public class TestGeneral extends PanelTemplate{
     CardLayout cl;
     ArrayList<GeneralTestPanel> test;
     int index;
@@ -39,13 +39,7 @@ public class TestGeneral extends JPanel implements PanelTemplate{
            
        }
     }
-  /*  public void buildTest(){
-        for(int i=0;i<6;i++){
-            test.add(new GeneralTestPanel(""+i));
-            add(test.get(i),""+i);
-        }
-    }
-    */
+
     private void parseFile(String fileName)throws FileNotFoundException
     {
         File file = new File(fileName);
@@ -86,12 +80,15 @@ public class TestGeneral extends JPanel implements PanelTemplate{
         else{
             for(int i=0;i<test.size();i++){
                 temp+=test.get(i).isCorrect();
+                this.removeAll();
+                add(new Reward(temp));
+                cl.next(this);
             }
         JOptionPane.showMessageDialog(null,"Finish + the number Correct: "+ temp +" out of 6");
         }
     }
     
-    public class GeneralTestPanel extends JLayeredPane implements PanelTemplate{
+    public class GeneralTestPanel extends JLayeredPane{
     JPanel top,bot,questionPane,help1,help2;
     ArrayList<JPanel> answerP;
     JLabel questionLabel,correct,wrong;
@@ -194,13 +191,11 @@ public class TestGeneral extends JPanel implements PanelTemplate{
     add(help2, Integer.valueOf(-300));
     
 }
-    @Override
     public void help() {
         setLayer(help1,300);
         setLayer(help2,300);
     }
 
-    @Override
     public void back() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -212,6 +207,7 @@ public class TestGeneral extends JPanel implements PanelTemplate{
             return 0;
     }
      public class AnswerHandler extends MouseAdapter {
+        @Override
         public void mouseClicked(MouseEvent e)  
     {  
        if(getLayer(correct)!=300||getLayer(wrong)!=300){
@@ -278,8 +274,6 @@ public class TestGeneral extends JPanel implements PanelTemplate{
                 next();
             }
         }
-        //else
-           // JOptionPane.showMessageDialog(null, "Soon");
 
     }  
 }

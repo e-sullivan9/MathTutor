@@ -16,7 +16,7 @@ import javax.swing.JFrame;
  */
 public class Frame extends JFrame{
     AccountPanel p;
-    static TestGeneral currentPanel;
+    static PanelTemplate currentPanel;
     public Frame(){
         super();
         p = new AccountPanel();
@@ -31,9 +31,13 @@ public class Frame extends JFrame{
         setResizable(false);
     
 }
+    public static void change(){
+        currentPanel.repaint();
+    }
 public static void main(String[] args){
         javax.swing.SwingUtilities.invokeLater(new Runnable()
     {
+      @Override
       public void run()
       {
           new Frame();

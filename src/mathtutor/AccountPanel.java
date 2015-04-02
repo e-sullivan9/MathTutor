@@ -61,8 +61,6 @@ public class AccountPanel extends JPanel{
             bot.add(sticker.get(i));
         }
         
-        
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void buildButtons() {
