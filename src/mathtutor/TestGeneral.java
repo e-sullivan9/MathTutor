@@ -20,6 +20,7 @@ import java.util.Scanner;
  * @author Eric Sullivan
  */
 public class TestGeneral extends PanelTemplate{
+    static int done = 0;
     CardLayout cl;
     ArrayList<GeneralTestPanel> test;
     int index;
@@ -90,12 +91,12 @@ public class TestGeneral extends PanelTemplate{
     
     public class GeneralTestPanel extends JLayeredPane{
     JPanel top,bot,questionPane,help1,help2;
-    HelpPane hp;
     ArrayList<JPanel> answerP;
     JLabel questionLabel,correct,wrong;
     ArrayList<JLabel> answerL;
     String correctAnswer;
     boolean isCorrect;
+    HelpPane hp;
     public GeneralTestPanel(String question, String[] answers, String correctAnswer) {
         setBackground(new Color(144,210,144));
         buildTop();
@@ -108,11 +109,17 @@ public class TestGeneral extends PanelTemplate{
         for(int i = 0; i < answers.length; ++i)
             answerL.get(i).setText(answers[i]);
         this.correctAnswer = correctAnswer;
+        
         hp = new HelpPane();
-        hp.setBounds(0, 360, 625, 216);
+        hp.setBounds(0, 170, 610, 212);
+        hp.addMouseListener(new AnswerHandler());
         add(top,Integer.valueOf(0));
         add(bot,Integer.valueOf(0));
         add(hp,Integer.valueOf(300));
+        if(done !=0){
+            setLayer(hp,-300);
+        }
+        done++;
     }
     private void buildTop() {
         top = new JPanel();
@@ -151,6 +158,7 @@ public class TestGeneral extends PanelTemplate{
             answerL.add(new JLabel());
             answerL.get(i).setFont(myFont);
             answerP.get(i).add(answerL.get(i));
+           
             
             
             
@@ -181,11 +189,11 @@ public class TestGeneral extends PanelTemplate{
     help2.addMouseListener(new AnswerHandler());
     help2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     
-    correct.setBounds(155,70,300,150);
+    correct.setBounds(155,70,300,205);
     correct.addMouseListener(new AnswerHandler());
     correct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     
-    wrong.setBounds(155,70,300,150);
+    wrong.setBounds(155,70,300,205);
     wrong.addMouseListener(new AnswerHandler());
     wrong.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     
@@ -213,6 +221,7 @@ public class TestGeneral extends PanelTemplate{
      public class AnswerHandler extends MouseAdapter {
         @Override
         public void mouseEntered(MouseEvent e){
+            if(getLayer(hp)!=300){
             if(e.getSource()==answerP.get(0)){
                 answerP.get(0).setBackground(new Color(255,150,15));
             }
@@ -225,9 +234,11 @@ public class TestGeneral extends PanelTemplate{
             if(e.getSource()==answerP.get(3)){
                 answerP.get(3).setBackground(new Color(255,150,15));
             }
+            }
         }
         @Override
         public void mouseExited(MouseEvent e){
+            if(getLayer(hp)!=300){
             if(e.getSource()==answerP.get(0)){
                 answerP.get(0).setBackground(Color.GREEN);
             }
@@ -240,12 +251,13 @@ public class TestGeneral extends PanelTemplate{
             if(e.getSource()==answerP.get(3)){
                 answerP.get(3).setBackground(Color.GREEN);
             }
+            }
         }
         
         @Override
         public void mouseClicked(MouseEvent e)  
     {  
-       if(getLayer(correct)!=300||getLayer(wrong)!=300){
+       if(getLayer(correct)!=300&&getLayer(wrong)!=300&&(getLayer(hp)!=300)){
         if(e.getSource()==answerP.get(0)){
             if(answerL.get(0).getText().equals(correctAnswer)){
                 setLayer(correct,300);
@@ -299,6 +311,10 @@ public class TestGeneral extends PanelTemplate{
         else
         if(e.getSource()==help2){
             setLayer(help2,-300);
+        }
+        else
+            if(e.getSource()==hp){
+            setLayer(hp,-300);
         }
         else
             if(e.getSource()==wrong&&getLayer(wrong)==300){
