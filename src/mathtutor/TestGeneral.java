@@ -84,7 +84,6 @@ public class TestGeneral extends PanelTemplate{
                 add(new Reward(temp));
                 cl.next(this);
             }
-        JOptionPane.showMessageDialog(null,"Finish + the number Correct: "+ temp +" out of 6");
         }
     }
     
