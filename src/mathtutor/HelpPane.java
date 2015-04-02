@@ -36,9 +36,9 @@ public class HelpPane extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(51, 51, 51));
+        setBackground(java.awt.Color.black);
 
-        SafriDude.setText("Pic");
+        SafriDude.setIcon(new javax.swing.ImageIcon("C:\\Users\\Eric Sullivan\\Desktop\\MathTutor\\safari.jpg")); // NOI18N
 
         jLabel2.setBackground(java.awt.Color.blue);
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
