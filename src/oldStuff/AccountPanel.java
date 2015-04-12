@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package mathtutor;
+package oldStuff;
 
 import java.awt.*;
 import java.awt.event.*;
