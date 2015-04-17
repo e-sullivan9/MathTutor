@@ -6,6 +6,9 @@
 
 package mathtutor;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+
 /**
  *
  * @author Eric Sullivan
@@ -17,6 +20,7 @@ public class userSwitchPane extends javax.swing.JPanel {
      */
     public userSwitchPane() {
         initComponents();
+        setLayout(new GridLayout(2,2,5,5));
     }
 
     /**
@@ -28,15 +32,19 @@ public class userSwitchPane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setBackground(new java.awt.Color(144, 210, 144));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        setPreferredSize(new java.awt.Dimension(600, 250));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 626, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 286, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

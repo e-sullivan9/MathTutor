@@ -1,0 +1,18 @@
+create table Users (
+PID char(100) NOT NULL,
+FirstName char(100) NOT NULL,
+LastName char(100) NOT NULL,
+Pass varchar(100) NOT NULL,
+PRIMARY KEY(PID));
+
+INSERT INTO Users VALUES(null,'Eric','Sullivan','CSCI400');
+
+SELECT * FROM users;
+
+show databases;
+
+use learn2math;
+
+explain users;
+
+show tables;

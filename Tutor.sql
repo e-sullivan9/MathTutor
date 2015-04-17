@@ -1,0 +1,14 @@
+CREATE DATABASE MathTutorDB;
+
+
+CREATE USER 'TutorAdmin'@'localhost' IDENTIFIED BY 'Tut0r4dm1n';
+GRANT ALL PRIVILEGES ON MathTutorDB.* TO 'TutorAdmin'@'localhost';
+FLUSH PRIVILEGES;
+USE MathTutorDB;
+
+CREATE TABLE USERS(
+PID int(100) AUTO_INCREMENT,
+FirstName char(100) NOT NULL,
+LastName char(100) NOT NULL,
+Icon char(100) NOT NULL,
+PRIMARY KEY(PID));

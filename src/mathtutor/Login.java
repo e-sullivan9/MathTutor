@@ -7,6 +7,7 @@
 package mathtutor;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.sql.*;
@@ -23,6 +24,11 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         loadAccounts();
+        cl = new CardLayout();
+        accountPane.setLayout(cl);
+        jLabel3.addMouseListener(new NextPrev());
+        jLabel4.addMouseListener(new NextPrev());
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,6 +44,8 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         accountPane = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,7 +69,15 @@ public class Login extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Exit");
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Previos");
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Next");
+        jLabel4.setPreferredSize(new java.awt.Dimension(30, 15));
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
@@ -70,10 +86,15 @@ public class Login extends javax.swing.JFrame {
             .addGroup(mainPaneLayout.createSequentialGroup()
                 .addGap(250, 250, 250)
                 .addComponent(jLabel1)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
             .addGroup(mainPaneLayout.createSequentialGroup()
                 .addGap(94, 94, 94)
-                .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -86,7 +107,11 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(mainPaneLayout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(96, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(34, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -106,22 +131,56 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void loadAccounts() {
-        GridLayout gl = new GridLayout(2,2,5,5);
-        accountPane.setLayout(gl);
+        accountPanels = new ArrayList<>();
         try {
-            
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/honorsmedicaldoctor", "TutorAdmin", "Tut0r4dm1n"); //change password for it to work.
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/MathTutorDB", "TutorAdmin", "Tut0r4dm1n"); //change password for it to work.
             String sql = "select * from Users";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-                    String name;
-                    String icon;
+            
+            //set up for build of the mid or userSwitchPane
+            String name;
+            String icon;
+            int page=0;
+            userSwitchPane usp  = new userSwitchPane();
+                    
                     while(rs.next()){
                         name = rs.getString("FirstName");
                         name += " " +rs.getString("LastName").charAt(0)+".";
                         icon = rs.getString("Icon");
-                        accountPanels.add(accountPanelForm(name,icon));
+                        accountPanelForm apf =new accountPanelForm(name,icon);
+                        apf.addMouseListener(new AccountListener());
+                        accountPanels.add(apf);
+                    }
+                        
+                    accountPanels.add(new accountPanelForm("New","sticker.png"));
+                    accountPanels.add(new accountPanelForm("New","sticker.png"));
+                    accountPanels.add(new accountPanelForm("New","sticker.png"));
+                    accountPanels.add(new accountPanelForm("New","sticker.png"));
+                    accountPanels.add(new accountPanelForm("New","sticker.png"));
+                    accountPanels.add(new accountPanelForm("New","sticker.png"));
+                    accountPanels.add(new accountPanelForm("New","sticker.png"));
+                    accountPanels.add(new accountPanelForm("New","sticker.png"));
+                    if(accountPanels.size()%4!=0){
+                        int needed =4-accountPanels.size()%4;
+                        for(int x = 0; x<needed;x++){
+                            JPanel temp = new JPanel();
+                            temp.setBackground(new Color(255,150,15));
+                            accountPanels.add(temp);
+                            System.out.println(x);
+                        }
+                    }
+                    System.out.println(accountPanels.size());
+                    for(int i = 0;i<accountPanels.size();i++){
+                        System.out.println("here");
+                        usp.add(accountPanels.get(i));
+                        accountPane.add(usp);
+                        if(i%4==3&&i!=0){
+                            System.out.println("added at"+ i);
+                            accountPane.add(usp);
+                            usp  = new userSwitchPane();
+                        }
                     }
                     
         }
@@ -131,6 +190,28 @@ public class Login extends javax.swing.JFrame {
             ex.printStackTrace();
         } 
         
+        
+    }
+    public class AccountListener extends MouseAdapter {
+        public void mouseClicked(MouseEvent e){
+            System.out.println(((accountPanelForm)e.getSource()).getJLabelName());
+            getContentPane().removeAll();
+            repaint();
+    }
+    }
+    public class NextPrev extends MouseAdapter {
+        public void mouseClicked(MouseEvent e){
+            if(e.getSource()==jLabel3){
+                cl.previous(accountPane);
+                System.out.println("jLabel3 Clicked");
+            }
+            if(e.getSource()==jLabel4){
+                cl.next(accountPane);
+                System.out.println("jLabel4 Clicked");
+            }
+        }
+                
+                
         
     }
     /**
@@ -167,11 +248,14 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    CardLayout cl;
     private ArrayList<JPanel> accountPanels;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accountPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel mainPane;
     // End of variables declaration//GEN-END:variables
 }
