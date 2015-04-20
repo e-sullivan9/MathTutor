@@ -1,8 +1,9 @@
 create table Users (
-PID char(100) NOT NULL,
-FirstName char(100) NOT NULL,
-LastName char(100) NOT NULL,
+PID varchar(100) NOT NULL,
+FirstName varchar(100) NOT NULL,
+LastName varchar(100) NOT NULL,
 Pass varchar(100) NOT NULL,
+icon varchar(250) NOT NULL,
 PRIMARY KEY(PID));
 
 INSERT INTO Users VALUES(null,'Eric','Sullivan','CSCI400');

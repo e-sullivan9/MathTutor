@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package oldStuff;
+package mathtutor;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -20,9 +20,30 @@ public class AccountPanel extends JPanel{
     JLabel name, accountPic, section, back, help;
     ArrayList<JLabel> sticker;
     JPanel top, bot, buttons, account;
+    private Account userAccount;
+    private JComponent currentFrame;
     public AccountPanel(){
         myFont = new Font("Comic Sans MS", Font.BOLD,50);      
        
+        setLayout(new BorderLayout());
+        setBorder(BorderFactory.createLineBorder(Color.black));
+        setSize(200, 600);
+        buildTop();
+        buildBot();
+        buildButtons();
+        add(top,BorderLayout.NORTH);
+        add(bot,BorderLayout.CENTER);
+	add(buttons,BorderLayout.SOUTH);
+    }
+    public AccountPanel(Account userAccount,JComponent currentFrame){
+        this.currentFrame = currentFrame;
+        this.userAccount = userAccount;
+        if(userAccount.getUsername().length()<8){
+            myFont = new Font("Comic Sans MS", Font.BOLD,50);
+        }
+        else if(userAccount.getUsername().length()>=8){
+            myFont = new Font("Comic Sans MS", Font.BOLD,18);
+        }
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.black));
         setSize(200, 600);
@@ -37,13 +58,13 @@ public class AccountPanel extends JPanel{
         top = new JPanel(new BorderLayout());
         top.setBackground(new Color(144,210,144));
         
-        name = new JLabel("John!",JLabel.CENTER);
+        name = new JLabel(userAccount.getUsername(),JLabel.CENTER);
         name.setForeground(Color.WHITE);
         name.setFont(myFont);
         
-        accountPic = new JLabel(new ImageIcon("pirate-clipart.png"));
+        accountPic = new JLabel(userAccount.getIcon());
         
-        section = new JLabel("COUNTING", JLabel.CENTER);
+        section = new JLabel("", JLabel.CENTER);
         myFont = new Font("Comic Sans MS", Font.BOLD,25);
         section.setFont(myFont);
         
@@ -81,11 +102,6 @@ public class AccountPanel extends JPanel{
     public class ImageHandler extends MouseAdapter {
         public void mouseClicked(MouseEvent e)  
     {  
-        if(e.getSource()==help){
-            Frame.currentPanel.help();
-        }
-        else
-       JOptionPane.showMessageDialog(null, "Soon");
 
     }  
 

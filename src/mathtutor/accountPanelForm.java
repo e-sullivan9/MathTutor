@@ -8,6 +8,7 @@ package mathtutor;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.border.BevelBorder;
 
@@ -34,6 +35,9 @@ public class accountPanelForm extends javax.swing.JPanel {
     }
     public String getJLabelName(){
         return Name.getText();
+    }
+    public Icon getJLabelIcon(){
+        return icon.getIcon();
     }
 
     /**
@@ -64,7 +68,7 @@ public class accountPanelForm extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

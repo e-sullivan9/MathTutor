@@ -11,6 +11,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.sql.*;
+import java.util.Stack;
 
 /**
  *
@@ -23,6 +24,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        frame = this;
+        lastPane = new Stack<>();
+        currentPane = mainPane;
         loadAccounts();
         cl = new CardLayout();
         accountPane.setLayout(cl);
@@ -30,7 +34,19 @@ public class Login extends javax.swing.JFrame {
         jLabel4.addMouseListener(new NextPrev());
         setLocationRelativeTo(null);
     }
+    
+    public JComponent getCurrentPane() {
+        return currentPane;
+    }
 
+    public void setCurrentPane(JComponent currentPane) {
+        this.currentPane = currentPane;
+    }
+
+    public Stack<JComponent> getLastPane() {
+        return lastPane;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,6 +146,8 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    // <editor-fold defaultstate="collapsed" desc="loadAccounts">        
     public void loadAccounts() {
         accountPanels = new ArrayList<>();
         try {
@@ -138,82 +156,101 @@ public class Login extends javax.swing.JFrame {
             String sql = "select * from Users";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            
+
             //set up for build of the mid or userSwitchPane
             String name;
             String icon;
-            int page=0;
-            userSwitchPane usp  = new userSwitchPane();
-                    
-                    while(rs.next()){
-                        name = rs.getString("FirstName");
-                        name += " " +rs.getString("LastName").charAt(0)+".";
-                        icon = rs.getString("Icon");
-                        accountPanelForm apf =new accountPanelForm(name,icon);
-                        apf.addMouseListener(new AccountListener());
-                        accountPanels.add(apf);
-                    }
-                        
-                    accountPanels.add(new accountPanelForm("New","sticker.png"));
-                    accountPanels.add(new accountPanelForm("New","sticker.png"));
-                    accountPanels.add(new accountPanelForm("New","sticker.png"));
-                    accountPanels.add(new accountPanelForm("New","sticker.png"));
-                    accountPanels.add(new accountPanelForm("New","sticker.png"));
-                    accountPanels.add(new accountPanelForm("New","sticker.png"));
-                    accountPanels.add(new accountPanelForm("New","sticker.png"));
-                    accountPanels.add(new accountPanelForm("New","sticker.png"));
-                    if(accountPanels.size()%4!=0){
-                        int needed =4-accountPanels.size()%4;
-                        for(int x = 0; x<needed;x++){
-                            JPanel temp = new JPanel();
-                            temp.setBackground(new Color(255,150,15));
-                            accountPanels.add(temp);
-                            System.out.println(x);
-                        }
-                    }
-                    System.out.println(accountPanels.size());
-                    for(int i = 0;i<accountPanels.size();i++){
-                        System.out.println("here");
-                        usp.add(accountPanels.get(i));
-                        accountPane.add(usp);
-                        if(i%4==3&&i!=0){
-                            System.out.println("added at"+ i);
-                            accountPane.add(usp);
-                            usp  = new userSwitchPane();
-                        }
-                    }
-                    
-        }
-        catch (ClassNotFoundException ex) {
+            int page = 0;
+            userSwitchPane usp = new userSwitchPane();
+
+            while (rs.next()) {
+                name = rs.getString("PID");
+                icon = rs.getString("Icon");
+                accountPanelForm apf = new accountPanelForm(name, icon);
+                apf.addMouseListener(new AccountListener());
+                accountPanels.add(apf);
+            }
+
+            accountPanels.add(new accountPanelForm("New Account", "sticker.png"));
+            accountPanels.get(accountPanels.size() - 1).addMouseListener(new NewAccountListener());
+            if (accountPanels.size() % 4 != 0) {
+                int needed = 4 - accountPanels.size() % 4;
+                for (int x = 0; x < needed; x++) {
+                    JPanel temp = new JPanel();
+                    temp.setBackground(new Color(144, 210, 144));
+                    accountPanels.add(temp);
+                    System.out.println(x);
+                }
+            }
+            System.out.println(accountPanels.size());
+            for (int i = 0; i < accountPanels.size(); i++) {
+                System.out.println("here");
+                usp.add(accountPanels.get(i));
+                accountPane.add(usp);
+                if (i % 4 == 3 && i != 0) {
+                    System.out.println("added at " + i);
+                    accountPane.add(usp);
+                    usp = new userSwitchPane();
+                }
+            }
+
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } 
-        
-        
+        }
+
     }
-    public class AccountListener extends MouseAdapter {
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="NewAccountListener">
+    public class NewAccountListener extends MouseAdapter {
+        
         public void mouseClicked(MouseEvent e){
-            System.out.println(((accountPanelForm)e.getSource()).getJLabelName());
             getContentPane().removeAll();
+            setLayout(new GridLayout(1,1));
+            lastPane.push(currentPane);
+            currentPane = new CreateNewUserLayer(frame);
+            getContentPane().add(currentPane);
             repaint();
+            pack();
+        }
     }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="AccountListener">
+    public class AccountListener extends MouseAdapter {
+
+        public void mouseClicked(MouseEvent e) {
+            // System.out.println(((accountPanelForm)e.getSource()).getJLabelName());
+            getContentPane().removeAll();
+            setLayout(new GridLayout(1, 1));
+            lastPane.push(currentPane);
+            currentPane = new PassEntryLayer(((accountPanelForm) e.getSource()).getJLabelName(), ((accountPanelForm) e.getSource()).getJLabelIcon(),frame);
+            getContentPane().add(currentPane);
+            repaint();
+            pack();
+        }
     }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="CardLayout Listener">
     public class NextPrev extends MouseAdapter {
         public void mouseClicked(MouseEvent e){
             if(e.getSource()==jLabel3){
                 cl.previous(accountPane);
-                System.out.println("jLabel3 Clicked");
+               // System.out.println("jLabel3 Clicked");
             }
             if(e.getSource()==jLabel4){
                 cl.next(accountPane);
-                System.out.println("jLabel4 Clicked");
+               // System.out.println("jLabel4 Clicked");
             }
         }
+        
                 
                 
         
-    }
+    }// </editor-fold>
     /**
      * @param args the command line arguments
      */
@@ -248,8 +285,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
+    
     CardLayout cl;
+    Login frame;
     private ArrayList<JPanel> accountPanels;
+    private JComponent currentPane;
+    private Stack<JComponent> lastPane;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accountPane;
     private javax.swing.JLabel jLabel1;
