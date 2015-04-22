@@ -23,6 +23,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+        setPreferredSize(new Dimension(800,600));
         initComponents();
         frame = this;
         lastPane = new Stack<>();
@@ -102,7 +103,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(mainPaneLayout.createSequentialGroup()
                 .addGap(250, 250, 250)
                 .addComponent(jLabel1)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(mainPaneLayout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -112,7 +113,7 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
         mainPaneLayout.setVerticalGroup(
             mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,10 +222,16 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="AccountListener">
     public class AccountListener extends MouseAdapter {
 
+        public void mouseEntered(MouseEvent e) {
+            ((accountPanelForm)e.getSource()).setBackground(new Color(255, 150, 15));
+        }
+        public void mouseExited(MouseEvent e) {
+            ((accountPanelForm)e.getSource()).setBackground(Color.GREEN);
+        }
         public void mouseClicked(MouseEvent e) {
             // System.out.println(((accountPanelForm)e.getSource()).getJLabelName());
             getContentPane().removeAll();
-            setLayout(new GridLayout(1, 1));
+            getContentPane().setLayout(new GridLayout(1,1));
             lastPane.push(currentPane);
             currentPane = new PassEntryLayer(((accountPanelForm) e.getSource()).getJLabelName(), ((accountPanelForm) e.getSource()).getJLabelIcon(),frame);
             getContentPane().add(currentPane);

@@ -5,6 +5,8 @@
  */
 package mathtutor;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author Audi
@@ -14,8 +16,17 @@ public class WrongAnswer extends javax.swing.JPanel {
     /**
      * Creates new form WrongAnswer
      */
-    public WrongAnswer() {
+    public WrongAnswer(String num) {
         initComponents();
+        jLabel1.setText("Question "+num);
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
     }
 
     /**

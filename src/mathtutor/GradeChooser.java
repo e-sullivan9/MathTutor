@@ -5,6 +5,10 @@
  */
 package mathtutor;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Audi
@@ -17,7 +21,21 @@ public class GradeChooser extends javax.swing.JPanel {
     public GradeChooser(Login frame, GradeChooserLayer layer) {
         this.frame = frame;
         this.layer = layer;
+        frame.getLastPane().clear();
         initComponents();
+        jLabel3.addMouseListener(new Listener());
+    }
+    
+    public class Listener extends MouseAdapter {
+        public void mouseClicked(MouseEvent e){
+            frame.remove(layer);
+            frame.getLastPane().push(layer);
+            frame.setCurrentPane( new ModuleSelectorWindow(((JLabel)e.getSource()).getText(),frame));
+            frame.add(frame.getCurrentPane());
+            frame.repaint();
+            frame.pack();
+            ;
+        }
     }
 
     /**
@@ -94,23 +112,19 @@ public class GradeChooser extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Pre K - K");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(jLabel3)
-                .addGap(120, 120, 120))
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap())
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Image Goes here");

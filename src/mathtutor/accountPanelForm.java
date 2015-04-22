@@ -29,7 +29,7 @@ public class accountPanelForm extends javax.swing.JPanel {
         initComponents();
         this.Name.setText(name);
         this.icon.setIcon(new ImageIcon(icon));
-        setBackground(new Color(255,150,15));
+        setBackground(Color.GREEN);
         setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         
     }

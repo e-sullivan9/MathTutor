@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 
-package oldStuff;
-
-import javax.swing.JPanel;
+package mathtutor;
 
 /**
  *
  * @author Eric Sullivan
  */
-public abstract class PanelTemplate extends JPanel implements Panel {
+class MouseAdaper {
 
 }

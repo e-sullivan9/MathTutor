@@ -21,7 +21,7 @@ public class AccountPanel extends JPanel{
     ArrayList<JLabel> sticker;
     JPanel top, bot, buttons, account;
     private Account userAccount;
-    private JComponent currentFrame;
+    private Login frame;
     public AccountPanel(){
         myFont = new Font("Comic Sans MS", Font.BOLD,50);      
        
@@ -35,8 +35,8 @@ public class AccountPanel extends JPanel{
         add(bot,BorderLayout.CENTER);
 	add(buttons,BorderLayout.SOUTH);
     }
-    public AccountPanel(Account userAccount,JComponent currentFrame){
-        this.currentFrame = currentFrame;
+    public AccountPanel(Account userAccount,Login frame){
+        this.frame = frame;
         this.userAccount = userAccount;
         if(userAccount.getUsername().length()<8){
             myFont = new Font("Comic Sans MS", Font.BOLD,50);
@@ -100,7 +100,16 @@ public class AccountPanel extends JPanel{
         buttons.add(help);
     }
     public class ImageHandler extends MouseAdapter {
-        public void mouseClicked(MouseEvent e)  
+        public void mouseClicked(MouseEvent e)  {
+            if(e.getSource()==back){
+                System.out.println(frame.getLastPane());
+                frame.remove(frame.getCurrentPane());
+                frame.setCurrentPane(frame.getLastPane().pop());
+                frame.add(frame.getCurrentPane());
+                frame.repaint();
+                frame.pack();
+            }
+        }
     {  
 
     }  
