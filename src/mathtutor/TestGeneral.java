@@ -6,11 +6,7 @@
 package mathtutor;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,15 +14,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collections;
 import java.util.Random;
-import mathtutor.Login;
+
 
 /**
  *
  * @author Eric Sullivan
  */
-public class TestGeneral extends PanelTemplate {
+public class TestGeneral extends HelpLayerAbstract {
 
-    static int done = 0;
     CardLayout cl;
     ArrayList<testForm> test;
     int index;
@@ -90,8 +85,6 @@ public class TestGeneral extends PanelTemplate {
     public void help() {
         test.get(index).help();
     }
-
-    @Override
     public void back() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -115,7 +108,7 @@ public class TestGeneral extends PanelTemplate {
                 }
             }
                 frame.remove(this);
-                frame.setCurrentPane(new Reward(temp,reward,test,frame));
+                frame.setCurrentPane(new RewardLayer(temp,reward,test,frame));
                 frame.add(frame.getCurrentPane());
                 frame.repaint();
                 frame.pack();

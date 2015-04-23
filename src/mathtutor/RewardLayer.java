@@ -7,26 +7,25 @@
 package mathtutor;
 
 import java.awt.Dimension;
-import javax.swing.JLayeredPane;
+import java.util.ArrayList;
 
 /**
  *
  * @author Eric Sullivan
  */
-public class GradeChooserLayer extends HelpLayerAbstract{
+public class RewardLayer extends HelpLayerAbstract{
+    int correct;
+    String reward;
+    ArrayList<testForm> test;
+    Login frame;
     
-    private GradeChooser pane;
-    private Login frame;
-    private GradeChooserLayer here;
     
-    public GradeChooserLayer(Login frame){
-        this.frame = frame;
-        here = this;
-        pane = new GradeChooser(frame,here);
-        init();
-    }
-
-    private void init() {
+    public RewardLayer(int correct,String reward,ArrayList<testForm> test,Login frame){
+        this.correct=correct;
+        this.reward=reward;
+        this.test = test;
+        this.frame=frame;
+        Reward pane = new Reward(correct,reward,test,frame,this);
         setPreferredSize(new Dimension(600,600));
         pane.setBounds(0, 0, 600, 600);
         add(pane);

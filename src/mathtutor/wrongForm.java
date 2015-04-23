@@ -19,7 +19,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
-public class wrongForm extends JLayeredPane {
+public class wrongForm extends HelpLayerAbstract {
 
     JPanel top, bot, questionPane, help1, help2;
     ArrayList<JPanel> answerP;
@@ -108,5 +108,10 @@ public class wrongForm extends JLayeredPane {
             bot.add(answerP.get(i));
         }
 
+    }
+
+    @Override
+    public void help() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

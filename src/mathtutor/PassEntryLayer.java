@@ -14,7 +14,7 @@ import javax.swing.JLayeredPane;
  *
  * @author Eric Sullivan
  */
-public class PassEntryLayer extends JLayeredPane{
+public class PassEntryLayer extends HelpLayerAbstract{
     
     public PassEntryLayer(String name,Icon icon,Login frame){
         System.out.println("Im a PassEntryLayer!");
@@ -31,6 +31,11 @@ public class PassEntryLayer extends JLayeredPane{
     private Login frame;
     private PasswordEntryPane pane;
     private PassEntryLayer here;
+
+    @Override
+    public void help() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
 }

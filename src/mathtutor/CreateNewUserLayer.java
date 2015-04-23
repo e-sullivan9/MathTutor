@@ -14,7 +14,7 @@ import javax.swing.JLayeredPane;
  *
  * @author Eric Sullivan
  */
-public class CreateNewUserLayer extends JLayeredPane {
+public class CreateNewUserLayer extends HelpLayerAbstract{
 
     public CreateNewUserLayer(Login frame) {
         System.out.println("Im a CreateNewUserLayer!");
@@ -32,5 +32,10 @@ public class CreateNewUserLayer extends JLayeredPane {
     private Login frame;
     private CreateNewUser pane;
     private CreateNewUserLayer here;
+
+    @Override
+    public void help() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

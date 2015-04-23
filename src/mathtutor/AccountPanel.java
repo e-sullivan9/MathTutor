@@ -109,6 +109,9 @@ public class AccountPanel extends JPanel{
                 frame.repaint();
                 frame.pack();
             }
+            if(e.getSource()==help){
+                ((HelpLayerAbstract)frame.getCurrentPane()).help();
+            }
         }
     {  
 

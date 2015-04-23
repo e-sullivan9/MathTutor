@@ -24,6 +24,7 @@ public class SeeWrongPane extends javax.swing.JPanel {
     ArrayList<testForm> wrongs;
     Login frame;
     SeeWrongPane here;
+    SeeWrongLayer layer;
     /**
      * Creates new form SeeWrongPane
      */
@@ -31,8 +32,9 @@ public class SeeWrongPane extends javax.swing.JPanel {
         initComponents();
         jPanel1.setLayout(new GridLayout(6,1));
     }
-    public SeeWrongPane(ArrayList<testForm> test,Login frame) {
+    public SeeWrongPane(ArrayList<testForm> test,Login frame,SeeWrongLayer parent) {
         initComponents();
+        layer  = parent;
         wrongs = new ArrayList<>();
         this.test = test;
         this.frame = frame;
@@ -58,8 +60,8 @@ public class SeeWrongPane extends javax.swing.JPanel {
             String temp = ((WrongAnswer)e.getSource()).getjLabel1().getText();
             String[] split = temp.split(" ");
             testForm current = test.get(Integer.parseInt(split[1])-1);
-            frame.remove(here);
-            frame.getLastPane().push(here);
+            frame.remove(layer);
+            frame.getLastPane().push(layer);
             frame.setCurrentPane(new wrongForm(current,frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();

@@ -11,16 +11,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Eric Sullivan
  */
-public class Reward extends PanelTemplate {
+public class Reward extends JPanel{
     ArrayList<Integer> incorrect;
     ArrayList<testForm> test;
     Login frame;
     Reward here;
+    RewardLayer layer;
     /**
      * Creates new form Reward
      * @param correct
@@ -29,11 +31,11 @@ public class Reward extends PanelTemplate {
      * @param q_num
      * @param frame
      */
-    public Reward(int correct,String reward,ArrayList<testForm> test,Login frame) {
+    public Reward(int correct,String reward,ArrayList<testForm> test,Login frame,RewardLayer parent) {
         initComponents();
         this.test=test;
         this.frame=frame;
-        here = this;
+        this.layer=parent;
         seeWrongPane.addMouseListener(new Listener());
         numCorrect.setText(""+correct+"/6 correct!");
         if(correct>=4){
@@ -47,9 +49,9 @@ public class Reward extends PanelTemplate {
     public class Listener extends MouseAdapter {
         
         public void mouseClicked(MouseEvent e) {
-            frame.remove(here);
-            frame.getLastPane().push(here);
-            frame.setCurrentPane(new SeeWrongPane(test,frame));
+            frame.remove(layer);
+            frame.getLastPane().push(layer);
+            frame.setCurrentPane(new SeeWrongLayer(test,frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();
@@ -78,6 +80,7 @@ public class Reward extends PanelTemplate {
         setBackground(new java.awt.Color(144, 210, 144));
 
         banner.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
+        banner.setForeground(java.awt.Color.white);
         banner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         banner.setText("Congratulations");
 
@@ -91,13 +94,15 @@ public class Reward extends PanelTemplate {
         Module.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         numCorrect.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        numCorrect.setForeground(java.awt.Color.white);
         numCorrect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numCorrect.setText("Num correct");
 
         seeWrongPane.setBackground(new java.awt.Color(255, 150, 14));
         seeWrongPane.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        seeWrong.setFont(new java.awt.Font("Comic Sans MS", 0, 25)); // NOI18N
+        seeWrong.setFont(new java.awt.Font("Comic Sans MS", 1, 25)); // NOI18N
+        seeWrong.setForeground(java.awt.Color.white);
         seeWrong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         seeWrong.setText("See Wrong Answers");
 
@@ -147,15 +152,15 @@ public class Reward extends PanelTemplate {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(banner, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                        .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(numCorrect, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(seeWrongPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(print, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,13 +175,4 @@ public class Reward extends PanelTemplate {
     private javax.swing.JPanel seeWrongPane;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void help() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void back() {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

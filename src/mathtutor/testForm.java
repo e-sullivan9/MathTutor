@@ -27,7 +27,7 @@ import javax.swing.border.BevelBorder;
  *
  * @author Eric Sullivan
  */
-public class testForm extends JLayeredPane {
+public class testForm extends HelpLayerAbstract {
     JPanel top, bot, questionPane, help1, help2;
     ArrayList<JPanel> answerP;
     JLabel questionLabel, correct, wrong;
