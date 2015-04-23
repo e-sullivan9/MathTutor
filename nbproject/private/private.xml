@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/oldStuff/WrongGeneral.java</file>
-            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/oldStuff/wrongForm.java</file>
-            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/oldStuff/Reward.java</file>
-            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/oldStuff/TestGeneral.java</file>
-            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/oldStuff/testForm.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/SeeWrongPane.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/ModuleSelectorWindow.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/AccountPanel.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/Login.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/RewardLayer.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/ToTLayer.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/GradeChooser.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/SeeWrongLayer.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/ToT.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/Reward.java</file>
+            <file>file:/C:/Users/Eric%20Sullivan/Desktop/MathTutor/src/mathtutor/TestGeneral.java</file>
         </group>
     </open-files>
 </project-private>

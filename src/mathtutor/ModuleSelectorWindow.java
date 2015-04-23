@@ -62,7 +62,7 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
         public void mouseClicked(MouseEvent e){
             frame.remove(layer);
             frame.getLastPane().push(layer);
-            frame.setCurrentPane( new TestGeneral(((Module)e.getSource()).getjLabel1().getText(),"",frame));
+            frame.setCurrentPane( new ToTLayer(((Module)e.getSource()).getjLabel1().getText(),"",frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();

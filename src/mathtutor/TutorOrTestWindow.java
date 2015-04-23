@@ -10,9 +10,6 @@ package mathtutor;
  *
  * @author Eric Sullivan
  */
-public interface Panel {
-    
-    public void help();
-    public void back();
+public class TutorOrTestWindow {
 
 }
