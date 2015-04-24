@@ -89,11 +89,11 @@ public class AccountPanel extends JPanel{
         buttons.setAlignmentX(Component.BOTTOM_ALIGNMENT);
         buttons.setBackground(new Color(144,210,144));
         
-        back = new JLabel(new ImageIcon("Back.png"));
+        back = new JLabel(new ImageIcon(".\\Buttons\\Back.png"));
         back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         back.addMouseListener(new ImageHandler());
         
-        help = new JLabel(new ImageIcon("Help.png"));
+        help = new JLabel(new ImageIcon(".\\Buttons\\Help.png"));
         help.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         help.addMouseListener(new ImageHandler());
         buttons.add(back);

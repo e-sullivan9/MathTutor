@@ -34,6 +34,8 @@ public class Login extends javax.swing.JFrame {
         jLabel3.addMouseListener(new NextPrev());
         jLabel4.addMouseListener(new NextPrev());
         setLocationRelativeTo(null);
+        setResizable(false);
+        
     }
     
     public JComponent getCurrentPane() {
