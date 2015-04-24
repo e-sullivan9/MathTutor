@@ -17,8 +17,8 @@ public class ModuleSelectorLayer extends HelpLayerAbstract{
     ModuleSelectorWindow pane;
     public ModuleSelectorLayer(String grade,Login frame) {
         pane = new ModuleSelectorWindow(grade,frame,this);
-        setPreferredSize(new Dimension(800,600));
-        pane.setBounds(0, 0, 800, 600);
+        setPreferredSize(new Dimension(600,600));
+        pane.setBounds(0, 0, 600, 600);
         add(pane);
         
     }
