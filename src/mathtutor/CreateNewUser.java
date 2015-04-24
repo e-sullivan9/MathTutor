@@ -8,6 +8,7 @@ package mathtutor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -26,6 +27,7 @@ public class CreateNewUser extends javax.swing.JPanel {
         initComponents();
     }
 
+    
     public CreateNewUser(Login frame, CreateNewUserLayer layer) {
 
         con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
@@ -34,6 +36,7 @@ public class CreateNewUser extends javax.swing.JPanel {
         avatarList = new ArrayList<>();
         initComponents();
         buildList();
+        
         selectedIcon.setIcon(avatarList.get(0));
         back.addMouseListener(new Listener());
         next.addMouseListener(new Listener());
@@ -101,19 +104,19 @@ public class CreateNewUser extends javax.swing.JPanel {
                 if (lastNameTF.getText().isEmpty()) {
                     errors += "Please Enter your last name\n";
                 }
-                if (passwordTF.getText().isEmpty()) {
+                if (jPasswordField1.getPassword() == null) {
                     errors += "Please Enter a password\n";
                 }
-                if (retypeTF.getText().isEmpty()) {
+                if (jPasswordField2.getPassword() == null) {
                     errors += "Please retype a password\n";
                 }
-                if (!retypeTF.getText().equals(passwordTF.getText())) {
+                if (!Arrays.equals(jPasswordField1.getPassword(),jPasswordField2.getPassword())) {
                     errors += "Passwords do not match\n";
                 }
                 if (errors.isEmpty()) {
                     String table = "users";
                     String pid = firstNameTF.getText() + " " + lastNameTF.getText().charAt(0);
-                    String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + passwordTF.getText() + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "'";
+                    String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + jPasswordField1.getPassword() + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "'";
                     JOptionPane.showMessageDialog(null, "" + pid + " Created");
                     con.insertIntoDB(table, entry);
                     con.closeDBConnection();
@@ -147,9 +150,7 @@ public class CreateNewUser extends javax.swing.JPanel {
         firstNameTF = new javax.swing.JTextField();
         firstNameL = new javax.swing.JLabel();
         passwordL = new javax.swing.JLabel();
-        passwordTF = new javax.swing.JTextField();
         lastNameTF = new javax.swing.JTextField();
-        retypeTF = new javax.swing.JTextField();
         retypeL = new javax.swing.JLabel();
         next = new javax.swing.JLabel();
         back = new javax.swing.JLabel();
@@ -158,6 +159,8 @@ public class CreateNewUser extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         picNext = new javax.swing.JLabel();
         prevPic = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(144, 210, 144));
 
@@ -183,11 +186,7 @@ public class CreateNewUser extends javax.swing.JPanel {
         passwordL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         passwordL.setText("Password");
 
-        passwordTF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         lastNameTF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        retypeTF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         retypeL.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         retypeL.setForeground(java.awt.Color.white);
@@ -199,11 +198,9 @@ public class CreateNewUser extends javax.swing.JPanel {
         next.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         back.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        back.setIcon(new javax.swing.ImageIcon("C:\\Users\\Eric Sullivan\\Desktop\\MathTutor\\Back.png")); // NOI18N
         back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         help.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        help.setIcon(new javax.swing.ImageIcon("C:\\Users\\Eric Sullivan\\Desktop\\MathTutor\\help.png")); // NOI18N
         help.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         selectedIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -217,29 +214,17 @@ public class CreateNewUser extends javax.swing.JPanel {
 
         prevPic.setText("prev");
 
+        jPasswordField1.setText("jPasswordField1");
+
+        jPasswordField2.setText("jPasswordField2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(275, 275, 275)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lastNameL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(firstNameTF)
-                    .addComponent(firstNameL, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                    .addComponent(passwordTF)
-                    .addComponent(passwordL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lastNameTF)
-                    .addComponent(retypeL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(retypeTF))
-                .addContainerGap(279, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(344, 344, 344)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,8 +236,25 @@ public class CreateNewUser extends javax.swing.JPanel {
                         .addComponent(selectedIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(picNext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(344, 344, 344)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(275, 275, 275)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lastNameL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(firstNameTF)
+                                    .addComponent(firstNameL, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                                    .addComponent(passwordL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lastNameTF)
+                                    .addComponent(retypeL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPasswordField1)
+                                    .addComponent(jPasswordField2))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -270,19 +272,19 @@ public class CreateNewUser extends javax.swing.JPanel {
                 .addComponent(lastNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(passwordL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(passwordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addGap(4, 4, 4)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(retypeL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(retypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(next, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
+                        .addGap(1, 1, 1)
+                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -314,15 +316,15 @@ public class CreateNewUser extends javax.swing.JPanel {
     private javax.swing.JLabel help;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JLabel lastNameL;
     private javax.swing.JTextField lastNameTF;
     private javax.swing.JLabel next;
     private javax.swing.JLabel passwordL;
-    private javax.swing.JTextField passwordTF;
     private javax.swing.JLabel picNext;
     private javax.swing.JLabel prevPic;
     private javax.swing.JLabel retypeL;
-    private javax.swing.JTextField retypeTF;
     private javax.swing.JLabel selectedIcon;
     // End of variables declaration//GEN-END:variables
 }
