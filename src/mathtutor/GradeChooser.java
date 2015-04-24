@@ -30,7 +30,7 @@ public class GradeChooser extends javax.swing.JPanel {
         public void mouseClicked(MouseEvent e){
             frame.remove(layer);
             frame.getLastPane().push(layer);
-            frame.setCurrentPane( new ModuleSelectorWindow(((JLabel)e.getSource()).getText(),frame));
+            frame.setCurrentPane( new ModuleSelectorLayer(((JLabel)e.getSource()).getText(),frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();

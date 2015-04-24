@@ -58,7 +58,6 @@ public class TestGeneral extends HelpLayerAbstract {
                     String temp = questions[a];
                     questions[a] = questions[b];
                     questions[b] = temp;
-                    System.out.println(questions.toString());
 
                 }
                 //GeneralTestPanel gtp = new GeneralTestPanel(rs.getInt("question_id"), rs.getString("questionImage"), questions, rs.getString("correctAnswer"));

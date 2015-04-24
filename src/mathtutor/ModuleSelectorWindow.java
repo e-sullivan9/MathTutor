@@ -20,18 +20,19 @@ import javax.swing.JPanel;
  */
 public class ModuleSelectorWindow extends javax.swing.JPanel {
     ArrayList<Module> modules;
-    ModuleSelectorWindow layer;
+    //ModuleSelectorWindow layer;
     Login frame;
+    ModuleSelectorLayer layer;
     /**
      * Creates new form ModuleSelectorWindow
      */
     public ModuleSelectorWindow() {
         initComponents();
     }
-    public  ModuleSelectorWindow(String grade,Login frame){
+    public  ModuleSelectorWindow(String grade,Login frame,ModuleSelectorLayer parent){
         this.frame = frame;
         initComponents();
-        layer = this;
+        layer = parent;
         modules = new ArrayList<>();
         System.out.println(grade);
         if(grade.equals("Pre K - K")){
@@ -42,7 +43,7 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
             modules.add(new Module("Numbers","Numbers"));
             modules.add(new Module("Problems","Problems"));
             modules.add(new Module("Sequences","Sequences"));
-            modules.add(new Module("Whole","Whole"));
+            modules.add(new Module("Wholes","Wholes"));
             
         }
         JPanel pane = new JPanel(new GridLayout(2,2,10,10));
