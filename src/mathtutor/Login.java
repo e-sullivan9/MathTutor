@@ -23,7 +23,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
-        setPreferredSize(new Dimension(800,600));
+        setPreferredSize(new Dimension(800,620));
         initComponents();
         frame = this;
         lastPane = new Stack<>();

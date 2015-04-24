@@ -93,7 +93,7 @@ public class testForm extends HelpLayerAbstract {
     private void buildBot() {
         GridLayout gl = new GridLayout(2, 2);
         bot = new JPanel(gl);
-        bot.setBounds(0, 280, 600, 285);
+        bot.setBounds(0, 280, 600, 305);
         bot.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         bot.setBackground(new Color(144, 210, 144));
         gl.setHgap(10);

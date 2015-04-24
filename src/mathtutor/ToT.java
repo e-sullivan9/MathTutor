@@ -19,32 +19,43 @@ public class ToT extends javax.swing.JPanel {
     ToTLayer layer;
     String module;
     String reward;
-    
+
     /**
      * Creates new form ToT
      */
     public ToT() {
         initComponents();
     }
-    public ToT(String module,String reward,Login frame,ToTLayer parent) {
+
+    public ToT(String module, String reward, Login frame, ToTLayer parent) {
         initComponents();
         this.module = module;
-        this.reward=reward;
-        this.frame=frame;
-        this.layer=parent;
+        this.reward = reward;
+        this.frame = frame;
+        this.layer = parent;
         jLabel1.setText(module);
         jPanel1.addMouseListener(new Listener());
         jPanel2.addMouseListener(new Listener());
     }
+
     public class Listener extends MouseAdapter {
+
         public void mouseClicked(MouseEvent e) {
-            if(e.getSource()==jPanel2){
-            frame.remove(layer);
-            frame.getLastPane().push(layer);
-            frame.setCurrentPane(new TestGeneral(module,reward,frame));
-            frame.add(frame.getCurrentPane());
-            frame.repaint();
-            frame.pack();
+            if (e.getSource() == jPanel2) {
+                frame.remove(layer);
+                frame.getLastPane().push(layer);
+                frame.setCurrentPane(new TestGeneral(module, reward, frame));
+                frame.add(frame.getCurrentPane());
+                frame.repaint();
+                frame.pack();
+            }
+            if (e.getSource() == jPanel1) {
+                frame.remove(layer);
+                frame.getLastPane().push(layer);
+                frame.setCurrentPane(new TutorialLayer(module, frame));
+                frame.add(frame.getCurrentPane());
+                frame.repaint();
+                frame.pack();
             }
         }
     }
