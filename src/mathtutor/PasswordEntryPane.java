@@ -44,7 +44,12 @@ public class PasswordEntryPane extends javax.swing.JPanel {
         title.setText("Hi "+name+"!");
         userIcon.setIcon(icon);
         back.addMouseListener(new Listener());
+        help.addMouseListener(new Listener());
+        next.addMouseListener(new Listener());
         jPasswordField1.addKeyListener(new PaneListener());
+        back.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\back-large.png"));
+        next.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\go.png"));
+        help.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\help.png"));
     }
     public class PaneListener implements KeyListener {
 
@@ -111,6 +116,43 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                 frame.pack();
             }
             if (e.getSource() == help) {
+                parent.help();
+            }
+            if(e.getSource()==next){
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost/MathTutorDB", "TutorAdmin", "Tut0r4dm1n"); //change password for it to work.
+                    String sql = "select pass from Users where PID ='"+name+"'";
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery(sql);
+                    if(rs.next()){
+                        char[] chartemp = jPasswordField1.getPassword();
+                        String temp="";
+                        for(int i=0;i<chartemp.length;i++){
+                            temp+=chartemp[i];
+                        }
+                        if(temp.equals(rs.getString("pass"))){
+                            
+                            JOptionPane.showMessageDialog(null, "passed");
+                            frame.getContentPane().removeAll();
+                            BoxLayout bl = new BoxLayout(frame.getContentPane(),BoxLayout.X_AXIS);
+                            frame.setLayout(bl);
+                            GradeChooserLayer chooser = new GradeChooserLayer(frame);
+                            frame.add(new AccountPanel(new Account(name,userIcon.getIcon()),frame));
+                            frame.add(chooser);
+                            frame.repaint();
+                            frame.pack();
+                        }
+                        else
+                            JOptionPane.showMessageDialog(null, "not passed");
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "fail");
+                } catch (ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
@@ -128,7 +170,7 @@ public class PasswordEntryPane extends javax.swing.JPanel {
         userIcon = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        next = new javax.swing.JLabel();
         back = new javax.swing.JLabel();
         help = new javax.swing.JLabel();
 
@@ -147,13 +189,10 @@ public class PasswordEntryPane extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Enter Password");
 
-        jLabel4.setText("jLabel4");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        next.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        back.setIcon(new javax.swing.ImageIcon("C:\\Users\\Eric Sullivan\\Desktop\\MathTutor\\Back.png")); // NOI18N
         back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        help.setIcon(new javax.swing.ImageIcon("C:\\Users\\Eric Sullivan\\Desktop\\MathTutor\\help.png")); // NOI18N
         help.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -175,11 +214,10 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,15 +227,18 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(help)
-                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 11, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                            .addComponent(help, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -208,8 +249,8 @@ public class PasswordEntryPane extends javax.swing.JPanel {
     private javax.swing.JLabel back;
     private javax.swing.JLabel help;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel next;
     private javax.swing.JLabel title;
     private javax.swing.JLabel userIcon;
     // End of variables declaration//GEN-END:variables

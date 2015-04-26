@@ -89,7 +89,7 @@ public class AccountPanel extends JPanel{
         buttons.setAlignmentX(Component.BOTTOM_ALIGNMENT);
         buttons.setBackground(new Color(144,210,144));
         
-        back = new JLabel(new ImageIcon(".\\Buttons\\Back.png"));
+        back = new JLabel(new ImageIcon(".\\Buttons\\Back-large.png"));
         back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         back.addMouseListener(new ImageHandler());
         
@@ -101,7 +101,7 @@ public class AccountPanel extends JPanel{
     }
     public class ImageHandler extends MouseAdapter {
         public void mouseClicked(MouseEvent e)  {
-            if(e.getSource()==back){
+            if(e.getSource()==back&&!frame.getLastPane().isEmpty()){
                 System.out.println(frame.getLastPane());
                 frame.remove(frame.getCurrentPane());
                 frame.setCurrentPane(frame.getLastPane().pop());

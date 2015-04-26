@@ -2,6 +2,26 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+import java.io.*;
+import javax.sound.sampled.*;
+
+try {
+    File yourFile;
+    AudioInputStream stream;
+    AudioFormat format;
+    DataLine.Info info;
+    Clip clip;
+
+    stream = AudioSystem.getAudioInputStream(yourFile);
+    format = stream.getFormat();
+    info = new DataLine.Info(Clip.class, format);
+    clip = (Clip) AudioSystem.getLine(info);
+    clip.open(stream);
+    clip.start();
+}
+catch (Exception e) {
+    //whatevers
+}
  */
 
 package mathtutor;
@@ -31,8 +51,12 @@ public class Login extends javax.swing.JFrame {
         loadAccounts();
         cl = new CardLayout();
         accountPane.setLayout(cl);
+        jLabel3.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\back.png"));
+        jLabel4.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\forward.png"));
+        jLabel2.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\quit.png"));
         jLabel3.addMouseListener(new NextPrev());
         jLabel4.addMouseListener(new NextPrev());
+        jLabel2.addMouseListener(new NextPrev());
         setLocationRelativeTo(null);
         setResizable(false);
         
@@ -89,13 +113,15 @@ public class Login extends javax.swing.JFrame {
         );
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Exit");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Previos");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Next");
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.setPreferredSize(new java.awt.Dimension(30, 15));
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
@@ -254,12 +280,16 @@ public class Login extends javax.swing.JFrame {
                 cl.next(accountPane);
                // System.out.println("jLabel4 Clicked");
             }
+            if(e.getSource()==jLabel2){
+                System.exit(0);
+            }
         }
         
                 
                 
         
     }// </editor-fold>
+    
     /**
      * @param args the command line arguments
      */

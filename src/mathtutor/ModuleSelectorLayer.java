@@ -7,6 +7,8 @@
 package mathtutor;
 
 import java.awt.Dimension;
+import java.io.*;
+import javax.sound.sampled.*;
 
 /**
  *
@@ -22,10 +24,26 @@ public class ModuleSelectorLayer extends HelpLayerAbstract{
         add(pane);
         
     }
+    
 
     @Override
     public void help() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            File yourFile = new File(".\\Help\\ModuleSelector.wav");
+            AudioInputStream stream;
+            AudioFormat format;
+            DataLine.Info info;
+            Clip clip;
+
+            stream = AudioSystem.getAudioInputStream(yourFile);
+            format = stream.getFormat();
+            info = new DataLine.Info(Clip.class, format);
+            clip = (Clip) AudioSystem.getLine(info);
+            clip.open(stream);
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 

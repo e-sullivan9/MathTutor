@@ -18,10 +18,10 @@ public class Module extends javax.swing.JPanel {
     /**
      * Creates new form Module
      */
-    public Module(String icon,String name) {
+    public Module(String grade,String name) {
         initComponents();
         jLabel1.setText(name);
-        jLabel2.setIcon(new ImageIcon(icon));
+        jLabel2.setIcon(new ImageIcon(".\\Icons\\"+grade+"\\"+name+"-thumb.png"));
     }
 
     public JLabel getjLabel1() {

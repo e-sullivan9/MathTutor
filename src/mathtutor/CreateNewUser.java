@@ -39,7 +39,12 @@ public class CreateNewUser extends javax.swing.JPanel {
         
         selectedIcon.setIcon(avatarList.get(0));
         back.addMouseListener(new Listener());
+        back.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\back-large.png"));
         next.addMouseListener(new Listener());
+        next.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\go.png"));
+        help.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\help.png"));
+        picNext.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\forward.png"));
+        prevPic.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\back.png"));
         picNext.addMouseListener(new Listener());
         prevPic.addMouseListener(new Listener());
     }
@@ -94,7 +99,7 @@ public class CreateNewUser extends javax.swing.JPanel {
                 selectedIcon.setIcon(avatarList.get(place));
             }
             if (e.getSource() == help) {
-
+                layer.help();
             }
             if (e.getSource() == next) {
                 String errors = "";
@@ -197,7 +202,6 @@ public class CreateNewUser extends javax.swing.JPanel {
         retypeL.setText("Re-type Password");
 
         next.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        next.setIcon(new javax.swing.ImageIcon("C:\\Users\\Leonid\\Documents\\NetBeansProjects\\MathTutor\\Buttons\\go.png")); // NOI18N
         next.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         back.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -212,10 +216,6 @@ public class CreateNewUser extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel2.setForeground(java.awt.Color.white);
         jLabel2.setText("Select Avatar");
-
-        picNext.setIcon(new javax.swing.ImageIcon("C:\\Users\\Leonid\\Documents\\NetBeansProjects\\MathTutor\\Buttons\\forward.png")); // NOI18N
-
-        prevPic.setIcon(new javax.swing.ImageIcon("C:\\Users\\Leonid\\Documents\\NetBeansProjects\\MathTutor\\Buttons\\back.png")); // NOI18N
 
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,15 +246,11 @@ public class CreateNewUser extends javax.swing.JPanel {
                                 .addComponent(jLabel2)
                                 .addGap(62, 62, 62))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 154, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(prevPic)))
+                                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                                .addComponent(prevPic, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(selectedIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -289,23 +285,19 @@ public class CreateNewUser extends javax.swing.JPanel {
                         .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(prevPic)
                                 .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(help, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(selectedIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(picNext)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(6, 6, 6)
+                                .addComponent(selectedIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(picNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(prevPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
