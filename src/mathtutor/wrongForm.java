@@ -16,6 +16,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -27,14 +29,15 @@ import javax.swing.border.BevelBorder;
 
 public class wrongForm extends HelpLayerAbstract {
 
-    JPanel top, bot, questionPane, help1, help2;
-    ArrayList<JPanel> answerP;
-    JLabel questionLabel, correct, wrong;
-    ArrayList<JLabel> answerL;
-    String correctAnswer;
-    boolean isCorrect;
-    int question_id, number;
-    Login frame;
+    private JPanel top, bot, questionPane, help1, help2;
+    private ArrayList<JPanel> answerP;
+    private JLabel questionLabel, correct, wrong;
+    private ArrayList<JLabel> answerL;
+    private String correctAnswer;
+    private boolean isCorrect;
+    private int number;
+    private Login frame;
+    private Clip clip;
 
     public wrongForm(testForm test, Login frame) {
         //System.out.println("here");
@@ -46,6 +49,7 @@ public class wrongForm extends HelpLayerAbstract {
         buildBot();
         this.correctAnswer = test.getCorrectAnswer();
         isCorrect = false;
+        setUpClip();
 
         questionLabel.setIcon(new ImageIcon(test.getCorrectImage()));
         for (int i = 0; i < test.getAnswerP().size(); ++i) {
@@ -92,7 +96,7 @@ public class wrongForm extends HelpLayerAbstract {
     private void buildBot() {
         GridLayout gl = new GridLayout(2, 2);
         bot = new JPanel(gl);
-        bot.setBounds(0, 280, 600, 285);
+        bot.setBounds(0, 280, 600, 310);
         bot.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         bot.setBackground(new Color(144, 210, 144));
         gl.setHgap(10);
@@ -115,24 +119,54 @@ public class wrongForm extends HelpLayerAbstract {
         }
 
     }
-
-    @Override
-    public void help() {
-                    try {
+          public void setUpClip() {
+        try {
             File yourFile = new File(".\\Help\\wrongForm.wav");
             AudioInputStream stream;
             AudioFormat format;
             DataLine.Info info;
-            Clip clip;
+            //
 
             stream = AudioSystem.getAudioInputStream(yourFile);
             format = stream.getFormat();
             info = new DataLine.Info(Clip.class, format);
             clip = (Clip) AudioSystem.getLine(info);
+            LineListener listener = new LineListener() {
+                public void update(LineEvent e) {
+                    if (e.getType() == LineEvent.Type.STOP) {
+                        System.out.println("restarted");
+                        clip.close();
+                        setUpClip();
+                    }
+                }
+            };
+            clip.addLineListener(listener);
             clip.open(stream);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void help() {
+        try {
+            if(clip.isRunning()){
+            clip.stop();
+            clip.close();
+            setUpClip();
+            }
             clip.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+
+    @Override
+    public void clipStop() {
+        clip.stop();
+    }
+
+
 }

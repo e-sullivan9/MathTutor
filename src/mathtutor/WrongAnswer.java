@@ -40,10 +40,10 @@ public class WrongAnswer extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 150, 15));
+        setBackground(java.awt.Color.green);
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Question #1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -59,7 +59,7 @@ public class WrongAnswer extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

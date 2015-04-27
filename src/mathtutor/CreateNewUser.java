@@ -15,7 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * This Class creates a new user by letting the user create a username and password. They can also select a avatar for their account.
+ * Color scheme: blue, Orange and Green
+ * 5 Click able JLabel help, back, next,prevPic, Picnext.
+ * 7 JLabels that are used as titles
+ * 2 textfields for First name and Last name
+ * 2 Passwordfields for Password and Password confirmation
  * @author Eric Sullivan
  */
 public class CreateNewUser extends javax.swing.JPanel {
@@ -27,7 +32,12 @@ public class CreateNewUser extends javax.swing.JPanel {
         initComponents();
     }
 
-    
+    /**
+     * Creates new form CreateNewUser and added components to the JPanel
+     * Makes connection to the Database.
+     * @param frame
+     * @param layer 
+     */
     public CreateNewUser(Login frame, CreateNewUserLayer layer) {
 
         con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
@@ -49,6 +59,9 @@ public class CreateNewUser extends javax.swing.JPanel {
         prevPic.addMouseListener(new Listener());
     }
 
+    /**
+     * Adds the selectable avatar images to a ArrayList.
+     */
     public void buildList() {
         avatarList.add(new ImageIcon(".\\Icons\\Icons\\icons\\bear.png"));
         avatarList.add(new ImageIcon(".\\Icons\\Icons\\icons\\duck.png"));
@@ -62,6 +75,12 @@ public class CreateNewUser extends javax.swing.JPanel {
         avatarList.add(new ImageIcon(".\\Icons\\Icons\\icons\\turtle.png"));
     }
 
+    /**
+     * Fixes String escape character errors in a String
+     *
+     * @param path
+     * @return
+     */
     public String addExtraSlash(String path) {
         char curr[] = path.toCharArray();
         String temp = "";
@@ -76,11 +95,26 @@ public class CreateNewUser extends javax.swing.JPanel {
         return temp;
 
     }
-
+    /**
+     * This Listener control:
+     * 5JPanels: back, picNext, prevPic, help, next.
+     * 
+     * back: stops and AudioClip on the parent class, removes the current Jpanels on the frame,
+     * adds previous Jpanel back on the JFrame.
+     * 
+     * picNext: progresses forward through the ArrayList of avatar images and sets it to a JLabel
+     * 
+     * prevPic: progresses backward throught the ArrayList of avatar images and adds sets it to a JLabel
+     * 
+     * help: starts the audio clip for helping the user us the page.
+     * 
+     * next: checks the textfields for error and either shows a error popup or creates a new user and adds them to the database
+     */
     public class Listener extends MouseAdapter {
         int place=0;
         public void mouseClicked(MouseEvent e) {
             if (e.getSource() == back) {
+                layer.clipStop();
                 frame.getContentPane().removeAll();
                 frame.setCurrentPane(frame.getLastPane().pop());
                 frame.add(frame.getCurrentPane());
@@ -136,6 +170,7 @@ public class CreateNewUser extends javax.swing.JPanel {
                     frame.add(chooser);
                     frame.repaint();
                     frame.pack();
+                    layer.clipStop();
                 } else {
                     JOptionPane.showMessageDialog(null, errors);
                 }
@@ -216,12 +251,6 @@ public class CreateNewUser extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel2.setForeground(java.awt.Color.white);
         jLabel2.setText("Select Avatar");
-
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -304,10 +333,6 @@ public class CreateNewUser extends javax.swing.JPanel {
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private Login frame;
     private ArrayList<ImageIcon> avatarList;

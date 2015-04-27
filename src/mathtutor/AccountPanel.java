@@ -103,6 +103,7 @@ public class AccountPanel extends JPanel{
         public void mouseClicked(MouseEvent e)  {
             if(e.getSource()==back&&!frame.getLastPane().isEmpty()){
                 System.out.println(frame.getLastPane());
+                ((HelpLayerAbstract)frame.getCurrentPane()).clipStop();
                 frame.remove(frame.getCurrentPane());
                 frame.setCurrentPane(frame.getLastPane().pop());
                 frame.add(frame.getCurrentPane());

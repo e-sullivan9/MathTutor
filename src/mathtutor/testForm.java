@@ -71,7 +71,7 @@ public class testForm extends HelpLayerAbstract {
 
     private void buildTop() {
         top = new JPanel();
-        top.setBounds(0, 0, 600, 280);
+        top.setBounds(0, 0, 624, 280);
         top.setLayout(new BoxLayout(top, BoxLayout.X_AXIS));
         top.setBackground(new Color(144, 210, 144));
         top.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
@@ -93,7 +93,7 @@ public class testForm extends HelpLayerAbstract {
     private void buildBot() {
         GridLayout gl = new GridLayout(2, 2);
         bot = new JPanel(gl);
-        bot.setBounds(0, 280, 600, 305);
+        bot.setBounds(0, 280, 624, 310);
         bot.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         bot.setBackground(new Color(144, 210, 144));
         gl.setHgap(10);
@@ -203,6 +203,11 @@ public class testForm extends HelpLayerAbstract {
 
     public void setQuestion_id(int question_id) {
         this.question_id = question_id;
+    }
+
+    @Override
+    public void clipStop() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 

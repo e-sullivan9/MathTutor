@@ -9,11 +9,12 @@ package mathtutor;
 import javax.swing.JLayeredPane;
 
 /**
- *
+ * Abstract Class that give help and clipStop to it children
  * @author Eric Sullivan
  */
 public abstract class HelpLayerAbstract extends JLayeredPane{
     
     public abstract void help();
+    public abstract void clipStop();
 
 }

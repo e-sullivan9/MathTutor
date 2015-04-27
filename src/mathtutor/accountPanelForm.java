@@ -54,6 +54,7 @@ public class accountPanelForm extends javax.swing.JPanel {
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        Name.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -6,9 +6,9 @@
 
 package mathtutor;
 
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -109,6 +109,7 @@ public class PasswordEntryPane extends javax.swing.JPanel {
 
         public void mouseClicked(MouseEvent e) {
             if (e.getSource() == back) {
+                parent.clipStop();
                 frame.getContentPane().removeAll();
                 frame.setCurrentPane(frame.getLastPane().pop());
                 frame.add(frame.getCurrentPane());
@@ -132,14 +133,14 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                             temp+=chartemp[i];
                         }
                         if(temp.equals(rs.getString("pass"))){
-                            
+                            parent.clipStop();
                             JOptionPane.showMessageDialog(null, "passed");
                             frame.getContentPane().removeAll();
                             BoxLayout bl = new BoxLayout(frame.getContentPane(),BoxLayout.X_AXIS);
                             frame.setLayout(bl);
-                            GradeChooserLayer chooser = new GradeChooserLayer(frame);
+                            frame.setCurrentPane( new GradeChooserLayer(frame));
                             frame.add(new AccountPanel(new Account(name,userIcon.getIcon()),frame));
-                            frame.add(chooser);
+                            frame.add(frame.getCurrentPane());
                             frame.repaint();
                             frame.pack();
                         }
@@ -153,6 +154,28 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+            }
+        }
+                public void mouseEntered(MouseEvent e) {
+            if(e.getSource()==back){
+            backPanel.setBackground(new Color(255, 150, 15));
+            }
+            if(e.getSource()==next){
+            nextPane.setBackground(new Color(255, 150, 15));
+            }
+            if(e.getSource()==help){
+            helpPanel.setBackground(new Color(255, 150, 15));
+            }
+        }
+        public void mouseExited(MouseEvent e) {
+            if(e.getSource()==back){
+            backPanel.setBackground(new Color(144, 210, 144));
+            }
+            if(e.getSource()==next){
+            nextPane.setBackground(new Color(144, 210, 144));
+            }
+            if(e.getSource()==help){
+            helpPanel.setBackground(new Color(144, 210, 144));
             }
         }
     }
@@ -170,9 +193,12 @@ public class PasswordEntryPane extends javax.swing.JPanel {
         userIcon = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
+        nextPane = new javax.swing.JPanel();
         next = new javax.swing.JLabel();
-        back = new javax.swing.JLabel();
+        helpPanel = new javax.swing.JPanel();
         help = new javax.swing.JLabel();
+        backPanel = new javax.swing.JPanel();
+        back = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(144, 210, 144));
         setForeground(java.awt.Color.white);
@@ -189,11 +215,55 @@ public class PasswordEntryPane extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Enter Password");
 
+        nextPane.setBackground(new java.awt.Color(144, 210, 144));
+
+        next.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         next.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        javax.swing.GroupLayout nextPaneLayout = new javax.swing.GroupLayout(nextPane);
+        nextPane.setLayout(nextPaneLayout);
+        nextPaneLayout.setHorizontalGroup(
+            nextPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(next, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+        );
+        nextPaneLayout.setVerticalGroup(
+            nextPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(next, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+        );
+
+        helpPanel.setBackground(new java.awt.Color(144, 210, 144));
+
+        help.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        help.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout helpPanelLayout = new javax.swing.GroupLayout(helpPanel);
+        helpPanel.setLayout(helpPanelLayout);
+        helpPanelLayout.setHorizontalGroup(
+            helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(help, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+        );
+        helpPanelLayout.setVerticalGroup(
+            helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, helpPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        backPanel.setBackground(new java.awt.Color(144, 210, 144));
+
+        back.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        help.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        javax.swing.GroupLayout backPanelLayout = new javax.swing.GroupLayout(backPanel);
+        backPanel.setLayout(backPanelLayout);
+        backPanelLayout.setHorizontalGroup(
+            backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(back, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+        );
+        backPanelLayout.setVerticalGroup(
+            backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -213,11 +283,12 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                         .addComponent(userIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(helpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(nextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,18 +298,15 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(help, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(nextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(helpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -247,10 +315,13 @@ public class PasswordEntryPane extends javax.swing.JPanel {
     private PassEntryLayer parent;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel back;
+    private javax.swing.JPanel backPanel;
     private javax.swing.JLabel help;
+    private javax.swing.JPanel helpPanel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel next;
+    private javax.swing.JPanel nextPane;
     private javax.swing.JLabel title;
     private javax.swing.JLabel userIcon;
     // End of variables declaration//GEN-END:variables

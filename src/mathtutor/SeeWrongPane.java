@@ -60,12 +60,22 @@ public class SeeWrongPane extends javax.swing.JPanel {
             String temp = ((WrongAnswer)e.getSource()).getjLabel1().getText();
             String[] split = temp.split(" ");
             testForm current = test.get(Integer.parseInt(split[1])-1);
+            layer.clipStop();
             frame.remove(layer);
             frame.getLastPane().push(layer);
             frame.setCurrentPane(new wrongForm(current,frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();
+        }
+        public void mouseEntered(MouseEvent e) {
+
+            ((JPanel) e.getSource()).setBackground(new Color(255, 150, 15));
+
+        }
+
+        public void mouseExited(MouseEvent e) {
+            ((JPanel) e.getSource()).setBackground(Color.green);
         }
     }
 

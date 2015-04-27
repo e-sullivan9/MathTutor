@@ -7,6 +7,7 @@
 package mathtutor;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -23,14 +24,14 @@ public class Reward extends JPanel{
     Login frame;
     Reward here;
     RewardLayer layer;
-    /**
-     * Creates new form Reward
-     * @param correct
-     * @param reward
-     * @param incorrect
-     * @param q_num
-     * @param frame
-     */
+/**
+ * 
+ * @param correct
+ * @param reward
+ * @param test
+ * @param frame
+ * @param parent 
+ */
     public Reward(int correct,String reward,ArrayList<testForm> test,Login frame,RewardLayer parent) {
         initComponents();
         this.test=test;
@@ -49,6 +50,7 @@ public class Reward extends JPanel{
     public class Listener extends MouseAdapter {
         
         public void mouseClicked(MouseEvent e) {
+            layer.clipStop();
             frame.remove(layer);
             frame.getLastPane().push(layer);
             frame.setCurrentPane(new SeeWrongLayer(test,frame));
@@ -56,6 +58,15 @@ public class Reward extends JPanel{
             frame.repaint();
             frame.pack();
             
+        }
+                public void mouseEntered(MouseEvent e) {
+
+            ((JPanel) e.getSource()).setBackground(new Color(255, 150, 15));
+
+        }
+
+        public void mouseExited(MouseEvent e) {
+            ((JPanel) e.getSource()).setBackground(Color.green);
         }
     }
 
@@ -82,7 +93,7 @@ public class Reward extends JPanel{
         banner.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
         banner.setForeground(java.awt.Color.white);
         banner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        banner.setText("Congratulations");
+        banner.setText("Congratulations!!");
 
         icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -98,11 +109,11 @@ public class Reward extends JPanel{
         numCorrect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numCorrect.setText("Num correct");
 
-        seeWrongPane.setBackground(new java.awt.Color(255, 150, 14));
+        seeWrongPane.setBackground(java.awt.Color.green);
+        seeWrongPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         seeWrongPane.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         seeWrong.setFont(new java.awt.Font("Comic Sans MS", 1, 25)); // NOI18N
-        seeWrong.setForeground(java.awt.Color.white);
         seeWrong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         seeWrong.setText("See Wrong Answers");
 
@@ -155,12 +166,12 @@ public class Reward extends JPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(51, 51, 51)
                         .addComponent(numCorrect, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(44, 44, 44)
                         .addComponent(seeWrongPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

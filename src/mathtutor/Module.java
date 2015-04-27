@@ -10,32 +10,46 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
- *
+ * Is a small panel added to the ModuleSelector Panel it has the Module name and image
  * @author Eric Sullivan
  */
 public class Module extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Module
-     */
+/**
+ * Creates new form Module
+ * @param grade
+ * @param name 
+ */
     public Module(String grade,String name) {
         initComponents();
         jLabel1.setText(name);
         jLabel2.setIcon(new ImageIcon(".\\Icons\\"+grade+"\\"+name+"-thumb.png"));
     }
-
+/**
+ * gets jLabel1
+ * @return 
+ */
     public JLabel getjLabel1() {
         return jLabel1;
     }
-
+/**
+ * Sets jLabel1
+ * @param jLabel1 
+ */
     public void setjLabel1(JLabel jLabel1) {
         this.jLabel1 = jLabel1;
     }
-
+/**
+ * gets jLabel2
+ * @return 
+ */
     public JLabel getjLabel2() {
         return jLabel2;
     }
-
+/**
+ * sets jLabel2
+ * @param jLabel2 
+ */
     public void setjLabel2(JLabel jLabel2) {
         this.jLabel2 = jLabel2;
     }
@@ -54,11 +68,13 @@ public class Module extends javax.swing.JPanel {
 
         setBackground(java.awt.Color.green);
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setBackground(java.awt.Color.green);
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setBackground(java.awt.Color.green);
+        jLabel2.setBackground(java.awt.Color.white);
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

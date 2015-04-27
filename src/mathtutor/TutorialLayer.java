@@ -13,6 +13,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 
 /**
  *
@@ -21,33 +23,64 @@ import javax.sound.sampled.DataLine;
 public class TutorialLayer extends HelpLayerAbstract{
 
     private TutorialWindow pane;
+    private Clip clip;
     public TutorialLayer(String image, Login frame) {
         pane = new TutorialWindow(image,frame,this);
         setPreferredSize(new Dimension(600,600));
         pane.setBounds(0, 0, 600, 600);
         add(pane);
+        setUpClip();
         
     }
-    
-
-    @Override
-    public void help() {
-                    try {
+              public void setUpClip() {
+        try {
             File yourFile = new File(".\\Help\\tutorial.wav");
             AudioInputStream stream;
             AudioFormat format;
             DataLine.Info info;
-            Clip clip;
+            //
 
             stream = AudioSystem.getAudioInputStream(yourFile);
             format = stream.getFormat();
             info = new DataLine.Info(Clip.class, format);
             clip = (Clip) AudioSystem.getLine(info);
+            LineListener listener = new LineListener() {
+                public void update(LineEvent e) {
+                    if (e.getType() == LineEvent.Type.STOP) {
+                        System.out.println("restarted");
+                        clip.close();
+                        setUpClip();
+                    }
+                }
+            };
+            clip.addLineListener(listener);
             clip.open(stream);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void help() {
+        try {
+            if(clip.isRunning()){
+            clip.stop();
+            clip.close();
+            setUpClip();
+            }
             clip.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+
+    @Override
+    public void clipStop() {
+        clip.stop();
+    }
+
+
 
 }

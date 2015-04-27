@@ -5,44 +5,93 @@
  */
 package mathtutor;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
- *
+ * This class is a JPanel that allows users to select their desired grade group
+ * It Contains:
+ * 3 Click able JPanel
+ * 1 Click able JLabel
+ * 3 Title JLabels
  * @author Audi
  */
 public class GradeChooser extends javax.swing.JPanel {
 
-    /**
-     * Creates new form GradeChooser
-     */
+/**
+ * The Constructor gets the JFrame and JLayer as parameters.
+ * Empties the back buttons ArrayList so the user cant go back to the log in screen by pressing back
+ * initialize JPanel components
+ * @param frame
+ * @param layer 
+ */
     public GradeChooser(Login frame, GradeChooserLayer layer) {
         this.frame = frame;
         this.layer = layer;
         frame.getLastPane().clear();
         initComponents();
-        jLabel3.addMouseListener(new Listener());
-        logout.addMouseListener(new Listener());
+        jPanel1.addMouseListener(new Listener());
+        jPanel2.addMouseListener(new Listener());
+        jPanel3.addMouseListener(new Listener());
+        jPanel4.addMouseListener(new Listener());
         logout.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\quit.png"));
     }
-    
+    /**
+     * MouseAdapter for the logout JLabel and the grade JLabel
+     * if logout is pressed stops audioclip and opens a new login frame
+     * if a grade is pressed pushes the parent to the back list and adds the correct grades module window to the Frame
+     * Also makes it easier to see the mouse
+     */
     public class Listener extends MouseAdapter {
-        public void mouseClicked(MouseEvent e){
-            if(e.getSource()==logout){
+        public void mouseClicked(MouseEvent e) {
+            if (e.getSource() == jPanel4) {
+                layer.clipStop();
                 frame.dispose();
                 new Login().setVisible(true);
-                
+
+            } if(e.getSource() == jPanel3) {
+                layer.clipStop();
+                frame.remove(layer);
+                frame.getLastPane().push(layer);
+                frame.setCurrentPane(new ModuleSelectorLayer("Pre K - K", frame));
+                frame.add(frame.getCurrentPane());
+                frame.repaint();
+                frame.pack();
+            }
+            if(e.getSource()==jPanel2){
+                layer.clipStop();
+                frame.remove(layer);
+                frame.getLastPane().push(layer);
+                frame.setCurrentPane(new ModuleSelectorLayer("Grade1", frame));
+                frame.add(frame.getCurrentPane());
+                frame.repaint();
+                frame.pack();
+            }
+            if(e.getSource()==jPanel1){
+                layer.clipStop();
+                frame.remove(layer);
+                frame.getLastPane().push(layer);
+                frame.setCurrentPane(new ModuleSelectorLayer("Grade3", frame));
+                frame.add(frame.getCurrentPane());
+                frame.repaint();
+                frame.pack();
+            }
+        }
+
+        public void mouseEntered(MouseEvent e) {
+            ((JPanel) e.getSource()).setBackground(new Color(255, 150, 15));
+        }
+
+        public void mouseExited(MouseEvent e) {
+            if(e.getSource()==jPanel4){
+                ((JPanel) e.getSource()).setBackground(new Color(144,210,144));
             }
             else{
-            frame.remove(layer);
-            frame.getLastPane().push(layer);
-            frame.setCurrentPane( new ModuleSelectorLayer(((JLabel)e.getSource()).getText(),frame));
-            frame.add(frame.getCurrentPane());
-            frame.repaint();
-            frame.pack();
+            ((JPanel) e.getSource()).setBackground(Color.GREEN);
             }
         }
     }
@@ -62,17 +111,19 @@ public class GradeChooser extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         logout = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(144, 210, 144));
         setPreferredSize(new java.awt.Dimension(600, 600));
 
-        jPanel1.setBackground(new java.awt.Color(255, 150, 15));
+        jPanel1.setBackground(java.awt.Color.green);
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 100));
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Grade 3-4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -92,11 +143,11 @@ public class GradeChooser extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 150, 15));
+        jPanel2.setBackground(java.awt.Color.green);
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Grade 1-2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -116,11 +167,11 @@ public class GradeChooser extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 150, 15));
+        jPanel3.setBackground(java.awt.Color.green);
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Pre K - K");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -133,8 +184,29 @@ public class GradeChooser extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
         );
+
+        jPanel4.setBackground(new java.awt.Color(144, 210, 144));
+
+        logout.setBackground(new java.awt.Color(144, 210, 144));
+        logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(logout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(logout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+        );
+
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.white);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Select Grade");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -143,26 +215,29 @@ public class GradeChooser extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(49, 49, 49)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -170,12 +245,14 @@ public class GradeChooser extends javax.swing.JPanel {
     private Login frame;
     private GradeChooserLayer layer;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel logout;
     // End of variables declaration//GEN-END:variables
 }

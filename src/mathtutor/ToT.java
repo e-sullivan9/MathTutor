@@ -6,9 +6,11 @@
 
 package mathtutor;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  *
@@ -45,6 +47,7 @@ public class ToT extends javax.swing.JPanel {
 
         public void mouseClicked(MouseEvent e) {
             if (e.getSource() == jPanel2) {
+                layer.clipStop();
                 frame.remove(layer);
                 frame.getLastPane().push(layer);
                 frame.setCurrentPane(new TestGeneral(module, reward, frame));
@@ -53,6 +56,7 @@ public class ToT extends javax.swing.JPanel {
                 frame.pack();
             }
             if (e.getSource() == jPanel1) {
+                layer.clipStop();
                 frame.remove(layer);
                 frame.getLastPane().push(layer);
                 frame.setCurrentPane(new TutorialLayer(module, frame));
@@ -60,6 +64,16 @@ public class ToT extends javax.swing.JPanel {
                 frame.repaint();
                 frame.pack();
             }
+        }
+
+        public void mouseEntered(MouseEvent e) {
+
+            ((JPanel) e.getSource()).setBackground(new Color(255, 150, 15));
+
+        }
+
+        public void mouseExited(MouseEvent e) {
+            ((JPanel) e.getSource()).setBackground(Color.green);
         }
     }
 

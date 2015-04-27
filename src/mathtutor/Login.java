@@ -2,28 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-import java.io.*;
-import javax.sound.sampled.*;
-
-try {
-    File yourFile;
-    AudioInputStream stream;
-    AudioFormat format;
-    DataLine.Info info;
-    Clip clip;
-
-    stream = AudioSystem.getAudioInputStream(yourFile);
-    format = stream.getFormat();
-    info = new DataLine.Info(Clip.class, format);
-    clip = (Clip) AudioSystem.getLine(info);
-    clip.open(stream);
-    clip.start();
-}
-catch (Exception e) {
-    //whatevers
-}
- */
-
+*/
 package mathtutor;
 
 import java.awt.*;
@@ -34,12 +13,18 @@ import java.sql.*;
 import java.util.Stack;
 
 /**
- *
+ * This is the program Frame and main.
+ * It Contains:
+ * The first Jpanel that is added to the JFrame.
+ * A List of all the Panel before the current panel
+ * the CurrentPanel
  * @author Eric Sullivan
  */
 public class Login extends javax.swing.JFrame {
 
     /**
+     * The Constructor sets up the frames default size and setting.
+     * Then generates the select user panel that is added to the frame
      * Creates new form Login
      */
     public Login() {
@@ -51,25 +36,34 @@ public class Login extends javax.swing.JFrame {
         loadAccounts();
         cl = new CardLayout();
         accountPane.setLayout(cl);
-        jLabel3.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\back.png"));
-        jLabel4.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\forward.png"));
-        jLabel2.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\quit.png"));
-        jLabel3.addMouseListener(new NextPrev());
-        jLabel4.addMouseListener(new NextPrev());
-        jLabel2.addMouseListener(new NextPrev());
+        back.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\back.png"));
+        next.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\forward.png"));
+        logout.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\quit.png"));
+        back.addMouseListener(new NextPrev());
+        next.addMouseListener(new NextPrev());
+        logout.addMouseListener(new NextPrev());
         setLocationRelativeTo(null);
         setResizable(false);
         
     }
-    
+    /**
+     * gets the Current Pane
+     * @return JComponent
+     */
     public JComponent getCurrentPane() {
         return currentPane;
     }
-
+    /**
+     * sets the currentPane
+     * @param currentPane 
+     */
     public void setCurrentPane(JComponent currentPane) {
         this.currentPane = currentPane;
     }
-
+    /**
+     * gets the LastPane stack
+     * @return Stack<JComponent>
+     */
     public Stack<JComponent> getLastPane() {
         return lastPane;
     }
@@ -84,19 +78,22 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPane = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
         accountPane = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        backPane = new javax.swing.JPanel();
+        back = new javax.swing.JLabel();
+        nextPane = new javax.swing.JPanel();
+        next = new javax.swing.JLabel();
+        logoutPane = new javax.swing.JPanel();
+        logout = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         mainPane.setBackground(new java.awt.Color(144, 210, 144));
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
-        jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("Select User");
+        title.setFont(new java.awt.Font("Comic Sans MS", 1, 50)); // NOI18N
+        title.setForeground(java.awt.Color.white);
+        title.setText("Select User");
 
         accountPane.setBackground(java.awt.Color.white);
         accountPane.setPreferredSize(new java.awt.Dimension(600, 300));
@@ -112,17 +109,63 @@ public class Login extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        backPane.setBackground(new java.awt.Color(144, 210, 144));
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        back.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel4.setPreferredSize(new java.awt.Dimension(30, 15));
+        javax.swing.GroupLayout backPaneLayout = new javax.swing.GroupLayout(backPane);
+        backPane.setLayout(backPaneLayout);
+        backPaneLayout.setHorizontalGroup(
+            backPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backPaneLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        backPaneLayout.setVerticalGroup(
+            backPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(back, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+        );
+
+        nextPane.setBackground(new java.awt.Color(144, 210, 144));
+
+        next.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        next.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        next.setPreferredSize(new java.awt.Dimension(30, 15));
+
+        javax.swing.GroupLayout nextPaneLayout = new javax.swing.GroupLayout(nextPane);
+        nextPane.setLayout(nextPaneLayout);
+        nextPaneLayout.setHorizontalGroup(
+            nextPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nextPaneLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+        nextPaneLayout.setVerticalGroup(
+            nextPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(next, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+        );
+
+        logoutPane.setBackground(new java.awt.Color(144, 210, 144));
+
+        logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout logoutPaneLayout = new javax.swing.GroupLayout(logoutPane);
+        logoutPane.setLayout(logoutPaneLayout);
+        logoutPaneLayout.setHorizontalGroup(
+            logoutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoutPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        logoutPaneLayout.setVerticalGroup(
+            logoutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(logout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
@@ -130,36 +173,36 @@ public class Login extends javax.swing.JFrame {
             mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPaneLayout.createSequentialGroup()
                 .addGap(250, 250, 250)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(title)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(mainPaneLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(mainPaneLayout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainPaneLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(backPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                        .addComponent(nextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(logoutPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         mainPaneLayout.setVerticalGroup(
             mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPaneLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPaneLayout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(34, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(title)
+                .addGap(88, 88, 88)
+                .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(backPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nextPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(logoutPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,7 +219,12 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    // <editor-fold defaultstate="collapsed" desc="loadAccounts">        
+    // <editor-fold defaultstate="collapsed" desc="loadAccounts">   
+    
+    /**
+     * This method makes a connection to the database and gets all the current users.
+     * Creates a Array list of accountPanels and adds mouseListeners to the panels
+     */
     public void loadAccounts() {
         accountPanels = new ArrayList<>();
         try {
@@ -213,11 +261,11 @@ public class Login extends javax.swing.JFrame {
             }
             System.out.println(accountPanels.size());
             for (int i = 0; i < accountPanels.size(); i++) {
-                System.out.println("here");
+                //System.out.println("here");
                 usp.add(accountPanels.get(i));
                 accountPane.add(usp);
                 if (i % 4 == 3 && i != 0) {
-                    System.out.println("added at " + i);
+                    //System.out.println("added at " + i);
                     accountPane.add(usp);
                     usp = new userSwitchPane();
                 }
@@ -231,8 +279,12 @@ public class Login extends javax.swing.JFrame {
 
     }
     // </editor-fold>
+
     
     // <editor-fold defaultstate="collapsed" desc="NewAccountListener">
+    /**
+     * MouseAdapter for the new account button that clears the current panel and adds a CreateNewUser to the frame
+     */
     public class NewAccountListener extends MouseAdapter {
         
         public void mouseClicked(MouseEvent e){
@@ -248,6 +300,9 @@ public class Login extends javax.swing.JFrame {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="AccountListener">
+    /**
+     * MouseAdapter for the Account Panels that changes their color if they are hovered over by the mouse and if click creates and adds a PassEntrypane to the JFrame
+     */
     public class AccountListener extends MouseAdapter {
 
         public void mouseEntered(MouseEvent e) {
@@ -270,18 +325,43 @@ public class Login extends javax.swing.JFrame {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="CardLayout Listener">
+    /**
+     * MouseAdapter for the back and forth buttons of the AccountPanels
+     */
     public class NextPrev extends MouseAdapter {
         public void mouseClicked(MouseEvent e){
-            if(e.getSource()==jLabel3){
+            if(e.getSource()==back){
                 cl.previous(accountPane);
                // System.out.println("jLabel3 Clicked");
             }
-            if(e.getSource()==jLabel4){
+            if(e.getSource()==next){
                 cl.next(accountPane);
                // System.out.println("jLabel4 Clicked");
             }
-            if(e.getSource()==jLabel2){
+            if(e.getSource()==logout){
                 System.exit(0);
+            }
+        }
+        public void mouseEntered(MouseEvent e) {
+            if(e.getSource()==back){
+            backPane.setBackground(new Color(255, 150, 15));
+            }
+            if(e.getSource()==next){
+            nextPane.setBackground(new Color(255, 150, 15));
+            }
+            if(e.getSource()==logout){
+            logoutPane.setBackground(new Color(255, 150, 15));
+            }
+        }
+        public void mouseExited(MouseEvent e) {
+            if(e.getSource()==back){
+            backPane.setBackground(new Color(144, 210, 144));
+            }
+            if(e.getSource()==next){
+            nextPane.setBackground(new Color(144, 210, 144));
+            }
+            if(e.getSource()==logout){
+            logoutPane.setBackground(new Color(144, 210, 144));
             }
         }
         
@@ -328,17 +408,20 @@ public class Login extends javax.swing.JFrame {
     
     
     
-    CardLayout cl;
-    Login frame;
+    private CardLayout cl;
+    private Login frame;
     private ArrayList<JPanel> accountPanels;
     private JComponent currentPane;
     private Stack<JComponent> lastPane;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accountPane;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel back;
+    private javax.swing.JPanel backPane;
+    private javax.swing.JLabel logout;
+    private javax.swing.JPanel logoutPane;
     private javax.swing.JPanel mainPane;
+    private javax.swing.JLabel next;
+    private javax.swing.JPanel nextPane;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

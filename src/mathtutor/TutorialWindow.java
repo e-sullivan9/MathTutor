@@ -7,6 +7,9 @@
 package mathtutor;
 
 import java.awt.Dimension;
+import java.io.File;
+import javax.sound.sampled.*;
+import javax.sound.sampled.LineEvent.Type;
 import javax.swing.ImageIcon;
 
 /**
@@ -18,6 +21,7 @@ public class TutorialWindow extends javax.swing.JPanel {
     private String image;
     private Login frame;
     private TutorialLayer layer;
+    private Clip clip;
     /**
      * Creates new form TutorialWindow
      */
@@ -30,10 +34,229 @@ public class TutorialWindow extends javax.swing.JPanel {
         this.layer = parent;
         initComponents();
         setPreferredSize(new Dimension(600,600));
-        jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\"+image+".png"));
+        tutorial();
+       // jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\"+image+".png"));
+        /*
+                    modules.add(new Module("PreK-K","Coins"));
+            modules.add(new Module("PreK-K","Compare"));
+            modules.add(new Module("PreK-K","Counting"));
+            modules.add(new Module("PreK-K","Estimate"));
+            modules.add(new Module("PreK-K","Numbers"));
+            modules.add(new Module("PreK-K","Problems"));
+            modules.add(new Module("PreK-K","Sequences"));
+            modules.add(new Module("PreK-K","Wholes"));
+        */
+        }
+        public void tutorial(){
+            switch(image){
+            case "Coins":
+                jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\"+image+".png"));
+                try {
+                    File yourFile = new File(".\\Icons\\Tutorial\\"+image+".wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    Clip clip;
+
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    clip.open(stream);
+                    clip.start();
+                    LineListener listener = new LineListener(){
+                        public void update(LineEvent e){
+                            
+                        }
+                    };
+                            
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "Compare":
+                jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\"+image+".png"));
+                try {
+                    File yourFile = new File(".\\Icons\\Tutorial\\"+image+".wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //Clip clip;
+
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    clip.open(stream);
+                    clip.start();
+                    LineListener listener = new LineListener(){
+                        public void update(LineEvent e){
+                            
+                        }
+                    };
+                            
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "Estimate":
+                jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\"+image+".png"));
+                try {
+                    File yourFile = new File(".\\Icons\\Tutorial\\"+image+".wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //Clip clip;
+
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    clip.open(stream);
+                    clip.start();
+                    LineListener listener = new LineListener(){
+                        public void update(LineEvent e){
+                            
+                        }
+                    };
+                            
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "Numbers":
+                jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\"+image+".png"));
+                try {
+                    File yourFile = new File(".\\Icons\\Tutorial\\"+image+".wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //Clip clip;
+
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    clip.open(stream);
+                    clip.start();
+                    LineListener listener = new LineListener(){
+                        public void update(LineEvent e){
+                            
+                        }
+                    };
+                            
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "Problems":
+                jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\add.png"));
+                try {
+                    File yourFile = new File(".\\Icons\\Tutorial\\add.wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //Clip clip;
+
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    clip.open(stream);
+                    clip.start();
+                    LineListener listener = new LineListener() {
+                        public void update(LineEvent e) {
+                            if (e.getType() == Type.STOP) {
+                                jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\Subtract.png"));
+                                try {
+                                    File yourFile = new File(".\\Icons\\Tutorial\\Subtract.wav");
+                                    AudioInputStream stream;
+                                    AudioFormat format;
+                                    DataLine.Info info;
+                                    Clip clip;
+
+                                    stream = AudioSystem.getAudioInputStream(yourFile);
+                                    format = stream.getFormat();
+                                    info = new DataLine.Info(Clip.class, format);
+                                    clip = (Clip) AudioSystem.getLine(info);
+                                    clip.open(stream);
+                                    clip.start();
+                                    LineListener listener = new LineListener() {
+                                        public void update(LineEvent e) {
+                                        }
+                                    };
+
+                                } catch (Exception ez) {
+                                    ez.printStackTrace();
+                                }
+                            }
+                        }
+                    };
+                    clip.addLineListener(listener);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            break;
+            case "Sequences":
+                jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\"+image+".png"));
+                try {
+                    File yourFile = new File(".\\Icons\\Tutorial\\"+image+".wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //Clip clip;
+
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    clip.open(stream);
+                    clip.start();
+                    LineListener listener = new LineListener(){
+                        public void update(LineEvent e){
+                            
+                        }
+                    };
+                            
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            break;
+            default:
+                jLabel1.setIcon(new ImageIcon(".\\Icons\\Tutorial\\"+image+".png"));
+                try {
+                    File yourFile = new File(".\\Icons\\Tutorial\\"+image+".wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //Clip clip;
+
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    clip.open(stream);
+                    clip.start();
+                    LineListener listener = new LineListener(){
+                        public void update(LineEvent e){
+                            
+                        }
+                    };
+                            
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                
+
+                
+        }
         
         
     }
+        public void StopClip(){
+            clip.stop();
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.

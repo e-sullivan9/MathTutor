@@ -18,20 +18,29 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
+ * This class allow the user to select a course/module to take
+ * the Contains:
+ * An Array list of clickable Panels
+ * The ModuleSelectorLayer.
+ * 2 Click able JButtons for cycling through all the modules
  * @author Eric Sullivan
  */
 public class ModuleSelectorWindow extends javax.swing.JPanel {
-    ArrayList<Module> modules;
-    //ModuleSelectorWindow layer;
-    Login frame;
-    ModuleSelectorLayer layer;
+    private ArrayList<Module> modules;
+    private Login frame;
+    private ModuleSelectorLayer layer;
     /**
      * Creates new form ModuleSelectorWindow
      */
     public ModuleSelectorWindow() {
         initComponents();
     }
+    /**
+     * 
+     * @param grade
+     * @param frame
+     * @param parent 
+     */
     public  ModuleSelectorWindow(String grade,Login frame,ModuleSelectorLayer parent){
         this.frame = frame;
         initComponents();
@@ -67,27 +76,64 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
                 }
         }
     }
-        public class Listener extends MouseAdapter {
-        public void mouseClicked(MouseEvent e){
+    /**
+     * 
+     */
+    public class Listener extends MouseAdapter {
+
+        public void mouseClicked(MouseEvent e) {
+            layer.clipStop();
             frame.remove(layer);
             frame.getLastPane().push(layer);
-            frame.setCurrentPane( new ToTLayer(((Module)e.getSource()).getjLabel1().getText(),"",frame));
+            frame.setCurrentPane(new ToTLayer(((Module) e.getSource()).getjLabel1().getText(), "", frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();
-            ;
+        }
+
+        public void mouseEntered(MouseEvent e) {
+            ((JPanel) e.getSource()).setBackground(new Color(255, 150, 15));
+        }
+
+        public void mouseExited(MouseEvent e) {
+            ((JPanel) e.getSource()).setBackground(Color.GREEN);
+        }
+
+    }
+
+    /**
+     *
+     */
+    public class NextPrev extends MouseAdapter {
+
+        public void mouseClicked(MouseEvent e) {
+            if (e.getSource() == next) {
+                ((CardLayout) jPanel1.getLayout()).next(jPanel1);
+            }
+            if (e.getSource() == prev) {
+                ((CardLayout) jPanel1.getLayout()).previous(jPanel1);
+            }
+
+        }
+
+        public void mouseEntered(MouseEvent e) {
+            if (e.getSource() == next) {
+                jPanel2.setBackground(new Color(255, 150, 15));
+            }
+            if (e.getSource() == prev) {
+                jPanel3.setBackground(new Color(255, 150, 15));
+            }
+        }
+
+        public void mouseExited(MouseEvent e) {
+            if (e.getSource() == next) {
+                jPanel2.setBackground(new Color(144, 210, 144));
+            }
+            if (e.getSource() == prev) {
+                jPanel3.setBackground(new Color(144, 210, 144));
+            }
         }
     }
-        public class NextPrev extends MouseAdapter {
-            public void mouseClicked(MouseEvent e){
-            if(e.getSource()==next){
-               ((CardLayout)jPanel1.getLayout()).next(jPanel1);
-            }
-            if(e.getSource()==prev){
-                ((CardLayout)jPanel1.getLayout()).previous(jPanel1);
-            }
-            }
-        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,7 +146,9 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         next = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         prev = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(144, 210, 144));
@@ -114,9 +162,47 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Select Course");
 
+        jPanel2.setBackground(new java.awt.Color(144, 210, 144));
+
         next.setText("jLabel2");
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel3.setBackground(new java.awt.Color(144, 210, 144));
+
         prev.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(prev, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(prev, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -128,10 +214,9 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(prev, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,11 +224,11 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(39, 39, 39)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(prev, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -151,6 +236,8 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel next;
     private javax.swing.JLabel prev;
     // End of variables declaration//GEN-END:variables
