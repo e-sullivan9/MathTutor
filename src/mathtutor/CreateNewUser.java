@@ -191,7 +191,9 @@ TFModule7 TINYINT(1),
 TFModule8 TINYINT(1)
 );
                     */
-                    String stickerEntry = "'" + pid + "'," + "'0','0','0','0','0','0',0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'";
+                    String stickerEntry = "'" + pid + "'," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 +
+                            "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 +
+                            "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0 + "," + 0;
                     con.insertIntoDB("Stickers",stickerEntry);
                     con.closeDBConnection();
                     frame.getContentPane().removeAll();
