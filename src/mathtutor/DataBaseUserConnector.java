@@ -14,7 +14,7 @@ import java.sql.*;
 public class DataBaseUserConnector
 {
 	private Connection con;
-        
+        private static final int STICKER_COUNT = 24;
 	public DataBaseUserConnector(String dbUrl,String username,String password)
 	{
 		try
@@ -51,7 +51,7 @@ public class DataBaseUserConnector
 			e.printStackTrace();
 		}
 	}
-	private void Terminate(Statement state)
+	private void terminate(Statement state)
 	{
 		try
 			{
@@ -63,6 +63,41 @@ public class DataBaseUserConnector
 				se.printStackTrace();
 			}
 	}
+        public byte[] getStickersForUser(Account account)
+        {
+            byte[] bStickers = new byte[STICKER_COUNT];
+            PreparedStatement pst=null;
+            ResultSet rs = null;
+            try
+            {
+                pst = con.prepareStatement("select * from stickers where PID=? ");
+                pst.setString(1,account.getUsername());
+                rs = pst.executeQuery();
+                for(int i = 1; i < STICKER_COUNT+1; ++i)
+                {
+                  bStickers[i-1] = rs.getByte(i);
+                }
+            }
+            catch(SQLException e)
+            {
+                
+            }
+            finally
+            {
+                try
+                {
+                    if(rs != null)
+                        rs.close();
+                    if(pst != null)
+                        pst.close();
+                }
+                catch(SQLException e)
+                {
+                    
+                }
+            }
+            return bStickers;
+        }
 	public void insertIntoDB(String table,String entry)
 	{
 		Statement state = null;
@@ -78,7 +113,7 @@ public class DataBaseUserConnector
 		}
 		finally
 		{
-			Terminate(state);
+			terminate(state);
 		}	
 	}
         public boolean isUserExistant(String pid)
@@ -92,7 +127,10 @@ public class DataBaseUserConnector
                 while(rs.next())
                 {
                     if(rs.getString(1).equals(pid))
+                    {
                         bUserExists = true;
+                        //break; //////We'll see if this is necessary
+                    }
                 }
             }
             catch(SQLException e)
@@ -101,7 +139,7 @@ public class DataBaseUserConnector
             }
             finally
             {
-                Terminate(state);
+                terminate(state);
             }
             return bUserExists;
         }
