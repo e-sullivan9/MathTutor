@@ -17,13 +17,18 @@ import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
 /**
- *
+ * This class is a JLayer wrap for the TutorialWindow that allow for pop ups and audio clips
  * @author Eric Sullivan
  */
 public class TutorialLayer extends HelpLayerAbstract{
 
     private TutorialWindow pane;
     private Clip clip;
+    /**
+     * set up TutoriaWindow and add it and sets up audio
+     * @param image
+     * @param frame 
+     */
     public TutorialLayer(String image, Login frame) {
         pane = new TutorialWindow(image,frame,this);
         setPreferredSize(new Dimension(600,600));
@@ -32,7 +37,10 @@ public class TutorialLayer extends HelpLayerAbstract{
         setUpClip();
         
     }
-              public void setUpClip() {
+    /**
+     * initializes the audio clip and reinitialize if it is stopped
+     */
+    public void setUpClip() {
         try {
             File yourFile = new File(".\\Help\\tutorial.wav");
             AudioInputStream stream;
@@ -60,7 +68,9 @@ public class TutorialLayer extends HelpLayerAbstract{
         }
     }
 
-
+/**
+ * starts audio clip or restarts it if its running
+    */
     @Override
     public void help() {
         try {
@@ -75,7 +85,9 @@ public class TutorialLayer extends HelpLayerAbstract{
         }
 
     }
-
+/*
+    stops audio
+    */
     @Override
     public void clipStop() {
         clip.stop();

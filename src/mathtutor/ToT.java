@@ -13,15 +13,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- *
+ * This class allows the user to take a tutorial or test
+ * It Contains:
+ * 2 Click able JPanel to choose test or tutorial
  * @author Eric Sullivan
  */
 public class ToT extends javax.swing.JPanel {
 
-    Login frame;
-    ToTLayer layer;
-    String module;
-    String reward;
+    private Login frame;
+    private ToTLayer layer;
+    private String module;
+    private String reward;
 
     /**
      * Creates new form ToT
@@ -29,7 +31,13 @@ public class ToT extends javax.swing.JPanel {
     public ToT() {
         initComponents();
     }
-
+    /**
+     * Construct add Components and adds listener to components.
+     * @param module
+     * @param reward
+     * @param frame
+     * @param parent 
+     */
     public ToT(String module, String reward, Login frame, ToTLayer parent) {
         initComponents();
         this.module = module;
@@ -42,10 +50,13 @@ public class ToT extends javax.swing.JPanel {
         jPanel1.addMouseListener(new Listener());
         jPanel2.addMouseListener(new Listener());
     }
-
+/**
+ * MouseListener for jPanels
+ */
     public class Listener extends MouseAdapter {
 
         public void mouseClicked(MouseEvent e) {
+            // if clicked starts a new TestGeneral and adds it to the frame
             if (e.getSource() == jPanel2) {
                 layer.clipStop();
                 frame.remove(layer);
@@ -55,6 +66,7 @@ public class ToT extends javax.swing.JPanel {
                 frame.repaint();
                 frame.pack();
             }
+            // if clicked starts a new tutorial and adds it to the fram
             if (e.getSource() == jPanel1) {
                 layer.clipStop();
                 frame.remove(layer);
@@ -65,13 +77,13 @@ public class ToT extends javax.swing.JPanel {
                 frame.pack();
             }
         }
-
+        // change color if the JPanel is entered
         public void mouseEntered(MouseEvent e) {
 
             ((JPanel) e.getSource()).setBackground(new Color(255, 150, 15));
 
         }
-
+        // change color to normal if exited
         public void mouseExited(MouseEvent e) {
             ((JPanel) e.getSource()).setBackground(Color.green);
         }

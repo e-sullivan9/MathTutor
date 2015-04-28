@@ -17,6 +17,7 @@ public class userSwitchPane extends javax.swing.JPanel {
 
     /**
      * Creates new form userSwitchPane
+     * makes a panel that holds 4 Jpanels
      */
     public userSwitchPane() {
         initComponents();

@@ -17,14 +17,22 @@ import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
 /**
- *
+ * This Class is a JLayer wrap for the ToT class that allows popups and audio
+ * Contains
+ * ToT pane
+ * Audio Clip
  * @author Eric Sullivan
  */
 public class ToTLayer extends HelpLayerAbstract {
 
     private ToT pane;
     private Clip clip;
-
+/**
+ * Constructor sets up and add ToT pane and audio
+ * @param module
+ * @param reward
+ * @param frame 
+ */
     public ToTLayer(String module, String reward, Login frame) {
         pane = new ToT(module, reward, frame, this);
         setPreferredSize(new Dimension(600, 600));
@@ -32,7 +40,9 @@ public class ToTLayer extends HelpLayerAbstract {
         add(pane);
         setUpClip();
     }
-
+/**
+ * initializes audio clip and resets it if it is stopped
+ */
     public void setUpClip() {
         try {
             File yourFile = new File(".\\Help\\ToT.wav");
@@ -59,7 +69,9 @@ public class ToTLayer extends HelpLayerAbstract {
             ex.printStackTrace();
         }
     }
-
+/**
+ * starts audio clip or restarts it if the clip is playing
+ */
     @Override
     public void help() {
         try {
@@ -74,7 +86,9 @@ public class ToTLayer extends HelpLayerAbstract {
         }
 
     }
-
+/**
+ * stops audio
+ */
     @Override
     public void clipStop() {
         clip.stop();

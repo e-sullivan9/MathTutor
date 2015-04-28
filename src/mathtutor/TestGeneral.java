@@ -25,7 +25,9 @@ import javax.sound.sampled.LineListener;
 
 
 /**
- * This Class is a JLayer that has 
+ * This Class is a JLayer that has for the testForm it creates tests by pulling the all the questions 
+ * from the database on one subject and randomly select 6 of them to be the test questions
+ * then adds those to a card layer 
  * @author Eric Sullivan
  */
 public class TestGeneral extends HelpLayerAbstract {
@@ -38,7 +40,7 @@ public class TestGeneral extends HelpLayerAbstract {
     private Login frame;
     private Clip clip;
     /**
-     * 
+     * sets up the TestGeneral and audio and testForms
      * @param testName
      * @param reward
      * @param frame 
@@ -55,15 +57,18 @@ public class TestGeneral extends HelpLayerAbstract {
         setUpClip();
         buildTest();
     }
-
+/**
+ * Builds the test from the database
+ */
     public void buildTest() {
         try {
+            //Connects to the database
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/MathTutorDB", "TutorAdmin", "Tut0r4dm1n"); //change password for it to work.
             String sql = "select * from " + testName;
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-
+            //Create a test question and adds it to the test line
             while (rs.next()) {
                 String[] questions = {rs.getString("answer1"), rs.getString("answer2"), rs.getString("answer3"), rs.getString("answer4")};
                 for (int i = 0; i < 100; i++) {
@@ -75,12 +80,13 @@ public class TestGeneral extends HelpLayerAbstract {
                     questions[b] = temp;
 
                 }
-                //GeneralTestPanel gtp = new GeneralTestPanel(rs.getInt("question_id"), rs.getString("questionImage"), questions, rs.getString("correctAnswer"));
                 testForm gtp = new testForm(rs.getInt("question_id"), rs.getString("questionImage"), questions, rs.getString("correctAnswer"),rs.getString("correctAnswerImage"),this);
                 test.add(gtp);
                 //add(gtp);
             }
+            //shuffles the array list
             Collections.shuffle(test);
+            //pull the first 6 to be the test question
             for (int j = 0; j < 6; j++) {
                 add(test.get(j));
                 test.get(j).setNumber(j+1);
@@ -95,6 +101,9 @@ public class TestGeneral extends HelpLayerAbstract {
             ex.printStackTrace();
         }
     }
+    /**
+     * Initializes the the Audio clip and adds a listener to reinitialize it when it stops.
+     */
        public void setUpClip() {
         try {
             File yourFile = new File(".\\Help\\test.wav");
@@ -122,7 +131,9 @@ public class TestGeneral extends HelpLayerAbstract {
             ex.printStackTrace();
         }
     }
-
+/**
+ * starts audio clip and restarts the clip if it is already playing
+ */
 
     @Override
     public void help() {
@@ -137,10 +148,16 @@ public class TestGeneral extends HelpLayerAbstract {
             e.printStackTrace();
         }
     }
+    /**
+     * stops audio
+     */
     public void clipStop() {
         clip.stop();
     }
-
+    /**
+     * moves the question to the front of the cardlayout if the test isnt finished
+     * else it removes this and adds a RewardLayer to the frame.
+     */
     public void next() {
         int temp = 0;
         if (index < 5) {

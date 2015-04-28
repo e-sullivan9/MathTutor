@@ -8,7 +8,7 @@ package mathtutor;
 import javax.swing.JLabel;
 
 /**
- *
+ * General JPanel form for the wrong answer panel
  * @author Audi
  */
 public class WrongAnswer extends javax.swing.JPanel {

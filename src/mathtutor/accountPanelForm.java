@@ -25,6 +25,11 @@ public class accountPanelForm extends javax.swing.JPanel {
         initComponents();
         
     }
+    /**
+     * constructor sets up panels
+     * @param name
+     * @param icon 
+     */
     public accountPanelForm(String name,String icon){
         initComponents();
         this.Name.setText(name);
@@ -33,9 +38,17 @@ public class accountPanelForm extends javax.swing.JPanel {
         setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         
     }
+    /**
+     * gets Jlabel names test
+     * @return Name
+     */
     public String getJLabelName(){
         return Name.getText();
     }
+    /**
+     * gets JLabel icon
+     * @return icon
+     */
     public Icon getJLabelIcon(){
         return icon.getIcon();
     }
