@@ -81,25 +81,28 @@ public class DataBaseUserConnector
 			Terminate(state);
 		}	
 	}
-	public void showDBUsers()	//test method
-	{
-		Statement state = null;
-		try
-		{
-			state = con.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * FROM users");
-			while(rs.next())
-			{
-				System.out.println(rs.getInt("PID") + "\t" + rs.getString("FirstName") + "\t" + rs.getString("LastName")); 
-			}
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			Terminate(state);
-		}
-	}
+        public boolean isUserExistant(String pid)
+        {
+            Statement state = null;
+            boolean bUserExists = false;
+            try
+            {
+                state = con.createStatement();
+                ResultSet rs = state.executeQuery("SELECT * FROM users");
+                while(rs.next())
+                {
+                    if(rs.getString(1).equals(pid))
+                        bUserExists = true;
+                }
+            }
+            catch(SQLException e)
+            {
+                
+            }
+            finally
+            {
+                Terminate(state);
+            }
+            return bUserExists;
+        }
 }
