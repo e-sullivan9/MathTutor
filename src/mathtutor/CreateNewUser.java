@@ -155,6 +155,8 @@ public class CreateNewUser extends javax.swing.JPanel {
                 if (errors.isEmpty()) {
                     String table = "users";
                     String pid = firstNameTF.getText() + " " + lastNameTF.getText().charAt(0);
+                    if(!con.isUserExistant(pid))
+                    {
                     String pass = new String(jPasswordField1.getPassword());
                     
                     String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + pass + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "'";
@@ -205,6 +207,11 @@ TFModule8 TINYINT(1)
                     frame.repaint();
                     frame.pack();
                     layer.clipStop();
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null,"User " + firstNameTF.getText() + " " + lastNameTF.getText() + " already exists!");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, errors);
                 }
