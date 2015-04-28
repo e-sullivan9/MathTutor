@@ -24,7 +24,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * This Pane allows the user to enter their password into a password field and checks it against 
+ * their password in the database. If it is successful it enters the main page of the program.
+ * This Contains:
+ * Jpassword field for password entry
+ * Jlabel for Title
+ * Panel and jlabels for back, help and go!.
  * @author Eric Sullivan
  */
 public class PasswordEntryPane extends javax.swing.JPanel {
@@ -35,6 +40,14 @@ public class PasswordEntryPane extends javax.swing.JPanel {
     public PasswordEntryPane() {
         initComponents();
     }
+    /**
+     * Creates new form PasswordEntryPane
+     * Constructor intializes the JPanel and add listeners to its components
+     * @param name
+     * @param icon
+     * @param frame
+     * @param parent 
+     */
     public PasswordEntryPane(String name,Icon icon,Login frame,PassEntryLayer parent){
         setPreferredSize(new Dimension(800,600));
         initComponents();
@@ -51,6 +64,10 @@ public class PasswordEntryPane extends javax.swing.JPanel {
         next.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\go.png"));
         help.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\help.png"));
     }
+    /**
+     * KeyListener for the password field if they press enter then the field is check against the database and enter the main panel of the 
+     * program if it is true.
+    */
     public class PaneListener implements KeyListener {
 
         @Override
@@ -59,10 +76,11 @@ public class PasswordEntryPane extends javax.swing.JPanel {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            //Check if enter is pressed in the field
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 System.out.println("keyPress");
                 try {
+                    //connection to the database
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection con = DriverManager.getConnection("jdbc:mysql://localhost/MathTutorDB", "TutorAdmin", "Tut0r4dm1n"); //change password for it to work.
                     String sql = "select pass from Users where PID ='"+name+"'";
@@ -74,9 +92,10 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                         for(int i=0;i<chartemp.length;i++){
                             temp+=chartemp[i];
                         }
+                        //checks if the strings are the same.
                         if(temp.equals(rs.getString("pass"))){
                             
-                            JOptionPane.showMessageDialog(null, "passed");
+                            JOptionPane.showMessageDialog(null, "Login successfull");
                             frame.getContentPane().removeAll();
                             BoxLayout bl = new BoxLayout(frame.getContentPane(),BoxLayout.X_AXIS);
                             frame.setLayout(bl);
@@ -87,10 +106,10 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                             frame.pack();
                         }
                         else
-                            JOptionPane.showMessageDialog(null, "not passed");
+                            JOptionPane.showMessageDialog(null, "Login Failed");
                     }
                     else
-                        JOptionPane.showMessageDialog(null, "fail");
+                        JOptionPane.showMessageDialog(null, "Login Failed");
                 } catch (ClassNotFoundException ex) {
                     ex.printStackTrace();
                 } catch (SQLException ex) {
@@ -105,9 +124,14 @@ public class PasswordEntryPane extends javax.swing.JPanel {
         }
         
     }
+    /**
+     * MouseAdater for the back, help and next JLabels.
+     * 
+     */
     public class Listener extends MouseAdapter {
 
         public void mouseClicked(MouseEvent e) {
+            // if back is clicked on the panel ends any playing audio and adds a need frame.
             if (e.getSource() == back) {
                 parent.clipStop();
                 frame.getContentPane().removeAll();
@@ -116,11 +140,14 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                 frame.repaint();
                 frame.pack();
             }
+            //if help is pressed it calls the help method from the JLayer class above
             if (e.getSource() == help) {
                 parent.help();
             }
+            //if next is press it check the password field against the database
             if(e.getSource()==next){
                 try {
+                    //connects to database
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection con = DriverManager.getConnection("jdbc:mysql://localhost/MathTutorDB", "TutorAdmin", "Tut0r4dm1n"); //change password for it to work.
                     String sql = "select pass from Users where PID ='"+name+"'";
@@ -132,9 +159,11 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                         for(int i=0;i<chartemp.length;i++){
                             temp+=chartemp[i];
                         }
+                        
+                        //checks password field against the databasse
                         if(temp.equals(rs.getString("pass"))){
                             parent.clipStop();
-                            JOptionPane.showMessageDialog(null, "passed");
+                            JOptionPane.showMessageDialog(null, "Login Successful");
                             frame.getContentPane().removeAll();
                             BoxLayout bl = new BoxLayout(frame.getContentPane(),BoxLayout.X_AXIS);
                             frame.setLayout(bl);
@@ -145,10 +174,10 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                             frame.pack();
                         }
                         else
-                            JOptionPane.showMessageDialog(null, "not passed");
+                            JOptionPane.showMessageDialog(null, "Login Failed");
                     }
                     else
-                        JOptionPane.showMessageDialog(null, "fail");
+                        JOptionPane.showMessageDialog(null, "Login Failed");
                 } catch (ClassNotFoundException ex) {
                     ex.printStackTrace();
                 } catch (SQLException ex) {
@@ -156,26 +185,28 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                 }
             }
         }
-                public void mouseEntered(MouseEvent e) {
-            if(e.getSource()==back){
-            backPanel.setBackground(new Color(255, 150, 15));
+        //if entered the JPanels below the buttons change color for easier viewability
+        public void mouseEntered(MouseEvent e) {
+            if (e.getSource() == back) {
+                backPanel.setBackground(new Color(255, 150, 15));
             }
-            if(e.getSource()==next){
-            nextPane.setBackground(new Color(255, 150, 15));
+            if (e.getSource() == next) {
+                nextPane.setBackground(new Color(255, 150, 15));
             }
-            if(e.getSource()==help){
-            helpPanel.setBackground(new Color(255, 150, 15));
+            if (e.getSource() == help) {
+                helpPanel.setBackground(new Color(255, 150, 15));
             }
         }
+        //if exited they change to the normal color
         public void mouseExited(MouseEvent e) {
-            if(e.getSource()==back){
-            backPanel.setBackground(new Color(144, 210, 144));
+            if (e.getSource() == back) {
+                backPanel.setBackground(new Color(144, 210, 144));
             }
-            if(e.getSource()==next){
-            nextPane.setBackground(new Color(144, 210, 144));
+            if (e.getSource() == next) {
+                nextPane.setBackground(new Color(144, 210, 144));
             }
-            if(e.getSource()==help){
-            helpPanel.setBackground(new Color(144, 210, 144));
+            if (e.getSource() == help) {
+                helpPanel.setBackground(new Color(144, 210, 144));
             }
         }
     }

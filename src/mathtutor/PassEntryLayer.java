@@ -20,7 +20,11 @@ import javax.swing.Icon;
 import javax.swing.JLayeredPane;
 
 /**
- *
+ * This is the JLayer wrap for the PassEntryWindow it allow the window to have audio and pop ups.
+ * this Contains
+ * Clip for audio
+ * PasswordEntryPane
+ * Login Frame
  * @author Eric Sullivan
  */
 public class PassEntryLayer extends HelpLayerAbstract {
@@ -29,6 +33,14 @@ public class PassEntryLayer extends HelpLayerAbstract {
     private Login frame;
     private PasswordEntryPane pane;
     private PassEntryLayer here;
+    
+    /**
+     * Constructor sets up the JLayer and adds the passwordEnryPane to the JLayer
+     * also starts the Audio clip thread
+     * @param name
+     * @param icon
+     * @param frame 
+     */
     public PassEntryLayer(String name, Icon icon, Login frame) {
         System.out.println("Im a PassEntryLayer!");
         this.frame = frame;
@@ -43,6 +55,10 @@ public class PassEntryLayer extends HelpLayerAbstract {
         pane.setBounds(0, 0, 800, 600);
         add(pane);
     }
+    /**
+     * initializes the thread and then adds a lineListener so it can be replayed
+     * Allow the thread to be reinitialized more then once
+     */
     public void setUpClip() {
         try {
             File yourFile = new File(".\\Help\\PassEntry.wav");
@@ -70,7 +86,9 @@ public class PassEntryLayer extends HelpLayerAbstract {
             ex.printStackTrace();
         }
     }
-
+/**
+ * plays the audio clip or restarts it if it is already playing
+ */
 
     @Override
     public void help() {
@@ -86,7 +104,9 @@ public class PassEntryLayer extends HelpLayerAbstract {
         }
 
     }
-
+/**
+ * stops audio clip if needed.
+ */
     @Override
     public void clipStop() {
         clip.stop();

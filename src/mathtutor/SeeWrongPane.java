@@ -11,12 +11,15 @@ import java.awt.Cursor;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 /**
- *
+ * This panel has a list of all of the question that the user got incorrect.
+ * It Contains:
+ * A list of all test question
+ * A list of all wrong questions
+ * Login Frame
+ * SeeWrongPane
  * @author Eric Sullivan
  */
 public class SeeWrongPane extends javax.swing.JPanel {
@@ -32,6 +35,12 @@ public class SeeWrongPane extends javax.swing.JPanel {
         initComponents();
         jPanel1.setLayout(new GridLayout(6,1));
     }
+    /**
+     * sets up JLayer and gets the incorrect question and makes Jpanel buttons for each one.
+     * @param test
+     * @param frame
+     * @param parent 
+     */
     public SeeWrongPane(ArrayList<testForm> test,Login frame,SeeWrongLayer parent) {
         initComponents();
         layer  = parent;
@@ -42,6 +51,9 @@ public class SeeWrongPane extends javax.swing.JPanel {
         jPanel1.setLayout(new GridLayout(6, 1,10,10));
         populate();
     }
+    /**
+     * Builds a Click able JPanel for each question that got wrong
+     */
     public void populate() {
         for(int i = 0; i<6;i++){
             if(test.get(i).isCorrect()==0){
@@ -53,6 +65,10 @@ public class SeeWrongPane extends javax.swing.JPanel {
             }
         }
     }
+    /**
+     * MouseListener for each of the JPanels made in the populate method
+     * make and adds a wrongForm and add it to the frame and removes this Jlayer
+     */
     public class Listener extends MouseAdapter {
         
         public void mouseClicked(MouseEvent e) {
@@ -68,12 +84,13 @@ public class SeeWrongPane extends javax.swing.JPanel {
             frame.repaint();
             frame.pack();
         }
+        //change the color of the JPanel if hovered
         public void mouseEntered(MouseEvent e) {
 
             ((JPanel) e.getSource()).setBackground(new Color(255, 150, 15));
 
         }
-
+        //changes color back
         public void mouseExited(MouseEvent e) {
             ((JPanel) e.getSource()).setBackground(Color.green);
         }

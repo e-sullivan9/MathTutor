@@ -18,7 +18,13 @@ import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
 /**
- *
+ * This class is a JLayer wrap for the Reward class it allow the panel to have pop ups and audio
+ * It Contains:
+ * number of correct questions
+ * String of the image URL for the reward
+ * Login Frame
+ * List of test Questions
+ * Clip for audio
  * @author Eric Sullivan
  */
 public class RewardLayer extends HelpLayerAbstract {
@@ -28,7 +34,13 @@ public class RewardLayer extends HelpLayerAbstract {
     private ArrayList<testForm> test;
     private Login frame;
     private Clip clip;
-
+/**
+ * Sets up JLayer and audio clip
+ * @param correct
+ * @param reward
+ * @param test
+ * @param frame 
+ */
     public RewardLayer(int correct, String reward, ArrayList<testForm> test, Login frame) {
         this.correct = correct;
         this.reward = reward;
@@ -40,7 +52,9 @@ public class RewardLayer extends HelpLayerAbstract {
         add(pane);
         setUpClip();
     }
-
+/**
+ * Sets up the audio clip and adds a listener for the clip to be reinitialized
+ */
     public void setUpClip() {
         try {
             File yourFile = new File(".\\Help\\Reward.wav");
@@ -67,7 +81,9 @@ public class RewardLayer extends HelpLayerAbstract {
             ex.printStackTrace();
         }
     }
-
+/**
+ * start the clip thread and if its already running restarts it
+ */
     @Override
     public void help() {
         try {
@@ -82,7 +98,9 @@ public class RewardLayer extends HelpLayerAbstract {
         }
 
     }
-
+/**
+ * stops audio thread
+ */
     @Override
     public void clipStop() {
         clip.stop();

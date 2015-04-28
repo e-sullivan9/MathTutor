@@ -25,7 +25,7 @@ import javax.sound.sampled.LineListener;
 
 
 /**
- *
+ * This Class is a JLayer that has 
  * @author Eric Sullivan
  */
 public class TestGeneral extends HelpLayerAbstract {
@@ -37,7 +37,12 @@ public class TestGeneral extends HelpLayerAbstract {
     private String reward;
     private Login frame;
     private Clip clip;
-
+    /**
+     * 
+     * @param testName
+     * @param reward
+     * @param frame 
+     */
     public TestGeneral(String testName,String reward, Login frame) {
         cl = new CardLayout();
         index = 0;

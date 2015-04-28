@@ -18,7 +18,7 @@ import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
 /**
- *
+ * This class is the JLayer wrap for the SeeWrongPane it allows for pop up and audio.
  * @author Eric Sullivan
  */
 public class SeeWrongLayer extends HelpLayerAbstract{
@@ -30,7 +30,10 @@ public class SeeWrongLayer extends HelpLayerAbstract{
         add(pane);
         setUpClip();
     }
-           public void setUpClip() {
+   /**
+    * Sets up audio clip and adds a LineListener so it can be replayed
+    */
+    public void setUpClip() {
         try {
             File yourFile = new File(".\\Help\\seeWrong.wav");
             AudioInputStream stream;
@@ -57,7 +60,9 @@ public class SeeWrongLayer extends HelpLayerAbstract{
             ex.printStackTrace();
         }
     }
-
+/**
+ * Starts audio clip and restarts it if it is already playing
+ */
 
     @Override
     public void help() {
@@ -73,7 +78,9 @@ public class SeeWrongLayer extends HelpLayerAbstract{
         }
 
     }
-
+/**
+ * stops the audio clip
+ */
     @Override
     public void clipStop() {
         clip.stop();

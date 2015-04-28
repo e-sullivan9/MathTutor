@@ -15,17 +15,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- *
+ * This class shows the user how many question they got right on the test. If they got enough correct they will be given a pic that is added to their account
+ * this Contains:
+ * ArrayList of test questions
+ * Login Frame
+ * print button
+ * Click able JPanel to see question you got wrong
  * @author Eric Sullivan
  */
 public class Reward extends JPanel{
-    ArrayList<Integer> incorrect;
-    ArrayList<testForm> test;
-    Login frame;
-    Reward here;
-    RewardLayer layer;
+    private ArrayList<testForm> test;
+    private Login frame;
+    private RewardLayer layer;
 /**
- * 
+ * Constructor check the number of question the user got correct and build the page accordingly 
  * @param correct
  * @param reward
  * @param test
@@ -47,22 +50,26 @@ public class Reward extends JPanel{
             banner.setText("Try Again!!");
         }
     }
+    /**
+     * MouseAdapter for the see wrong Answer Panel.
+     * If the panel is hovered it will change color
+     * if clicked removes this panel and adds a seeWrongLayer
+     */
     public class Listener extends MouseAdapter {
-        
+
         public void mouseClicked(MouseEvent e) {
             layer.clipStop();
             frame.remove(layer);
             frame.getLastPane().push(layer);
-            frame.setCurrentPane(new SeeWrongLayer(test,frame));
+            frame.setCurrentPane(new SeeWrongLayer(test, frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();
-            
+
         }
-                public void mouseEntered(MouseEvent e) {
 
+        public void mouseEntered(MouseEvent e) {
             ((JPanel) e.getSource()).setBackground(new Color(255, 150, 15));
-
         }
 
         public void mouseExited(MouseEvent e) {
