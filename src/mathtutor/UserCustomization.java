@@ -25,83 +25,87 @@ public class UserCustomization extends javax.swing.JPanel {
     }
     private void loadModuleIconsFromDB()
     {
-        
+       DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
+       byte[] bStickers = con.getStickersForUser(account);
+       for(int i = 0; i < bStickers.length; ++i)
+           System.out.println(bStickers[i]);
+       con.closeDBConnection();
     }
-    private static final int ICON_HEIGHT = 100;
-    private static final int ICON_WIDTH = 100;
+    //private static final int ICON_HEIGHT = 100;
+    //private static final int ICON_WIDTH = 100;
     private void initLabels()
     {
         //Make sure to display correct user icon later
-        jlabelUserIcon.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlabelUserIcon.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlabelUserIcon.setIcon(account.getIcon());
         
-        jlTFOne.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlTFOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlTFTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
+       // jlTFTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFTwo.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlTFThree.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlTFThree.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFThree.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlTFFour.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlTFFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlTFFive.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlTFFive.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFFive.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlTFSix.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlTFSix.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFSix.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlTFSeven.setSize(ICON_HEIGHT, ICON_WIDTH);
+        //jlTFSeven.setSize(ICON_HEIGHT, ICON_WIDTH);
         jlTFSeven.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlOTOne.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlOTOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlOTTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlOTTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTTwo.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlOTThree.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlOTThree.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTThree.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlOTFour.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlOTFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlOTFive.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlOTFive.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTFive.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlOTSix.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlOTSix.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTSix.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlOTSeven.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlOTSeven.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTSeven.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlOTEight.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlOTEight.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTEight.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlPKOne.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlPKOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlPKTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlPKTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKTwo.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlPKThree.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlPKThree.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKThree.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlPKFour.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlPKFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlPKFive.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlPKFive.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKFive.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlPKSix.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlPKSix.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKSix.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlPKSeven.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlPKSeven.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKSeven.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        jlPKEight.setSize(ICON_HEIGHT,ICON_WIDTH);
+        //jlPKEight.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKEight.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
         
