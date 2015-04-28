@@ -24,56 +24,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
-                      <Component id="jlabelUserIcon" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jlPKOne" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKTwo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKThree" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKFour" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKFive" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKSix" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKSeven" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKEight" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jlOTOne" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTTwo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTThree" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTFour" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTFive" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTSix" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTSeven" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTEight" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlabelUserIcon" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jlTFOne" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jlTFTwo" min="-2" max="-2" attributes="0"/>
@@ -90,10 +47,44 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jlTFEight" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jlOTOne" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlOTTwo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlOTThree" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlOTFour" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlOTFive" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlOTSix" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlOTSeven" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlOTEight" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="jLabel34" alignment="0" min="-2" pref="540" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jlPKOne" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlPKTwo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlPKThree" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlPKFour" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlPKFive" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlPKSix" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlPKSeven" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jlPKEight" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -102,11 +93,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jlabelUserIcon" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlTFOne" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlTFTwo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -117,9 +108,9 @@
                   <Component id="jlTFSeven" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlTFEight" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlOTOne" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlOTTwo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -130,9 +121,9 @@
                   <Component id="jlOTSeven" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlOTEight" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlPKOne" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlPKTwo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -162,7 +153,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlabelUserIcon">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlabelUserIcon"/>
+        <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlUserIcon"/>
@@ -171,7 +162,7 @@
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Stencil Std" size="50" style="1"/>
+          <Font name="Stencil Std" size="38" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -181,74 +172,33 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlTFOne">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlTFOne"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlTFOne"/>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlTFTwo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlTFTwo"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlTFTwo"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlTFThree">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlTFThree"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlTFThree"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlTFFour">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlTFFour"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlTFFour"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlTFFive">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlTFFive"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlTFFive"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlTFSix">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlTFSix"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlTFSix"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlTFSeven">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlTFSeven"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlTFSeven"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlTFEight">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlTFEight"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlTFEight"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Stencil Std" size="50" style="1"/>
+          <Font name="Stencil Std" size="38" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -257,74 +207,28 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlOTOne">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlOTOne"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlOTOne"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlOTTwo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlOTTwo"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlOTTwo"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlOTThree">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlOTThree"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlOTThree"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlOTFour">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlOTFour"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlOTFour"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlOTFive">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlOTFive"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlOTFive"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlOTSix">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlOTSix"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlOTSix"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlOTSeven">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlOTSeven"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlOTSeven"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlOTEight">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jlOTEight"/>
-      </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlOTEight"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel34">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Stencil Std" size="50" style="1"/>
+          <Font name="Stencil Std" size="38" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -334,32 +238,25 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlPKOne">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlPKOne"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlPKOne"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlPKTwo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlPKTwo"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlPKTwo"/>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
       </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlPKThree">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlPKThree"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlPKThree"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlPKFour">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlPKFour"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlPKFive"/>
@@ -367,35 +264,23 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlPKFive">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlPKFive"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlPKFive"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlPKSix">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlPKSix"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlPKSix"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlPKSeven">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlPKSeven"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlPKSeven"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlPKEight">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jlPKEight"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlPKEight"/>
-      </AccessibilityProperties>
     </Component>
   </SubComponents>
 </Form>

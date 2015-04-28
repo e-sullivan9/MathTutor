@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Audi
+ * @author
  */
 public class UserCustomization extends javax.swing.JPanel {
 
@@ -21,6 +21,11 @@ public class UserCustomization extends javax.swing.JPanel {
         initComponents();
         this.account = account;
         initLabels();
+        loadModuleIconsFromDB();
+    }
+    private void loadModuleIconsFromDB()
+    {
+        
     }
     private static final int ICON_HEIGHT = 100;
     private static final int ICON_WIDTH = 100;
@@ -28,7 +33,7 @@ public class UserCustomization extends javax.swing.JPanel {
     {
         //Make sure to display correct user icon later
         jlabelUserIcon.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlabelUserIcon.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
+        jlabelUserIcon.setIcon(account.getIcon());
         
         jlTFOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
@@ -98,6 +103,8 @@ public class UserCustomization extends javax.swing.JPanel {
         
         jlPKEight.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKEight.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
+        
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,119 +152,52 @@ public class UserCustomization extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Profile Icon");
 
-        jlabelUserIcon.setText("jlabelUserIcon");
+        jlabelUserIcon.setText(" ");
 
-        jLabel10.setFont(new java.awt.Font("Stencil Std", 1, 50)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Stencil Std", 1, 38)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Grade 3-4 Awards");
 
-        jlTFOne.setText("jlTFOne");
         jlTFOne.setToolTipText("");
 
-        jlTFTwo.setText("jlTFTwo");
-
-        jlTFThree.setText("jlTFThree");
-
-        jlTFFour.setText("jlTFFour");
-
-        jlTFFive.setText("jlTFFive");
         jlTFFive.setToolTipText("");
 
-        jlTFSix.setText("jlTFSix");
-
-        jlTFSeven.setText("jlTFSeven");
-
-        jlTFEight.setText("jlTFEight");
-
-        jLabel22.setFont(new java.awt.Font("Stencil Std", 1, 50)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Stencil Std", 1, 38)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Grade 1-2 Awards");
 
-        jlOTOne.setText("jlOTOne");
-
-        jlOTTwo.setText("jlOTTwo");
-
-        jlOTThree.setText("jlOTThree");
-
-        jlOTFour.setText("jlOTFour");
-
-        jlOTFive.setText("jlOTFive");
-
-        jlOTSix.setText("jlOTSix");
         jlOTSix.setToolTipText("");
 
-        jlOTSeven.setText("jlOTSeven");
-
-        jlOTEight.setText("jlOTEight");
-
-        jLabel34.setFont(new java.awt.Font("Stencil Std", 1, 50)); // NOI18N
+        jLabel34.setFont(new java.awt.Font("Stencil Std", 1, 38)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setText("Pre K - K Awards");
 
-        jlPKOne.setText("jlPKOne");
+        jlPKOne.setToolTipText("");
 
-        jlPKTwo.setText("jlPKTwo");
+        jlPKTwo.setToolTipText("");
 
-        jlPKThree.setText("jlPKThree");
+        jlPKThree.setToolTipText("");
 
-        jlPKFour.setText("jlPKFour");
+        jlPKFour.setToolTipText("");
 
-        jlPKFive.setText("jlPKFive");
+        jlPKFive.setToolTipText("");
 
-        jlPKSix.setText("jlPKSix");
+        jlPKSix.setToolTipText("");
 
-        jlPKSeven.setText("jlPKSeven");
+        jlPKSeven.setToolTipText("");
 
-        jlPKEight.setText("jlPKEight");
+        jlPKEight.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addComponent(jlabelUserIcon))
-                    .addComponent(jLabel1))
-                .addGap(165, 165, 165))
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlPKOne)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKTwo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKThree)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKFour)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKFive)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKSix)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKSeven)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKEight))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlOTOne)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTTwo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTThree)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTFour)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTFive)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTSix)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTSeven)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTEight))
-                    .addComponent(jLabel22)
+                    .addComponent(jLabel1)
+                    .addComponent(jlabelUserIcon)
+                    .addComponent(jLabel10)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlTFOne)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -274,20 +214,52 @@ public class UserCustomization extends javax.swing.JPanel {
                         .addComponent(jlTFSeven)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jlTFEight))
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jLabel22)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlOTOne)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlOTTwo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlOTThree)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlOTFour)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlOTFive)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlOTSix)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlOTSeven)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlOTEight))
+                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlPKOne)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlPKTwo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlPKThree)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlPKFour)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlPKFive)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlPKSix)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlPKSeven)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlPKEight)))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlabelUserIcon)
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlTFOne)
                     .addComponent(jlTFTwo)
@@ -297,9 +269,9 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addComponent(jlTFSix)
                     .addComponent(jlTFSeven)
                     .addComponent(jlTFEight))
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel22)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlOTOne)
                     .addComponent(jlOTTwo)
@@ -309,9 +281,9 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addComponent(jlOTSix)
                     .addComponent(jlOTSeven)
                     .addComponent(jlOTEight))
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel34)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlPKOne)
                     .addComponent(jlPKTwo)
@@ -325,31 +297,9 @@ public class UserCustomization extends javax.swing.JPanel {
         );
 
         jlabelUserIcon.getAccessibleContext().setAccessibleName("jlUserIcon");
-        jlTFOne.getAccessibleContext().setAccessibleName("jlTFOne");
-        jlTFTwo.getAccessibleContext().setAccessibleName("jlTFTwo");
-        jlTFThree.getAccessibleContext().setAccessibleName("jlTFThree");
-        jlTFFour.getAccessibleContext().setAccessibleName("jlTFFour");
-        jlTFFive.getAccessibleContext().setAccessibleName("jlTFFive");
-        jlTFSix.getAccessibleContext().setAccessibleName("jlTFSix");
-        jlTFSeven.getAccessibleContext().setAccessibleName("jlTFSeven");
-        jlTFEight.getAccessibleContext().setAccessibleName("jlTFEight");
-        jlOTOne.getAccessibleContext().setAccessibleName("jlOTOne");
-        jlOTTwo.getAccessibleContext().setAccessibleName("jlOTTwo");
-        jlOTThree.getAccessibleContext().setAccessibleName("jlOTThree");
-        jlOTFour.getAccessibleContext().setAccessibleName("jlOTFour");
-        jlOTFive.getAccessibleContext().setAccessibleName("jlOTFive");
-        jlOTSix.getAccessibleContext().setAccessibleName("jlOTSix");
-        jlOTSeven.getAccessibleContext().setAccessibleName("jlOTSeven");
-        jlOTEight.getAccessibleContext().setAccessibleName("jlOTEight");
-        jlPKOne.getAccessibleContext().setAccessibleName("jlPKOne");
-        jlPKTwo.getAccessibleContext().setAccessibleName("jlPKTwo");
+        jlTFOne.getAccessibleContext().setAccessibleName("");
         jlPKTwo.getAccessibleContext().setAccessibleDescription("");
-        jlPKThree.getAccessibleContext().setAccessibleName("jlPKThree");
         jlPKFour.getAccessibleContext().setAccessibleName("jlPKFive");
-        jlPKFive.getAccessibleContext().setAccessibleName("jlPKFive");
-        jlPKSix.getAccessibleContext().setAccessibleName("jlPKSix");
-        jlPKSeven.getAccessibleContext().setAccessibleName("jlPKSeven");
-        jlPKEight.getAccessibleContext().setAccessibleName("jlPKEight");
     }// </editor-fold>//GEN-END:initComponents
 
 
