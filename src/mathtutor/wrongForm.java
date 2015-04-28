@@ -40,7 +40,6 @@ public class wrongForm extends HelpLayerAbstract {
     private Clip clip;
 
     public wrongForm(testForm test, Login frame) {
-        //System.out.println("here");
         setPreferredSize(new Dimension(600,600));
         setBackground(new Color(144, 210, 144));
         this.frame = frame;
@@ -134,7 +133,6 @@ public class wrongForm extends HelpLayerAbstract {
             LineListener listener = new LineListener() {
                 public void update(LineEvent e) {
                     if (e.getType() == LineEvent.Type.STOP) {
-                        System.out.println("restarted");
                         clip.close();
                         setUpClip();
                     }

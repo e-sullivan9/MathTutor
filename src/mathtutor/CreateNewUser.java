@@ -165,7 +165,7 @@ public class CreateNewUser extends javax.swing.JPanel {
                     frame.getContentPane().removeAll();
                     BoxLayout bl = new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS);
                     frame.setLayout(bl);
-                    GradeChooserLayer chooser = new GradeChooserLayer(frame);
+                    GradeChooserLayer chooser = new GradeChooserLayer(frame,0);
                     frame.add(new AccountPanel(new Account(pid, selectedIcon.getIcon()), frame));
                     frame.add(chooser);
                     frame.repaint();

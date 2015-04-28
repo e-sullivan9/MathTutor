@@ -65,7 +65,6 @@ public class CreateNewUserLayer extends HelpLayerAbstract{
             LineListener listener = new LineListener() { // reintializes the audio clip after its done playing
                 public void update(LineEvent e) {
                     if (e.getType() == LineEvent.Type.STOP) {
-                        System.out.println("restarted");
                         clip.close();
                         setUpClip();
                     }

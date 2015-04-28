@@ -256,10 +256,9 @@ public class Login extends javax.swing.JFrame {
                     JPanel temp = new JPanel();
                     temp.setBackground(new Color(144, 210, 144));
                     accountPanels.add(temp);
-                    System.out.println(x);
                 }
             }
-            System.out.println(accountPanels.size());
+            
             for (int i = 0; i < accountPanels.size(); i++) {
                 //System.out.println("here");
                 usp.add(accountPanels.get(i));

@@ -78,7 +78,6 @@ public class PasswordEntryPane extends javax.swing.JPanel {
         public void keyPressed(KeyEvent e) {
             //Check if enter is pressed in the field
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                System.out.println("keyPress");
                 try {
                     //connection to the database
                     Class.forName("com.mysql.jdbc.Driver");
@@ -95,11 +94,11 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                         //checks if the strings are the same.
                         if(temp.equals(rs.getString("pass"))){
                             
-                            JOptionPane.showMessageDialog(null, "Login successfull");
+                            JOptionPane.showMessageDialog(null, "Login successful");
                             frame.getContentPane().removeAll();
                             BoxLayout bl = new BoxLayout(frame.getContentPane(),BoxLayout.X_AXIS);
                             frame.setLayout(bl);
-                            GradeChooserLayer chooser = new GradeChooserLayer(frame);
+                            GradeChooserLayer chooser = new GradeChooserLayer(frame,99);
                             frame.add(new AccountPanel(new Account(name,userIcon.getIcon()),frame));
                             frame.add(chooser);
                             frame.repaint();
@@ -167,7 +166,7 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                             frame.getContentPane().removeAll();
                             BoxLayout bl = new BoxLayout(frame.getContentPane(),BoxLayout.X_AXIS);
                             frame.setLayout(bl);
-                            frame.setCurrentPane( new GradeChooserLayer(frame));
+                            frame.setCurrentPane( new GradeChooserLayer(frame,99));
                             frame.add(new AccountPanel(new Account(name,userIcon.getIcon()),frame));
                             frame.add(frame.getCurrentPane());
                             frame.repaint();

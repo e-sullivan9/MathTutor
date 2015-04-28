@@ -72,7 +72,6 @@ public class SeeWrongPane extends javax.swing.JPanel {
     public class Listener extends MouseAdapter {
         
         public void mouseClicked(MouseEvent e) {
-            System.out.println(((WrongAnswer)e.getSource()).getjLabel1().getText());
             String temp = ((WrongAnswer)e.getSource()).getjLabel1().getText();
             String[] split = temp.split(" ");
             testForm current = test.get(Integer.parseInt(split[1])-1);

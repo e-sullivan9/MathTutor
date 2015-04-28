@@ -42,7 +42,6 @@ public class PassEntryLayer extends HelpLayerAbstract {
      * @param frame 
      */
     public PassEntryLayer(String name, Icon icon, Login frame) {
-        System.out.println("Im a PassEntryLayer!");
         this.frame = frame;
         here = this;
         pane = new PasswordEntryPane(name, icon, frame, here);
@@ -74,7 +73,6 @@ public class PassEntryLayer extends HelpLayerAbstract {
             LineListener listener = new LineListener() {
                 public void update(LineEvent e) {
                     if (e.getType() == Type.STOP) {
-                        System.out.println("restarted");
                         clip.close();
                         setUpClip();
                     }

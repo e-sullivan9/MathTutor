@@ -34,7 +34,7 @@ public class testForm extends HelpLayerAbstract {
     ArrayList<JLabel> answerL;
     String correctAnswer;
     boolean isCorrect;
-    HelpPane hp;
+    HelpPane butters;
     int question_id, number;
     TestGeneral pane;
     String correctImage;
@@ -57,14 +57,14 @@ public class testForm extends HelpLayerAbstract {
         }
         this.correctAnswer = correctAnswer;
 
-        hp = new HelpPane();
-        hp.setBounds(0, 170, 610, 212);
-        hp.addMouseListener(new AnswerHandler());
+        getButters();
+        butters.setBounds(0, 170, 610, 212);
+        butters.addMouseListener(new AnswerHandler());
         add(top, Integer.valueOf(0));
         add(bot, Integer.valueOf(0));
-        add(hp, Integer.valueOf(-300));
+        add(butters, Integer.valueOf(-300));
         /*if (done != 0) {
-         setLayer(hp, -300);
+         setLayer(butters, -300);
          }
          done++;*/
     }
@@ -120,11 +120,6 @@ public class testForm extends HelpLayerAbstract {
     public void buildBack() {
         correct = new JLabel(new ImageIcon("correct.png"));
         wrong = new JLabel(new ImageIcon("incorrect.png"));
-        help1 = new HelpPane();
-
-        help1.setBounds(0, 170, 600, 212);
-        help1.addMouseListener(new AnswerHandler());
-        help1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         correct.setBounds(155, 70, 300, 205);
         correct.addMouseListener(new AnswerHandler());
@@ -135,13 +130,12 @@ public class testForm extends HelpLayerAbstract {
         wrong.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         add(wrong, Integer.valueOf(-300));
-        add(help1, Integer.valueOf(-300));
         add(correct, Integer.valueOf(-300));
 
     }
 
     public void firstOne() {
-        setLayer(hp, 300);
+        setLayer(butters, 300);
     }
 
     public void setNumber(int j) {
@@ -209,13 +203,41 @@ public class testForm extends HelpLayerAbstract {
     public void clipStop() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+        private void getButters() {
+        switch (pane.getTestName()) {
+            case "Coins":
+                butters = new HelpPane("Test Time! This test will ask you to identify coins by name \nand there values.");
+                break;
+            case "Compare":
+                butters = new HelpPane("Test Time! This test will ask you to compare the number of giraffe and hippos in the valley at one time.");
+                break;
+            case "Counting":
+                butters = new HelpPane("Test Time! This test will ask you to count giraffes up to 20.");
+                break;
+            case "Estimate":
+                butters = new HelpPane("Test Time! This test will ask you to estimate the number of giraffes by grouping them and guessing the total amount.");
+                break;
+            case "Numbers":
+                butters = new HelpPane("Test Time! This test will ask you to identify numbers by \nsymbol and word. Although you'll never beat my best score.");
+                break;
+            case "Problems":
+                butters = new HelpPane("Test Time! This test will ask you to do addition and \nsubtraction. It maybe hard so I don't want to be a \ndistraction!");
+                break;
+            case "Sequences":
+                butters = new HelpPane("Test Time! This test will ask you to find the position that \nan animal has in line for ice cream.");
+                break;
+            default:
+                butters = new HelpPane("Test Time! This test will ask you to count whole and halves. Careful they question can be a bit tricky.");
+                break;
+        }
+    }
     
 
     public class AnswerHandler extends MouseAdapter {
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            if (getLayer(correct) != 300 && getLayer(wrong) != 300 && (getLayer(hp) != 300) && getLayer(help1) != 300) {
+            if (getLayer(correct) != 300 && getLayer(wrong) != 300 && (getLayer(butters) != 300)) {
                 if (e.getSource() == answerP.get(0)) {
                     answerP.get(0).setBackground(new Color(255, 150, 15));
                 }
@@ -233,7 +255,7 @@ public class testForm extends HelpLayerAbstract {
 
         @Override
         public void mouseExited(MouseEvent e) {
-            if (getLayer(correct) != 300 && getLayer(wrong) != 300 && getLayer(hp) != 300 && getLayer(help1) != 300) {
+            if (getLayer(correct) != 300 && getLayer(wrong) != 300 && getLayer(butters) != 300) {
                 if (e.getSource() == answerP.get(0)) {
                     answerP.get(0).setBackground(Color.GREEN);
                 }
@@ -251,7 +273,7 @@ public class testForm extends HelpLayerAbstract {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (getLayer(correct) != 300 && getLayer(wrong) != 300 && getLayer(hp) != 300 && getLayer(help1) != 300) {
+            if (getLayer(correct) != 300 && getLayer(wrong) != 300 && getLayer(butters) != 300) {
                 if (e.getSource() == answerP.get(0)) {
                     if (answerL.get(0).getText().equals(correctAnswer)) {
                         setLayer(correct, 300);
@@ -293,12 +315,8 @@ public class testForm extends HelpLayerAbstract {
                     }
                 }
             }
-            if (e.getSource() == help1) {
-                setLayer(help1, -300);
-            } else if (e.getSource() == help2) {
-                setLayer(help2, -300);
-            } else if (e.getSource() == hp) {
-                setLayer(hp, -300);
+            if (e.getSource() == butters) {
+                setLayer(butters, -300);
             } else if (e.getSource() == wrong && getLayer(wrong) == 300) {
                 pane.next();
             } else if (e.getSource() == correct && getLayer(correct) == 300) {

@@ -34,6 +34,7 @@ public class AccountPanel extends JPanel{
         add(top,BorderLayout.NORTH);
         add(bot,BorderLayout.CENTER);
 	add(buttons,BorderLayout.SOUTH);
+        
     }
     public AccountPanel(Account userAccount,Login frame){
         this.frame = frame;
@@ -61,7 +62,7 @@ public class AccountPanel extends JPanel{
         name = new JLabel(userAccount.getUsername(),JLabel.CENTER);
         name.setForeground(Color.WHITE);
         name.setFont(myFont);
-        
+        name.addMouseListener(new ImageHandler());
         accountPic = new JLabel(userAccount.getIcon());
         
         section = new JLabel("", JLabel.CENTER);
@@ -112,6 +113,14 @@ public class AccountPanel extends JPanel{
             }
             if(e.getSource()==help){
                 ((HelpLayerAbstract)frame.getCurrentPane()).help();
+            }
+            if(e.getSource()==name){
+            frame.remove(frame.getCurrentPane());
+            frame.getLastPane().push(frame.getCurrentPane());
+            frame.setCurrentPane(new UserCustomization(userAccount));
+            frame.add(frame.getCurrentPane());
+            frame.repaint();
+            frame.pack();
             }
         }
     {  

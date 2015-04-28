@@ -20,7 +20,8 @@ public class HelpPane extends javax.swing.JPanel {
     }
     public HelpPane(String Text) {
         initComponents();
-        jTextField1.setText(Text);
+        jTextArea1.setText(Text);
+        jTextArea1.setLineWrap(true);
     }
 
     /**
@@ -33,7 +34,9 @@ public class HelpPane extends javax.swing.JPanel {
     private void initComponents() {
 
         SafriDude = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(java.awt.Color.black);
 
@@ -41,28 +44,42 @@ public class HelpPane extends javax.swing.JPanel {
         SafriDude.setIcon(new javax.swing.ImageIcon("C:\\Users\\Eric Sullivan\\Desktop\\MathTutor\\safari.jpg")); // NOI18N
         SafriDude.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(java.awt.Color.black);
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jTextField1.setForeground(java.awt.Color.white);
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(java.awt.Color.black);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jTextArea1.setForeground(java.awt.Color.white);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.white);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Click to continue");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(SafriDude, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SafriDude, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SafriDude, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SafriDude, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -70,6 +87,8 @@ public class HelpPane extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SafriDude;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

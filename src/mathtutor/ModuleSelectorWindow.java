@@ -46,7 +46,6 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
         initComponents();
         layer = parent;
         modules = new ArrayList<>();
-        System.out.println(grade);
         next.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\forward.png"));
         prev.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\back.png"));
         next.addMouseListener(new NextPrev());
@@ -69,7 +68,6 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
             modules.get(i).addMouseListener(new Listener());
             pane.add(modules.get(i));
             if (i % 4 == 3 && i != 0) {
-                    System.out.println("added at " + i);
                     jPanel1.add(pane);
                     pane = new JPanel(new GridLayout(2,2,10,10));
                     pane.setBackground(new Color(144,210,144));

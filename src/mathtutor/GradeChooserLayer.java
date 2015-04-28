@@ -7,6 +7,8 @@
 package mathtutor;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -31,16 +33,25 @@ public class GradeChooserLayer extends HelpLayerAbstract {
     private GradeChooser pane;
     private Login frame;
     private GradeChooserLayer here;
+    private HelpPane butters;
 
     /**
      * Creates and adds the GradeChooser to a JLayer
      * Sets up the audio clip thread
      * @param frame 
      */
-    public GradeChooserLayer(Login frame) {
+    public GradeChooserLayer(Login frame,int id) {
         this.frame = frame;
         here = this;
         pane = new GradeChooser(frame, here);
+        if(id==0)
+        butters = new HelpPane("Welcome, new junior safarian, to the Learn 2 Math Safari school. My name is Timothy"
+                + " Buttersworth and I will be helping you to learn 2 math. Haha. That's a little joke we say around here."
+                + " From here you can go to any of our 3 grade   group areas.");
+        else
+             butters = new HelpPane("Welcome back. Are you ready to continue to learn 2 math? If so choose a grade.");
+        butters.addMouseListener(new Listener());
+        
         init();
         setUpClip();
     }
@@ -49,8 +60,11 @@ public class GradeChooserLayer extends HelpLayerAbstract {
  */
     private void init() {
         setPreferredSize(new Dimension(600, 600));
+        butters.setBounds(0,400,600,200);
         pane.setBounds(0, 0, 600, 600);
-        add(pane);
+        
+        add(butters,Integer.valueOf(300));
+        add(pane,Integer.valueOf(0));
     }
     /**
      * Create the help button's audio clip
@@ -69,7 +83,6 @@ public class GradeChooserLayer extends HelpLayerAbstract {
             LineListener listener = new LineListener() {
                 public void update(LineEvent e) {
                     if (e.getType() == LineEvent.Type.STOP) {
-                        System.out.println("restarted");
                         clip.close();
                         setUpClip();
                     }
@@ -105,6 +118,12 @@ public class GradeChooserLayer extends HelpLayerAbstract {
     public void clipStop() {
         clip.stop();
         clip.close();
+    }
+    public class Listener extends MouseAdapter{
+        @Override
+        public void mouseClicked(MouseEvent e){
+            setLayer(butters,-300);
+        }
     }
 
 }

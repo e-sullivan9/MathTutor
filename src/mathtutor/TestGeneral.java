@@ -119,7 +119,6 @@ public class TestGeneral extends HelpLayerAbstract {
             LineListener listener = new LineListener() {
                 public void update(LineEvent e) {
                     if (e.getType() == LineEvent.Type.STOP) {
-                        System.out.println("restarted");
                         clip.close();
                         setUpClip();
                     }
@@ -165,7 +164,6 @@ public class TestGeneral extends HelpLayerAbstract {
             index = (index + 1);
 
         } else {
-            System.out.println(test.size());
             ArrayList<Integer> incorrect = new ArrayList<>();
             ArrayList<Integer> q_number = new ArrayList<>();
             for (int i = 0; i < 6; i++) {
@@ -173,7 +171,6 @@ public class TestGeneral extends HelpLayerAbstract {
                 if (test.get(i).isCorrect() == 0) {
                     incorrect.add(test.get(i).question_id);
                     q_number.add(test.get(i).number);
-                    System.out.println("?");
                 }
             }
 
@@ -184,5 +181,9 @@ public class TestGeneral extends HelpLayerAbstract {
             frame.pack();
 
         }
+    }
+
+    public String getTestName() {
+        return testName;
     }
 }

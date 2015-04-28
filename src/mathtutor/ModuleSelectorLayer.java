@@ -45,7 +45,6 @@ public class ModuleSelectorLayer extends HelpLayerAbstract{
             LineListener listener = new LineListener() {
                 public void update(LineEvent e) {
                     if (e.getType() == LineEvent.Type.STOP) {
-                        System.out.println("restarted");
                         clip.close();
                         setUpClip();
                     }
