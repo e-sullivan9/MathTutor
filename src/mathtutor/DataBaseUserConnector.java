@@ -77,6 +77,8 @@ public class DataBaseUserConnector
                 {
                   bStickers[i-1] = rs.getByte(i);
                 }
+                //We can show the users which module they have unlocked
+                //But how do we actually display it?
             }
             catch(SQLException e)
             {
