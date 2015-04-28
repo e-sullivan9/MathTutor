@@ -155,12 +155,44 @@ public class CreateNewUser extends javax.swing.JPanel {
                 if (errors.isEmpty()) {
                     String table = "users";
                     String pid = firstNameTF.getText() + " " + lastNameTF.getText().charAt(0);
-                    String pass = "";
-                    for(int i = 0; i < jPasswordField1.getPassword().length;++i)
-                        pass+=jPasswordField1.getPassword()[i];
+                    String pass = new String(jPasswordField1.getPassword());
+                    
                     String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + pass + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "'";
                     JOptionPane.showMessageDialog(null, "" + pid + " Created");
                     con.insertIntoDB(table, entry);
+                    
+                    ////////////////////////////////////////////////////////////
+                    /*
+create table Stickers (
+PID char(100) NOT NULL,
+PKModule1 TINYINT(1),
+PKModule2 TINYINT(1),
+PKModule3 TINYINT(1),
+PKModule4 TINYINT(1),
+PKModule5 TINYINT(1),
+PKModule6 TINYINT(1),
+PKModule7 TINYINT(1),
+PKModule8 TINYINT(1),
+FSModule1 TINYINT(1),
+FSModule2 TINYINT(1),
+FSModule3 TINYINT(1),
+FSModule4 TINYINT(1),
+FSModule5 TINYINT(1),
+FSModule6 TINYINT(1),
+FSModule7 TINYINT(1),
+FSModule8 TINYINT(1),
+TFModule1 TINYINT(1),
+TFModule2 TINYINT(1),
+TFModule3 TINYINT(1),
+TFModule4 TINYINT(1),
+TFModule5 TINYINT(1),
+TFModule6 TINYINT(1),
+TFModule7 TINYINT(1),
+TFModule8 TINYINT(1)
+);
+                    */
+                    String stickerEntry = "'" + pid + "'," + "'0','0','0','0','0','0',0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'";
+                    con.insertIntoDB("Stickers",stickerEntry);
                     con.closeDBConnection();
                     frame.getContentPane().removeAll();
                     BoxLayout bl = new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS);
