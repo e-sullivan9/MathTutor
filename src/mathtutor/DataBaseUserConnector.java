@@ -66,36 +66,22 @@ public class DataBaseUserConnector
 	}
         public ArrayList<String> getFavoriteStickers(Account account)
         {
-            PreparedStatement pst=null;
-            ResultSet rs = null;
+            Statement state =null;
+            String sql = "select * from users where pid="+"'" + account.getUsername() + "'";
             ArrayList<String> aList = new ArrayList<>();
             try
             {
-                pst = con.prepareStatement("select * from Users where pid=? ");
-                pst.setString(1,account.getUsername());
-                rs = pst.executeQuery();
-                aList.add(rs.getString("fav1"));
-                aList.add(rs.getString("fav2"));
-                aList.add(rs.getString("fav3"));
-                aList.add(rs.getString("fav4"));
+                state = con.createStatement();
+                ResultSet rs = state.executeQuery(sql);
+                System.out.println(rs.getString("PID"));
             }
             catch(SQLException e)
             {
-                
+                e.printStackTrace();
             }
             finally
             {
-                try
-                {
-                    if(rs != null)
-                        rs.close();
-                    if(pst != null)
-                        pst.close();
-                }
-                catch(SQLException e)
-                {
-                    
-                }
+                terminate(state);
             }
             return aList;
         }
