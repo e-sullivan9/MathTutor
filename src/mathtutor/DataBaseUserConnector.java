@@ -64,6 +64,41 @@ public class DataBaseUserConnector
 				se.printStackTrace();
 			}
 	}
+        public ArrayList<String> getFavoriteStickers(Account account)
+        {
+            PreparedStatement pst=null;
+            ResultSet rs = null;
+            ArrayList<String> aList = new ArrayList<>();
+            try
+            {
+                pst = con.prepareStatement("select * from Users where pid=? ");
+                pst.setString(1,account.getUsername());
+                rs = pst.executeQuery();
+                aList.add(rs.getString("fav1"));
+                aList.add(rs.getString("fav2"));
+                aList.add(rs.getString("fav3"));
+                aList.add(rs.getString("fav4"));
+            }
+            catch(SQLException e)
+            {
+                
+            }
+            finally
+            {
+                try
+                {
+                    if(rs != null)
+                        rs.close();
+                    if(pst != null)
+                        pst.close();
+                }
+                catch(SQLException e)
+                {
+                    
+                }
+            }
+            return aList;
+        }
         public ArrayList<Stickers> getStickersForUser(Account account)
         {
             
