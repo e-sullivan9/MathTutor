@@ -100,6 +100,10 @@ public class DataBaseUserConnector
             }
             return bStickers;
         }
+        public void updateCompleteModule(Account account,String module)
+        {
+            
+        }
 	public void insertIntoDB(String table,String entry)
 	{
 		Statement state = null;
