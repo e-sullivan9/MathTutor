@@ -175,7 +175,7 @@ public class CreateNewUser extends javax.swing.JPanel {
                     {
                     String pass = new String(jPasswordField1.getPassword());
                     
-                    String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + pass + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "'";
+                    String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + pass + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "','" + "lock" + "','" + "lock" + "','" + "lock" + "','" + "lock" + "'";
 
                     JOptionPane.showMessageDialog(null, "" + pid + " Created");
                     con.insertIntoDB(table, entry);
