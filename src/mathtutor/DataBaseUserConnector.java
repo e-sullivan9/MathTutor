@@ -11,6 +11,7 @@ package mathtutor;
  * @author Eric Sullivan
  */
 import java.sql.*;
+import java.util.ArrayList;
 public class DataBaseUserConnector
 {
 	private Connection con;
@@ -63,22 +64,21 @@ public class DataBaseUserConnector
 				se.printStackTrace();
 			}
 	}
-        public byte[] getStickersForUser(Account account)
+        public ArrayList<Stickers> getStickersForUser(Account account)
         {
-            byte[] bStickers = new byte[STICKER_COUNT];
+            
             PreparedStatement pst=null;
             ResultSet rs = null;
+            ArrayList<Stickers> aList = new ArrayList<>();
             try
             {
-                pst = con.prepareStatement("select * from stickers where PID=? ");
+                pst = con.prepareStatement("select * from completed where user_id=? ");
                 pst.setString(1,account.getUsername());
                 rs = pst.executeQuery();
-                for(int i = 1; i < STICKER_COUNT+1; ++i)
+                while(rs.next())
                 {
-                  bStickers[i-1] = rs.getByte(i);
+                    aList.add(new Stickers(rs.getString(2),rs.getString(3)));
                 }
-                //We can show the users which module they have unlocked
-                //But how do we actually display it?
             }
             catch(SQLException e)
             {
@@ -98,11 +98,7 @@ public class DataBaseUserConnector
                     
                 }
             }
-            return bStickers;
-        }
-        public void updateCompleteModule(Account account,String module)
-        {
-            //updates(module) to 1;
+            return aList;
         }
 	public void insertIntoDB(String table,String entry)
 	{
