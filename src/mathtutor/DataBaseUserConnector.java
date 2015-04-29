@@ -76,6 +76,7 @@ public class DataBaseUserConnector
                 rs = state.executeQuery(sql);
                 if(rs.first())
                     bCompleted = true;
+                //push push push!
             }
             catch(SQLException e)
             {
