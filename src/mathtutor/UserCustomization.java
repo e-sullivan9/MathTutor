@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import java.awt.event.MouseListener;
 /**
  *
  * @author
@@ -22,12 +24,15 @@ public class UserCustomization extends javax.swing.JPanel {
     private final Account account;
     private ArrayList<Stickers> stickerList;
     private JLabel[] favorites;
+    private OnAction onAction;
     public UserCustomization(Account account) {
         initComponents();
         this.account = account;
+        onAction = new OnAction();
         initLabels();
         loadModuleIconsFromDB();
         loadFavoriteIcons();
+        
     }
     private void loadFavoriteIcons()
     {
@@ -36,7 +41,7 @@ public class UserCustomization extends javax.swing.JPanel {
        System.out.println(aList.size());
        con.closeDBConnection();
        
-       for(int i = 0; i < favorites.length; ++i)
+   for(int i = 0; i < favorites.length; ++i)
        {
            if(!aList.get(i).equalsIgnoreCase("lock"))
            {
@@ -106,15 +111,39 @@ public class UserCustomization extends javax.swing.JPanel {
         favorites[1] = jLabel3;
         favorites[2] = jLabel4;
         favorites[3] = jLabel5;
+        
+        jButton1.addActionListener(onAction);
+        
     }
     private class OnAction implements ActionListener
     {
+        private JLabel selected;
         @Override
         public void actionPerformed(ActionEvent e)
         {
             if(e.getSource() == jButton1)
             {
                 
+            }
+            else
+            {
+                
+                if(selected != null)
+                {
+                    selected.setIcon(((JLabel)e.getSource()).getIcon());
+                    selected = null;
+                }
+                else
+                {
+                    for(int i = 0; i < favorites.length; ++i)
+                    {
+                        if(e.getSource() != favorites[i])
+                        {
+                            selected = null;
+                            JOptionPane.showMessageDialog(null,"You can only select a favorite icon!");
+                        }
+                    }
+                }
             }
         }
     }
