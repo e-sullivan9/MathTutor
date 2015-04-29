@@ -64,20 +64,18 @@ public class DataBaseUserConnector
 				se.printStackTrace();
 			}
 	}
-        public ArrayList<String> getFavoriteStickers(Account account)
+        public boolean isModuleComplete(String test)
         {
             Statement state =null;
-            String sql = "select * from users where pid="+"'" + account.getUsername() + "'";
-            ArrayList<String> aList = new ArrayList<>();
+            String sql = "select * from modules where name="+"'" + test + "'";
+            ResultSet rs = null;
+            boolean bCompleted = false;
             try
             {
                 state = con.createStatement();
-                ResultSet rs = state.executeQuery(sql);
-                rs.next();
-                aList.add(rs.getString("fav1"));
-                aList.add(rs.getString("fav2"));
-                aList.add(rs.getString("fav3"));
-                aList.add(rs.getString("fav4"));
+                rs = state.executeQuery(sql);
+                if(rs.first())
+                    bCompleted = true;
             }
             catch(SQLException e)
             {
@@ -85,6 +83,52 @@ public class DataBaseUserConnector
             }
             finally
             {
+                try
+                {
+                    if(rs!=null)
+                     rs.close();
+                }
+                catch(SQLException e)
+                {
+                    
+                }
+                terminate(state);
+            }
+            return bCompleted;
+        }
+        public ArrayList<String> getFavoriteStickers(Account account)
+        {
+            Statement state =null;
+            String sql = "select * from users where pid="+"'" + account.getUsername() + "'";
+            ArrayList<String> aList = new ArrayList<>();
+            ResultSet rs = null;
+
+            try
+            {
+                state = con.createStatement();
+                rs = state.executeQuery(sql);
+                rs.next();
+                aList.add(rs.getString("fav1"));
+                aList.add(rs.getString("fav2"));
+                aList.add(rs.getString("fav3"));
+                aList.add(rs.getString("fav4"));
+                
+            }
+            catch(SQLException e)
+            {
+                e.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    if(rs!=null)
+                     rs.close();
+                }
+                catch(SQLException e)
+                {
+                    
+                }
                 terminate(state);
             }
             return aList;
