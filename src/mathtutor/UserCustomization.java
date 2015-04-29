@@ -7,6 +7,9 @@ package mathtutor;
 
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 /**
  *
  * @author
@@ -18,19 +21,37 @@ public class UserCustomization extends javax.swing.JPanel {
      */
     private final Account account;
     private ArrayList<Stickers> stickerList;
+    private JLabel[] favorites;
     public UserCustomization(Account account) {
         initComponents();
         this.account = account;
         initLabels();
         loadModuleIconsFromDB();
+        loadFavoriteIcons();
+    }
+    private void loadFavoriteIcons()
+    {
+       DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
+       ArrayList<String> aList = con.getFavoriteStickers(account);
+       System.out.println(aList.size());
+       con.closeDBConnection();
+       
+       for(int i = 0; i < favorites.length; ++i)
+       {
+           if(!aList.get(i).equalsIgnoreCase("lock"))
+           {
+               favorites[i].setIcon(new ImageIcon(aList.get(i)));
+           }
+       }
+       
     }
     private void loadModuleIconsFromDB()
     {
        DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
-       byte[] bStickers = con.getStickersForUser(account);
-       for(int i = 0; i < bStickers.length; ++i)
-           System.out.println(bStickers[i]);
+       ArrayList<Stickers> aList = con.getStickersForUser(account);
+       
        con.closeDBConnection();
+       
     }
     //private static final int ICON_HEIGHT = 100;
     //private static final int ICON_WIDTH = 100;
@@ -76,6 +97,26 @@ public class UserCustomization extends javax.swing.JPanel {
         //jlPKFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
+        jLabel2.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
+        jLabel3.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
+        jLabel4.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
+        jLabel5.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
+        favorites = new JLabel[4];
+        favorites[0] = jLabel2;
+        favorites[1] = jLabel3;
+        favorites[2] = jLabel4;
+        favorites[3] = jLabel5;
+    }
+    private class OnAction implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            if(e.getSource() == jButton1)
+            {
+                
+            }
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,6 +144,11 @@ public class UserCustomization extends javax.swing.JPanel {
         jlPKTwo = new javax.swing.JLabel();
         jlPKThree = new javax.swing.JLabel();
         jlPKFour = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(144, 210, 144));
         setMinimumSize(new java.awt.Dimension(600, 600));
@@ -136,52 +182,79 @@ public class UserCustomization extends javax.swing.JPanel {
 
         jlPKFour.setToolTipText("");
 
+        jButton1.setText("More");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jlabelUserIcon)
-                    .addComponent(jLabel10)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlTFOne)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlTFTwo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlTFThree)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlTFFour))
-                    .addComponent(jLabel22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlabelUserIcon)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlOTOne)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTTwo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTThree)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTFour))
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlPKOne)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKTwo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKThree)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKFour)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlTFOne)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlTFTwo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlTFThree)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlTFFour))
+                            .addComponent(jLabel22)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlOTOne)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlOTTwo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlOTThree)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlOTFour))
+                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlPKOne)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlPKTwo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlPKThree)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlPKFour)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(jLabel1)
-                .addGap(0, 0, 0)
-                .addComponent(jlabelUserIcon)
-                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jlabelUserIcon))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -205,7 +278,9 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addComponent(jlPKTwo)
                     .addComponent(jlPKThree)
                     .addComponent(jlPKFour))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         jlabelUserIcon.getAccessibleContext().setAccessibleName("jlUserIcon");
@@ -214,10 +289,15 @@ public class UserCustomization extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jlOTFour;
     private javax.swing.JLabel jlOTOne;
     private javax.swing.JLabel jlOTThree;
