@@ -39,10 +39,10 @@ public class ToTLayer extends HelpLayerAbstract {
      * @param reward
      * @param frame
      */
-    public ToTLayer(String module, String reward, Login frame) {
+    public ToTLayer(String module,String grade, Login frame) {
         this.module = module;
         
-        pane = new ToT(module, reward, frame, this);
+        pane = new ToT(module,grade, frame, this);
         setPreferredSize(new Dimension(600, 600));
         pane.setBounds(0, 0, 600, 600);
         add(pane, Integer.valueOf(0));

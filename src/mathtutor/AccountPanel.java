@@ -123,11 +123,16 @@ public class AccountPanel extends JPanel{
             frame.pack();
             }
         }
-    {  
+}
 
-    }  
-
+    public Account getUserAccount() {
+        return userAccount;
     }
+
+    public void setUserAccount(Account userAccount) {
+        this.userAccount = userAccount;
+    }
+    
 
 
 }

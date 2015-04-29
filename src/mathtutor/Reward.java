@@ -31,19 +31,21 @@ public class Reward extends JPanel{
  * Constructor check the number of question the user got correct and build the page accordingly 
  * @param correct
  * @param reward
+ * @param grade
  * @param test
  * @param frame
  * @param parent 
  */
-    public Reward(int correct,String reward,ArrayList<testForm> test,Login frame,RewardLayer parent) {
+    public Reward(int correct,String reward,String grade, ArrayList<testForm> test,Login frame,RewardLayer parent) {
         initComponents();
         this.test=test;
         this.frame=frame;
         this.layer=parent;
         seeWrongPane.addMouseListener(new Listener());
         numCorrect.setText(""+correct+"/6 correct!");
+        print.addMouseListener(new ListenerPrint());
         if(correct>=4){
-            icon.setIcon(new ImageIcon(reward));
+            icon.setIcon(new ImageIcon(".\\Icons\\Icons\\Stickers\\"+grade+reward+".png"));
         }
         else{
             icon.setIcon(new ImageIcon("frown.png"));
@@ -55,6 +57,13 @@ public class Reward extends JPanel{
      * If the panel is hovered it will change color
      * if clicked removes this panel and adds a seeWrongLayer
      */
+        public class ListenerPrint extends MouseAdapter {
+
+        public void mouseClicked(MouseEvent e) {
+            layer.printer();
+        }
+        
+        }
     public class Listener extends MouseAdapter {
 
         public void mouseClicked(MouseEvent e) {
@@ -111,7 +120,7 @@ public class Reward extends JPanel{
         Module.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Module.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        numCorrect.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        numCorrect.setFont(new java.awt.Font("Comic Sans MS", 0, 28)); // NOI18N
         numCorrect.setForeground(java.awt.Color.white);
         numCorrect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numCorrect.setText("Num correct");

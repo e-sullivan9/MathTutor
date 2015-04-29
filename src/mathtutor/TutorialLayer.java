@@ -15,6 +15,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
+import javax.swing.SwingUtilities;
 
 /**
  * This class is a JLayer wrap for the TutorialWindow that allow for pop ups and audio clips
@@ -40,33 +41,36 @@ public class TutorialLayer extends HelpLayerAbstract{
     /**
      * initializes the audio clip and reinitialize if it is stopped
      */
-    public void setUpClip() {
-        try {
-            File yourFile = new File(".\\Help\\tutorial.wav");
-            AudioInputStream stream;
-            AudioFormat format;
-            DataLine.Info info;
-            //
+    public synchronized void setUpClip() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    File yourFile = new File(".\\Help\\tutorial.wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //
 
-            stream = AudioSystem.getAudioInputStream(yourFile);
-            format = stream.getFormat();
-            info = new DataLine.Info(Clip.class, format);
-            clip = (Clip) AudioSystem.getLine(info);
-            LineListener listener = new LineListener() {
-                public void update(LineEvent e) {
-                    if (e.getType() == LineEvent.Type.STOP) {
-                        clip.close();
-                        setUpClip();
-                    }
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    LineListener listener = new LineListener() {
+                        public void update(LineEvent e) {
+                            if (e.getType() == LineEvent.Type.STOP) {
+                                clip.close();
+                                setUpClip();
+                            }
+                        }
+                    };
+                    clip.addLineListener(listener);
+                    clip.open(stream);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            };
-            clip.addLineListener(listener);
-            clip.open(stream);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+            }
+        });
     }
-
 /**
  * starts audio clip or restarts it if its running
     */
@@ -90,6 +94,7 @@ public class TutorialLayer extends HelpLayerAbstract{
     @Override
     public void clipStop() {
         clip.stop();
+        pane.StopClip();
     }
 
 

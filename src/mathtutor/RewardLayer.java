@@ -7,6 +7,7 @@
 package mathtutor;
 
 import java.awt.Dimension;
+import java.awt.print.*;
 import java.io.File;
 import java.util.ArrayList;
 import javax.sound.sampled.AudioFormat;
@@ -16,6 +17,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
+import javax.swing.SwingUtilities;
 
 /**
  * This class is a JLayer wrap for the Reward class it allow the panel to have pop ups and audio
@@ -41,12 +43,12 @@ public class RewardLayer extends HelpLayerAbstract {
  * @param test
  * @param frame 
  */
-    public RewardLayer(int correct, String reward, ArrayList<testForm> test, Login frame) {
+    public RewardLayer(int correct, String reward, String grade, ArrayList<testForm> test, Login frame) {
         this.correct = correct;
         this.reward = reward;
         this.test = test;
         this.frame = frame;
-        Reward pane = new Reward(correct, reward, test, frame, this);
+        Reward pane = new Reward(correct, reward,grade, test, frame, this);
         setPreferredSize(new Dimension(600, 600));
         pane.setBounds(0, 0, 600, 600);
         add(pane);
@@ -55,30 +57,35 @@ public class RewardLayer extends HelpLayerAbstract {
 /**
  * Sets up the audio clip and adds a listener for the clip to be reinitialized
  */
-    public void setUpClip() {
-        try {
-            File yourFile = new File(".\\Help\\Reward.wav");
-            AudioInputStream stream;
-            AudioFormat format;
-            DataLine.Info info;
+    public synchronized void setUpClip() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    File yourFile = new File(".\\Help\\Reward.wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //
 
-            stream = AudioSystem.getAudioInputStream(yourFile);
-            format = stream.getFormat();
-            info = new DataLine.Info(Clip.class, format);
-            clip = (Clip) AudioSystem.getLine(info);
-            LineListener listener = new LineListener() {
-                public void update(LineEvent e) {
-                    if (e.getType() == LineEvent.Type.STOP) {
-                        clip.close();
-                        setUpClip();
-                    }
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    LineListener listener = new LineListener() {
+                        public void update(LineEvent e) {
+                            if (e.getType() == LineEvent.Type.STOP) {
+                                clip.close();
+                                setUpClip();
+                            }
+                        }
+                    };
+                    clip.addLineListener(listener);
+                    clip.open(stream);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            };
-            clip.addLineListener(listener);
-            clip.open(stream);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+            }
+        });
     }
 /**
  * start the clip thread and if its already running restarts it
@@ -88,14 +95,30 @@ public class RewardLayer extends HelpLayerAbstract {
         try {
             if (clip.isRunning()) {
                 clip.stop();
-                clip.close();
-                setUpClip();
             }
             clip.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+    public void printer() {
+        try{
+        PrinterJob pjob = PrinterJob.getPrinterJob();
+        PageFormat preformat = pjob.defaultPage();
+        preformat.setOrientation(PageFormat.LANDSCAPE);
+        PageFormat postformat = pjob.pageDialog(preformat);
+//If user does not hit cancel then print.
+        if (preformat != postformat) {
+            //Set print component
+            pjob.setPrintable(new Printer(frame), postformat);
+            if (pjob.printDialog()) {
+                pjob.print();
+            }
+        }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 /**
  * stops audio thread

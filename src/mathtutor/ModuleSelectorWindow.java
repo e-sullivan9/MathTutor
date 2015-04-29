@@ -41,7 +41,7 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
      * @param frame
      * @param parent 
      */
-    public  ModuleSelectorWindow(String grade,Login frame,ModuleSelectorLayer parent){
+    public ModuleSelectorWindow(String grade, Login frame, ModuleSelectorLayer parent) {
         this.frame = frame;
         initComponents();
         layer = parent;
@@ -50,17 +50,25 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
         prev.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\back.png"));
         next.addMouseListener(new NextPrev());
         prev.addMouseListener(new NextPrev());
-        setPreferredSize(new Dimension(600,600));
-        if(grade.equals("Pre K - K")){
-            modules.add(new Module("PreK-K","Coins"));
-            modules.add(new Module("PreK-K","Compare"));
-            modules.add(new Module("PreK-K","Counting"));
-            modules.add(new Module("PreK-K","Estimate"));
-            modules.add(new Module("PreK-K","Numbers"));
-            modules.add(new Module("PreK-K","Problems"));
-            modules.add(new Module("PreK-K","Sequences"));
-            modules.add(new Module("PreK-K","Wholes"));
-            
+        setPreferredSize(new Dimension(600, 600));
+        if (grade.equals("Pre K - K")) {
+            modules.add(new Module("PreK-K", "Coins"));
+            modules.add(new Module("PreK-K", "Compare"));
+            modules.add(new Module("PreK-K", "Counting"));
+            modules.add(new Module("PreK-K", "Estimate"));
+            modules.add(new Module("PreK-K", "Numbers"));
+            modules.add(new Module("PreK-K", "Problems"));
+            modules.add(new Module("PreK-K", "Sequences"));
+            modules.add(new Module("PreK-K", "Wholes"));
+
+            if (frame.getAccountPanel().getUserAccount().Complete("Prek K")) {
+                JPanel pane = new JPanel(new GridLayout(1, 1, 10, 10));
+                pane.setBackground(new Color(144, 210, 144));
+                Module temp = new Module("PreK-K", "Final Test");
+                temp.addMouseListener(new Listener());
+                pane.add(temp);
+                jPanel1.add(pane);
+            }
         }
         JPanel pane = new JPanel(new GridLayout(2,2,10,10));
         pane.setBackground(new Color(144,210,144));
@@ -83,7 +91,7 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
             layer.clipStop();
             frame.remove(layer);
             frame.getLastPane().push(layer);
-            frame.setCurrentPane(new ToTLayer(((Module) e.getSource()).getjLabel1().getText(), "", frame));
+            frame.setCurrentPane(new ToTLayer(((Module) e.getSource()).getjLabel1().getText(),((Module) e.getSource()).getGrade(), frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();

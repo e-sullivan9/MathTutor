@@ -26,6 +26,9 @@ public class Account {
     public String getUsername() {
         return username;
     }
+    public boolean Complete(String grade){
+        return true;
+    }
 
     public void setUsername(String username) {
         this.username = username;

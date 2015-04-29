@@ -14,7 +14,7 @@ import javax.swing.JLabel;
  * @author Eric Sullivan
  */
 public class Module extends javax.swing.JPanel {
-
+    private String grade;
 /**
  * Creates new form Module
  * @param grade
@@ -22,6 +22,7 @@ public class Module extends javax.swing.JPanel {
  */
     public Module(String grade,String name) {
         initComponents();
+        this.grade = grade;
         jLabel1.setText(name);
         jLabel2.setIcon(new ImageIcon(".\\Icons\\"+grade+"\\"+name+"-thumb.png"));
     }
@@ -52,6 +53,14 @@ public class Module extends javax.swing.JPanel {
  */
     public void setjLabel2(JLabel jLabel2) {
         this.jLabel2 = jLabel2;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
     /**

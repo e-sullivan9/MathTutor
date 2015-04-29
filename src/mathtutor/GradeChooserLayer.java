@@ -17,7 +17,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
-import javax.swing.JLayeredPane;
+import javax.swing.SwingUtilities;
 
 /**
  * This class wraps the GradeChooser window into a JLayer to allow popup and help voice over
@@ -69,30 +69,35 @@ public class GradeChooserLayer extends HelpLayerAbstract {
     /**
      * Create the help button's audio clip
      */
-    public void setUpClip() {
-        try {
-            File yourFile = new File(".\\Help\\GradeChooser.wav");
-            AudioInputStream stream;
-            AudioFormat format;
-            DataLine.Info info;
+    public synchronized void setUpClip() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    File yourFile = new File(".\\Help\\GradeChooser.wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //
 
-            stream = AudioSystem.getAudioInputStream(yourFile);
-            format = stream.getFormat();
-            info = new DataLine.Info(Clip.class, format);
-            clip = (Clip) AudioSystem.getLine(info);
-            LineListener listener = new LineListener() {
-                public void update(LineEvent e) {
-                    if (e.getType() == LineEvent.Type.STOP) {
-                        clip.close();
-                        setUpClip();
-                    }
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    LineListener listener = new LineListener() {
+                        public void update(LineEvent e) {
+                            if (e.getType() == LineEvent.Type.STOP) {
+                                clip.close();
+                                setUpClip();
+                            }
+                        }
+                    };
+                    clip.addLineListener(listener);
+                    clip.open(stream);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            };
-            clip.addLineListener(listener);
-            clip.open(stream);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+            }
+        });
     }
 /**
  * If there is not a clip running starts the audio clips thread. if a clip is running stops it then reintializes the thread and restarts it.
@@ -102,7 +107,6 @@ public class GradeChooserLayer extends HelpLayerAbstract {
         try {
             if (clip.isRunning()) {
                 clip.stop();
-                clip.close();
                 setUpClip();
             }
             clip.start();

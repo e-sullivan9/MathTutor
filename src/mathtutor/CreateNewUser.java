@@ -7,12 +7,21 @@ package mathtutor;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  * This Class creates a new user by letting the user create a username and password. They can also select a avatar for their account.
@@ -44,6 +53,7 @@ public class CreateNewUser extends javax.swing.JPanel {
         this.layer = layer;
         this.frame = frame;
         avatarList = new ArrayList<>();
+        setUpClip();
         initComponents();
         buildList();
         
@@ -132,26 +142,32 @@ public class CreateNewUser extends javax.swing.JPanel {
                 }
                 selectedIcon.setIcon(avatarList.get(place));
             }
+            
             if (e.getSource() == help) {
                 layer.help();
             }
             if (e.getSource() == next) {
                 String errors = "";
+                // First Name
                 if (firstNameTF.getText().isEmpty()) {
                     errors += "Please Enter your first name\n";
                 }
+                //Last Name
                 if (lastNameTF.getText().isEmpty()) {
                     errors += "Please Enter your last name\n";
                 }
-                if (jPasswordField1.getPassword() == null) {
+                // Password
+                if (jPasswordField1.getPassword().length==0) {
                     errors += "Please Enter a password\n";
                 }
-                if (jPasswordField2.getPassword() == null) {
-                    errors += "Please retype a password\n";
+                //Retype
+                if (jPasswordField2.getPassword().length==0) {
+                    errors += "Please Retype the password\n";
                 }
+                //Matching
                 if (!Arrays.equals(jPasswordField1.getPassword(),jPasswordField2.getPassword())) {
                     errors += "Passwords do not match\n";
-                }
+                }//errors shown
                 if (errors.isEmpty()) {
                     String table = "users";
                     String pid = firstNameTF.getText() + " " + lastNameTF.getText().charAt(0);
@@ -202,7 +218,8 @@ TFModule8 TINYINT(1)
                     BoxLayout bl = new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS);
                     frame.setLayout(bl);
                     GradeChooserLayer chooser = new GradeChooserLayer(frame,0);
-                    frame.add(new AccountPanel(new Account(pid, selectedIcon.getIcon()), frame));
+                    frame.setAccountPanel(new AccountPanel(new Account(pid, selectedIcon.getIcon()), frame));
+                    frame.add(frame.getAccountPanel());
                     frame.add(chooser);
                     frame.repaint();
                     frame.pack();
@@ -218,6 +235,36 @@ TFModule8 TINYINT(1)
 
             }
         }
+    }
+        public synchronized void setUpClip() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    File yourFile = new File(".\\Help\\NewUser.wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //
+
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    LineListener listener = new LineListener() {
+                        public void update(LineEvent e) {
+                            if (e.getType() == LineEvent.Type.STOP) {
+                                clip.close();
+                                setUpClip();
+                            }
+                        }
+                    };
+                    clip.addLineListener(listener);
+                    clip.open(stream);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     /**
@@ -374,7 +421,7 @@ TFModule8 TINYINT(1)
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    private Clip clip;
     private Login frame;
     private ArrayList<ImageIcon> avatarList;
     private CreateNewUserLayer layer;

@@ -29,6 +29,7 @@ public class UserCustomization extends javax.swing.JPanel {
        byte[] bStickers = con.getStickersForUser(account);
        for(int i = 0; i < bStickers.length; ++i)
            System.out.println(bStickers[i]);
+           System.out.println(jlTFOne.getName());
        con.closeDBConnection();
     }
     //private static final int ICON_HEIGHT = 100;
@@ -41,7 +42,7 @@ public class UserCustomization extends javax.swing.JPanel {
         
         //jlTFOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlTFOne.setName("jlTFOne");
        // jlTFTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFTwo.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
@@ -150,6 +151,7 @@ public class UserCustomization extends javax.swing.JPanel {
         jlPKEight = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(144, 210, 144));
+        setMinimumSize(new java.awt.Dimension(600, 600));
         setPreferredSize(new java.awt.Dimension(600, 600));
 
         jLabel1.setFont(new java.awt.Font("Stencil Std", 1, 50)); // NOI18N
@@ -197,7 +199,7 @@ public class UserCustomization extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jlabelUserIcon)
@@ -252,18 +254,18 @@ public class UserCustomization extends javax.swing.JPanel {
                         .addComponent(jlPKSeven)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jlPKEight)))
-                .addGap(50, 50, 50))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jlabelUserIcon)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlTFOne)
                     .addComponent(jlTFTwo)
@@ -273,9 +275,9 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addComponent(jlTFSix)
                     .addComponent(jlTFSeven)
                     .addComponent(jlTFEight))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlOTOne)
                     .addComponent(jlOTTwo)
@@ -285,9 +287,9 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addComponent(jlOTSix)
                     .addComponent(jlOTSeven)
                     .addComponent(jlOTEight))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jLabel34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlPKOne)
                     .addComponent(jlPKTwo)
@@ -297,12 +299,10 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addComponent(jlPKSix)
                     .addComponent(jlPKSeven)
                     .addComponent(jlPKEight))
-                .addContainerGap())
+                .addContainerGap(397, Short.MAX_VALUE))
         );
 
         jlabelUserIcon.getAccessibleContext().setAccessibleName("jlUserIcon");
-        jlTFOne.getAccessibleContext().setAccessibleName("");
-        jlPKTwo.getAccessibleContext().setAccessibleDescription("");
         jlPKFour.getAccessibleContext().setAccessibleName("jlPKFive");
     }// </editor-fold>//GEN-END:initComponents
 

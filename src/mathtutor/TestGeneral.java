@@ -22,6 +22,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
+import javax.swing.SwingUtilities;
 
 
 /**
@@ -36,22 +37,22 @@ public class TestGeneral extends HelpLayerAbstract {
     private ArrayList<testForm> test;
     private int index;
     private String testName;
-    private String reward;
     private Login frame;
     private Clip clip;
+    private String grade;
     /**
      * sets up the TestGeneral and audio and testForms
      * @param testName
      * @param reward
      * @param frame 
      */
-    public TestGeneral(String testName,String reward, Login frame) {
+    public TestGeneral(String testName,String grade, Login frame) {
         cl = new CardLayout();
         index = 0;
         setLayout(cl);
+        this.grade=grade;
         test = new ArrayList<>();
         this.testName = testName;
-        this.reward = reward;
         this.frame = frame;
         setPreferredSize(new Dimension(600,600));
         setUpClip();
@@ -104,31 +105,35 @@ public class TestGeneral extends HelpLayerAbstract {
     /**
      * Initializes the the Audio clip and adds a listener to reinitialize it when it stops.
      */
-       public void setUpClip() {
-        try {
-            File yourFile = new File(".\\Help\\test.wav");
-            AudioInputStream stream;
-            AudioFormat format;
-            DataLine.Info info;
-            //Clip clip;
+    public synchronized void setUpClip() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    File yourFile = new File(".\\Help\\test.wav");
+                    AudioInputStream stream;
+                    AudioFormat format;
+                    DataLine.Info info;
+                    //
 
-            stream = AudioSystem.getAudioInputStream(yourFile);
-            format = stream.getFormat();
-            info = new DataLine.Info(Clip.class, format);
-            clip = (Clip) AudioSystem.getLine(info);
-            LineListener listener = new LineListener() {
-                public void update(LineEvent e) {
-                    if (e.getType() == LineEvent.Type.STOP) {
-                        clip.close();
-                        setUpClip();
-                    }
+                    stream = AudioSystem.getAudioInputStream(yourFile);
+                    format = stream.getFormat();
+                    info = new DataLine.Info(Clip.class, format);
+                    clip = (Clip) AudioSystem.getLine(info);
+                    LineListener listener = new LineListener() {
+                        public void update(LineEvent e) {
+                            if (e.getType() == LineEvent.Type.STOP) {
+                                clip.close();
+                                setUpClip();
+                            }
+                        }
+                    };
+                    clip.addLineListener(listener);
+                    clip.open(stream);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            };
-            clip.addLineListener(listener);
-            clip.open(stream);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+            }
+        });
     }
 /**
  * starts audio clip and restarts the clip if it is already playing
@@ -175,7 +180,7 @@ public class TestGeneral extends HelpLayerAbstract {
             }
 
             frame.remove(this);
-            frame.setCurrentPane(new RewardLayer(temp, reward, test, frame));
+            frame.setCurrentPane(new RewardLayer(temp, testName,grade, test, frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();

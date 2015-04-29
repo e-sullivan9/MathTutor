@@ -23,7 +23,7 @@ public class ToT extends javax.swing.JPanel {
     private Login frame;
     private ToTLayer layer;
     private String module;
-    private String reward;
+    private String grade;
 
     /**
      * Creates new form ToT
@@ -38,10 +38,10 @@ public class ToT extends javax.swing.JPanel {
      * @param frame
      * @param parent 
      */
-    public ToT(String module, String reward, Login frame, ToTLayer parent) {
+    public ToT(String module,String grade, Login frame, ToTLayer parent) {
         initComponents();
         this.module = module;
-        this.reward = reward;
+        this.grade=grade;
         this.frame = frame;
         this.layer = parent;
         jLabel1.setText(module);
@@ -61,7 +61,7 @@ public class ToT extends javax.swing.JPanel {
                 layer.clipStop();
                 frame.remove(layer);
                 frame.getLastPane().push(layer);
-                frame.setCurrentPane(new TestGeneral(module, reward, frame));
+                frame.setCurrentPane(new TestGeneral(module,grade,frame));
                 frame.add(frame.getCurrentPane());
                 frame.repaint();
                 frame.pack();

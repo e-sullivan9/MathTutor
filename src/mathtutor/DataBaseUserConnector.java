@@ -102,7 +102,7 @@ public class DataBaseUserConnector
         }
         public void updateCompleteModule(Account account,String module)
         {
-            
+            //updates(module) to 1;
         }
 	public void insertIntoDB(String table,String entry)
 	{

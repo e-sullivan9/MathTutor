@@ -67,6 +67,14 @@ public class Login extends javax.swing.JFrame {
     public Stack<JComponent> getLastPane() {
         return lastPane;
     }
+
+    public AccountPanel getAccountPanel() {
+        return accountPanel;
+    }
+
+    public void setAccountPanel(AccountPanel accountPanel) {
+        this.accountPanel = accountPanel;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -412,6 +420,7 @@ public class Login extends javax.swing.JFrame {
     private ArrayList<JPanel> accountPanels;
     private JComponent currentPane;
     private Stack<JComponent> lastPane;
+    private AccountPanel accountPanel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accountPane;
     private javax.swing.JLabel back;

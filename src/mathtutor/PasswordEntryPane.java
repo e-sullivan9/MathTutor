@@ -167,7 +167,8 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                             BoxLayout bl = new BoxLayout(frame.getContentPane(),BoxLayout.X_AXIS);
                             frame.setLayout(bl);
                             frame.setCurrentPane( new GradeChooserLayer(frame,99));
-                            frame.add(new AccountPanel(new Account(name,userIcon.getIcon()),frame));
+                            frame.setAccountPanel(new AccountPanel(new Account(name,userIcon.getIcon()),frame));
+                            frame.add(frame.getAccountPanel());
                             frame.add(frame.getCurrentPane());
                             frame.repaint();
                             frame.pack();
