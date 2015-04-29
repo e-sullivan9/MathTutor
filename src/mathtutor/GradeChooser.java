@@ -66,7 +66,7 @@ public class GradeChooser extends javax.swing.JPanel {
                 layer.clipStop();
                 frame.remove(layer);
                 frame.getLastPane().push(layer);
-                frame.setCurrentPane(new ModuleSelectorLayer("Grade1", frame));
+                frame.setCurrentPane(new ModuleSelectorLayer("Grade 1-2", frame));
                 frame.add(frame.getCurrentPane());
                 frame.repaint();
                 frame.pack();
@@ -75,7 +75,7 @@ public class GradeChooser extends javax.swing.JPanel {
                 layer.clipStop();
                 frame.remove(layer);
                 frame.getLastPane().push(layer);
-                frame.setCurrentPane(new ModuleSelectorLayer("Grade3", frame));
+                frame.setCurrentPane(new ModuleSelectorLayer("Grade 3-4", frame));
                 frame.add(frame.getCurrentPane());
                 frame.repaint();
                 frame.pack();

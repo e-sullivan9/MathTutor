@@ -1,0 +1,680 @@
+
+DROP DATABASE mathtutordb;
+DROP USER 'TutorAdim'@'localhost';
+
+
+CREATE DATABASE mathtutordb;
+
+CREATE USER 'TutorAdmin'@'localhost' IDENTIFIED BY 'Tut0r4dm1n';
+GRANT ALL PRIVILEGES ON mathtutordb.* TO 'TutorAdmin'@'localhost';
+FLUSH PRIVILEGES;
+
+USE mathtutordb;
+
+
+create table Users (
+PID varchar(100) NOT NULL,
+FirstName varchar(100) NOT NULL,
+LastName varchar(100) NOT NULL,
+Pass varchar(100) NOT NULL,
+icon varchar(250) NOT NULL,
+fav1 varchar(250) ,
+fav2 varchar(250) ,
+fav3 varchar(250) ,
+fav4 varchar(250) ,
+PRIMARY KEY(PID)
+);
+
+create table completed (
+user_id varchar(100) NOT NULL,
+name varchar(100) NOT NULL,
+grade varchar(50) NOT NULL,
+Reward varchar(100) NOT NULL,
+
+FOREIGN KEY (user_id) REFERENCES Users(PID) 
+ON UPDATE CASCADE
+ON DELETE CASCADE
+)
+;
+
+
+
+create table modules (
+name varchar(100) NOT NULL,
+icon varchar(50) NOT NULL,
+grade varchar(50) NOT NULL,
+Reward varchar(100) NOT NULL,
+PRIMARY KEY(name)
+);
+
+INSERT INTO modules
+Values
+
+('Counting','.\\Thumbs\\Count-Thumb.png','Pre K - K','.\\Icons\\Stickers\\cow.png'),
+('Estimate','.\\Thumbs\\Estimate-Thumb.png','Pre K - K','.\\Icons\\Stickers\\dog.png'),
+('Compare','.\\Thumbs\\Compare-Thumb.png','Pre K - K','.\\Icons\\Stickers\\bee.png'),
+('Coins','.\\Thumbs\\Coins-Thumb.png','Pre K - K','.\\Icons\\Stickers\\bear.png'),
+('Numbers','.\\Thumbs\\Numbers-Thumb.png','Pre K - K','.\\Icons\\Stickers\\elep.png'),
+('Problems','.\\Thumbs\\Problems-Thumb.png','Pre K - K','.\\Icons\\Stickers\\elk.png'),
+('Sequences','.\\Thumbs\\Sequences-Thumb.png','Pre K - K','.\\Icons\\Stickers\\explorer.png'),
+('Wholes','.\\Thumbs\\Wholes-Thumb.png','Pre K - K','.\\Icons\\Stickers\\fish.png'),
+('Compare1','.\\Thumbs\\Compare1-Thumb.png','Grade 1-2','.\\Icons\\Stickers\\lobster.png'),
+('Fractions','.\\Thumbs\\Fractions-Thumb.png','Grade 3-4','.\\Icons\\Stickers\\Safari-girl.png');
+
+CREATE TABLE Coins
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+
+INSERT INTO Coins
+Values
+(null, './Icons/PreK-K/Coins/Coins.png','41 Cents','39 Cents','25 Cents','11 Cents','41 Cents','./Icons/PreK-K/Coins/Coins.png'),
+(null, './Icons/PreK-K/Coins/Coins1.png','23 Cents','12 Cents','15 Cents','18 Cents','15 Cents','./Icons/PreK-K/Coins/Coins1.png'),
+(null, './Icons/PreK-K/Coins/Dime.png','Nickle','Dime','Quarter','Penny','Dime','./Icons/PreK-K/Coins/Dime.png'),
+(null, './Icons/PreK-K/Coins/Dime1.png','11 Cents','40 Cents','15 Cents','10 Cents','10 Cents','./Icons/PreK-K/Coins/Dime1.png'),
+(null, './Icons/PreK-K/Coins/Nickle.png','Dime','Quarter','Nickle','Penny','Nickle','./Icons/PreK-K/Coins/Nickle.png'),
+(null, './Icons/PreK-K/Coins/Nickle1.png','5 Cents','8 Cents','11 Cents','10 Cents','5 Cents','./Icons/PreK-K/Coins/Nickle1.png'),
+(null, './Icons/PreK-K/Coins/Penny.png','Dime','Quarter','Nickle','Penny','Penny','./Icons/PreK-K/Coins/Penny.png'),
+(null, './Icons/PreK-K/Coins/Penny1.png','3 Cents','1 Cent','5 Cents','11 Cents','1 Cent','./Icons/PreK-K/Coins/Penny1.png'),
+(null, './Icons/PreK-K/Coins/Quarter.png','Quarter','Dime','Nickle','Penny','Quarter','./Icons/PreK-K/Coins/Quarter.png'),
+(null, './Icons/PreK-K/Coins/Quarter1.png','24 Cents','25 Cents','29 Cents','15 Cents','25 Cents','./Icons/PreK-K/Coins/Quarter1.png');
+
+
+
+
+
+
+
+
+CREATE TABLE Compare
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY(question_id)
+);
+
+
+
+
+
+
+INSERT INTO Compare
+Values
+(null, './Icons/PreK-K/Compare/Compare.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare.png'),
+(null, './Icons/PreK-K/Compare/Compare1.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare1.png'),
+(null, './Icons/PreK-K/Compare/Compare2.png','More','Less','Same','------','Same','./Icons/PreK-K/Compare/Answer-Compare2.png'),
+(null, './Icons/PreK-K/Compare/Compare3.png','More','Less','Same','------','More','./Icons/PreK-K/Compare/Answer-Compare3.png'),
+(null, './Icons/PreK-K/Compare/Compare4.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare4.png'),
+(null, './Icons/PreK-K/Compare/Compare5.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare5.png'),
+(null, './Icons/PreK-K/Compare/Compare6.png','More','Less','Same','------','Same','./Icons/PreK-K/Compare/Answer-Compare6.png'),
+(null, './Icons/PreK-K/Compare/Compare7.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare7.png'),
+(null, './Icons/PreK-K/Compare/Compare8.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare8.png'),
+(null, './Icons/PreK-K/Compare/Compare9.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare9.png'),
+(null, './Icons/PreK-K/Compare/Compare10.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare10.png'),
+(null, './Icons/PreK-K/Compare/Compare11.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare11.png'),
+(null, './Icons/PreK-K/Compare/Compare12.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare12.png'),
+(null, './Icons/PreK-K/Compare/Compare13.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare13.png'),
+(null, './Icons/PreK-K/Compare/Compare14.png','More','Less','Same','------','More','./Icons/PreK-K/Compare/Answer-Compare14.png'),
+(null, './Icons/PreK-K/Compare/Compare15.png','More','Less','Same','------','More','./Icons/PreK-K/Compare/Answer-Compare15.png'),
+(null, './Icons/PreK-K/Compare/Compare16.png','More','Less','Same','------','More','./Icons/PreK-K/Compare/Answer-Compare16.png'),
+(null, './Icons/PreK-K/Compare/Compare17.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare17.png');
+
+
+
+
+CREATE TABLE Counting
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+
+INSERT INTO Counting
+Values
+(null, './Icons/PreK-K/Count/Count1.png','1','3','2','5','1','./Icons/PreK-K/Count/Answer-Count1.png'),
+(null, './Icons/PreK-K/Count/Count2.png','1','5','4','2','2','./Icons/PreK-K/Count/Answer-Count2.png'),
+(null, './Icons/PreK-K/Count/Count3.png','4','3','7','5','3','./Icons/PreK-K/Count/Answer-Count3.png'),
+(null, './Icons/PreK-K/Count/Count4.png','3','5','4','6','4','./Icons/PreK-K/Count/Answer-Count4.png'),
+(null, './Icons/PreK-K/Count/Count5.png','7','6','3','5','5','./Icons/PreK-K/Count/Answer-Count5.png'),
+(null, './Icons/PreK-K/Count/Count6.png','6','3','2','5','6','./Icons/PreK-K/Count/Answer-Count6.png'),
+(null, './Icons/PreK-K/Count/Count7.png','9','6','5','7','7','./Icons/PreK-K/Count/Answer-Count7.png'),
+(null, './Icons/PreK-K/Count/Count8.png','10','8','6','9','8','./Icons/PreK-K/Count/Answer-Count8.png'),
+(null, './Icons/PreK-K/Count/Count9.png','10','8','9','11','9','./Icons/PreK-K/Count/Answer-Count9.png'),
+(null, './Icons/PreK-K/Count/Count10.png','11','10','12','8','10','./Icons/PreK-K/Count/Answer-Count10.png'),
+(null, './Icons/PreK-K/Count/Count11.png','11','12','10','15','11','./Icons/PreK-K/Count/Answer-Count11.png'),
+(null, './Icons/PreK-K/Count/Count12.png','11','13','12','15','12','./Icons/PreK-K/Count/Answer-Count12.png'),
+(null, './Icons/PreK-K/Count/Count13.png','11','13','12','15','13','./Icons/PreK-K/Count/Answer-Count13.png'),
+(null, './Icons/PreK-K/Count/Count14.png','14','13','12','15','14','./Icons/PreK-K/Count/Answer-Count14.png'),
+(null, './Icons/PreK-K/Count/Count15.png','17','13','14','15','15','./Icons/PreK-K/Count/Answer-Count15.png'),
+(null, './Icons/PreK-K/Count/Count16.png','18','13','16','15','16','./Icons/PreK-K/Count/Answer-Count16.png'),
+(null, './Icons/PreK-K/Count/Count17.png','17','15','16','19','17','./Icons/PreK-K/Count/Answer-Count17.png'),
+(null, './Icons/PreK-K/Count/Count18.png','19','18','15','17','18','./Icons/PreK-K/Count/Answer-Count18.png'),
+(null, './Icons/PreK-K/Count/Count19.png','19','17','20','21','19','./Icons/PreK-K/Count/Answer-Count19.png'),
+(null, './Icons/PreK-K/Count/Count20.png','19','21','20','18','20','./Icons/PreK-K/Count/Answer-Count20.png');
+
+
+
+
+
+
+CREATE TABLE Estimate
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Estimate
+Values
+(null, './Icons/PreK-K/Estimate/Estimate1.png','5','10','20','30','20','./Icons/PreK-K/Estimate/Answer-Estimate1.png'),
+(null, './Icons/PreK-K/Estimate/Estimate2.png','10','30','20','45','30','./Icons/PreK-K/Estimate/Answer-Estimate2.png'),
+(null, './Icons/PreK-K/Estimate/Estimate3.png','18','30','5','45','18','./Icons/PreK-K/Estimate/Answer-Estimate3.png'),
+(null, './Icons/PreK-K/Estimate/Estimate4.png','5','10','20','35','10','./Icons/PreK-K/Estimate/Answer-Estimate4.png'),
+(null, './Icons/PreK-K/Estimate/Estimate5.png','14','39','28','45','28','./Icons/PreK-K/Estimate/Answer-Estimate5.png'),
+(null, './Icons/PreK-K/Estimate/Estimate6.png','2','15','10','5','5','./Icons/PreK-K/Estimate/Answer-Estimate6.png'),
+(null, './Icons/PreK-K/Estimate/Estimate7.png','10','30','20','5','10','./Icons/PreK-K/Estimate/Answer-Estimate7.png'),
+(null, './Icons/PreK-K/Estimate/Estimate8.png','10','35','25','40','25','./Icons/PreK-K/Estimate/Answer-Estimate8.png');
+
+
+
+
+CREATE TABLE Numbers
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Numbers
+Values
+(null, './Icons/PreK-K/Numbers/Number0.png','Zero','One','Two','Three','Zero','./Icons/PreK-K/Numbers/Number0.png'),
+(null, './Icons/PreK-K/Numbers/Number1.png','Zero','One','Two','Four','One','./Icons/PreK-K/Numbers/Number1.png'),
+(null, './Icons/PreK-K/Numbers/Number2.png','Zero','One','Three','Two','Two','./Icons/PreK-K/Numbers/Number2.png'),
+(null, './Icons/PreK-K/Numbers/Number3.png','Two','One','Three','Four','Three','./Icons/PreK-K/Numbers/Number3.png'),
+(null, './Icons/PreK-K/Numbers/Number4.png','Three','One','Two','Four','Four','./Icons/PreK-K/Numbers/Number4.png'),
+(null, './Icons/PreK-K/Numbers/Number5.png','Four','Five','Three','Six','Five','./Icons/PreK-K/Numbers/Number5.png'),
+(null, './Icons/PreK-K/Numbers/Number6.png','Four','Five','Three','Six','Six','./Icons/PreK-K/Numbers/Number6.png'),
+(null, './Icons/PreK-K/Numbers/Number7.png','Four','Five','Seven','Six','Seven','./Icons/PreK-K/Numbers/Number7.png'),
+(null, './Icons/PreK-K/Numbers/Number8.png','Eight','Five','Seven','Six','Eight','./Icons/PreK-K/Numbers/Number8.png'),
+(null, './Icons/PreK-K/Numbers/Number9.png','Nine','Seven','Eight','Six','Nine','./Icons/PreK-K/Numbers/Number9.png'),
+(null, './Icons/PreK-K/Numbers/Number10.png','Seven','Eight','Nine','Ten','Ten','./Icons/PreK-K/Numbers/Number10.png'),
+(null, './Icons/PreK-K/Numbers/Number11.png','Seven','Nine','Ten','Eleven','Eleven','./Icons/PreK-K/Numbers/Number11.png'),
+(null, './Icons/PreK-K/Numbers/Number12.png','Nine','Ten','Eleven','Twelve','Twelve','./Icons/PreK-K/Numbers/Number12.png'),
+(null, './Icons/PreK-K/Numbers/Number13.png','Ten','Eleven','Twelve','Thirteen','Thirteen','./Icons/PreK-K/Numbers/Number13.png'),
+(null, './Icons/PreK-K/Numbers/Number14.png','Fourteen','Twelve','Thirteen','Sixteen','Fourteen','./Icons/PreK-K/Numbers/Number14.png'),
+(null, './Icons/PreK-K/Numbers/Number15.png','Twelve','Thirteen','Fourteen','Fifteen','Fifteen','./Icons/PreK-K/Numbers/Number15.png'),
+(null, './Icons/PreK-K/Numbers/Number16.png','Sixteen','Thirteen','Fourteen','Fifteen','Sixteen','./Icons/PreK-K/Numbers/Number16.png'),
+(null, './Icons/PreK-K/Numbers/Number17.png','Fifteen','Twenty','Fourteen','Seventeen','Seventeen','./Icons/PreK-K/Numbers/Number17.png'),
+(null, './Icons/PreK-K/Numbers/Number18.png','Nineteen','Seventeen','Sixteen','Eighteen','Eighteen','./Icons/PreK-K/Numbers/Number18.png'),
+(null, './Icons/PreK-K/Numbers/Number19.png','Eighteen','Seventeen','Nineteen','Twenty','Nineteen','./Icons/PreK-K/Numbers/Number19.png'),
+(null, './Icons/PreK-K/Numbers/Number20.png','Seventeen','Eighteen','Twenty','Nineteen','Twenty','./Icons/PreK-K/Numbers/Number20.png');
+
+
+
+
+CREATE TABLE Problems
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Problems
+Values
+(null, './Icons/PreK-K/Problems/Add1.png','12','7','4','6','7','./Icons/PreK-K/Problems/Answer-Add1.png'),
+(null, './Icons/PreK-K/Problems/Add2.png','8','7','9','6','8','./Icons/PreK-K/Problems/Answer-Add2.png'),
+(null, './Icons/PreK-K/Problems/Add3.png','5','8','4','6','8','./Icons/PreK-K/Problems/Answer-Add3.png'),
+(null, './Icons/PreK-K/Problems/Add4.png','5','7','4','6','5','./Icons/PreK-K/Problems/Answer-Add4.png'),
+(null, './Icons/PreK-K/Problems/Add5.png','12','10','9','11','10','./Icons/PreK-K/Problems/Answer-Add5.png'),
+(null, './Icons/PreK-K/Problems/Add6.png','9','7','8','10','9','./Icons/PreK-K/Problems/Answer-Add6.png'),
+(null, './Icons/PreK-K/Problems/Add7.png','2','1','4','5','2','./Icons/PreK-K/Problems/Answer-Add7.png'),
+(null, './Icons/PreK-K/Problems/Sub1.png','2','1','4','5','1','./Icons/PreK-K/Problems/Answer-Sub1.png'),
+(null, './Icons/PreK-K/Problems/Sub2.png','2','3','4','5','3','./Icons/PreK-K/Problems/Answer-Sub2.png'),
+(null, './Icons/PreK-K/Problems/Sub3.png','2','0','1','4','0','./Icons/PreK-K/Problems/Answer-Sub3.png'),
+(null, './Icons/PreK-K/Problems/Sub4.png','2','1','4','3','3','./Icons/PreK-K/Problems/Answer-Sub4.png'),
+(null, './Icons/PreK-K/Problems/Sub5.png','2','1','3','4','2','./Icons/PreK-K/Problems/Answer-Sub5.png'),
+(null, './Icons/PreK-K/Problems/Sub6.png','2','1','4','3','1','./Icons/PreK-K/Problems/Answer-Sub6.png'),
+(null, './Icons/PreK-K/Problems/Sub7.png','5','6','4','7','6','./Icons/PreK-K/Problems/Answer-Sub7.png');
+
+
+
+
+
+CREATE TABLE Sequences
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Sequences
+Values
+(null, './Icons/PreK-K/Sequence/Line.png','First','Second','Third','Fifth','Fifth','./Icons/PreK-K/Sequence/Answer-Line.png'),
+(null, './Icons/PreK-K/Sequence/Line1.png','First','Second','Third','Fourth','Fourth','./Icons/PreK-K/Sequence/Answer-Line1.png'),
+(null, './Icons/PreK-K/Sequence/Line2.png','First','Second','Third','Fourth','Third','./Icons/PreK-K/Sequence/Answer-Line2.png'),
+(null, './Icons/PreK-K/Sequence/Line3.png','First','Second','Third','Fourth','Second','./Icons/PreK-K/Sequence/Answer-Line3.png'),
+(null, './Icons/PreK-K/Sequence/Line4.png','First','Second','Third','Fourth','First','./Icons/PreK-K/Sequence/Answer-Line4.png'),
+(null, './Icons/PreK-K/Sequence/Line5.png','First','Second','Third','Fourth','First','./Icons/PreK-K/Sequence/Answer-Line5.png'),
+(null, './Icons/PreK-K/Sequence/Line6.png','Fourth','Second','Third','Fifth','Fourth','./Icons/PreK-K/Sequence/Answer-Line6.png'),
+(null, './Icons/PreK-K/Sequence/Line7.png','First','Second','Third','Fourth','Second','./Icons/PreK-K/Sequence/Answer-Line7.png'),
+(null, './Icons/PreK-K/Sequence/Line8.png','First','Second','Third','Fifth','Third','./Icons/PreK-K/Sequence/Answer-Line8.png'),
+(null, './Icons/PreK-K/Sequence/Line9.png','First','Second','Third','Fourth','First','./Icons/PreK-K/Sequence/Answer-Line9.png'),
+(null, './Icons/PreK-K/Sequence/Line10.png','First','Second','Third','Fifth','Third','./Icons/PreK-K/Sequence/Answer-Line10.png'),
+(null, './Icons/PreK-K/Sequence/Line11.png','First','Second','Third','Fourth','First','./Icons/PreK-K/Sequence/Answer-Line11.png'),
+(null, './Icons/PreK-K/Sequence/Line12.png','First','Second','Third','Fifth','Second','./Icons/PreK-K/Problems/Answer-Line12.png');
+
+
+
+
+CREATE TABLE Wholes
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Wholes
+Values
+(null, './Icons/PreK-K/Whole/Whole.png','2','4','6','4','6','./Icons/PreK-K/Whole/Answer-Whole.png'),
+(null, './Icons/PreK-K/Whole/Whole1.png','2','4','3','5','4','./Icons/PreK-K/Whole/Answer-Whole1.png'),
+(null, './Icons/PreK-K/Whole/Whole2.png','5','6','7','8','6','./Icons/PreK-K/Whole/Answer-Whole2.png'),
+(null, './Icons/PreK-K/Whole/Whole3.png','1','2','3','4','3','./Icons/PreK-K/Whole/Answer-Whole3.png'),
+(null, './Icons/PreK-K/Whole/Whole4.png','2','4','5','6','6','./Icons/PreK-K/Whole/Answer-Whole4.png'),
+(null, './Icons/PreK-K/Whole/Whole5.png','11','12','10','13','12','./Icons/PreK-K/Whole/Answer-Whole5.png'),
+(null, './Icons/PreK-K/Whole/Whole6.png','5','7','5','4','7','./Icons/PreK-K/Whole/Answer-Whole6.png'),
+(null, './Icons/PreK-K/Whole/Whole7.png','4','5','6','7','5','./Icons/PreK-K/Whole/Answer-Whole7.png'),
+(null, './Icons/PreK-K/Whole/Whole8.png','1','2','3','4','3','./Icons/PreK-K/Whole/Answer-Whole8.png'),
+(null, './Icons/PreK-K/Whole/Whole9.png','1','2','3','4','2','./Icons/PreK-K/Whole/Answer-Whole9.png'),
+(null, './Icons/PreK-K/Whole/Whole10.png','2','3','4','5','4','./Icons/PreK-K/Whole/Answer-Whole10.png'),
+(null, './Icons/PreK-K/Whole/Whole11.png','3','4','5','6','4','./Icons/PreK-K/Whole/Answer-Whole11.png'),
+(null, './Icons/PreK-K/Whole/Whole12.png','10','11','12','9','10','./Icons/PreK-K/Whole/Answer-Whole12.png'),
+(null, './Icons/PreK-K/Whole/Whole13.png','5','6','7','8','8','./Icons/PreK-K/Whole/Answer-Whole13.png'),
+(null, './Icons/PreK-K/Whole/Whole14.png','4','5','6','7','6','./Icons/PreK-K/Whole/Answer-Whole14.png'),
+(null, './Icons/PreK-K/Whole/Whole15.png','1','2','3','4','4','./Icons/PreK-K/Whole/Answer-Whole15.png'),
+(null, './Icons/PreK-K/Whole/Whole16.png','1','2','3','4','2','./Icons/PreK-K/Whole/Answer-Whole16.png');
+
+CREATE TABLE FinalTest
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO FinalTest
+Values
+(null, './Icons/PreK-K/Whole/Whole.png','2','4','6','4','6','./Icons/PreK-K/Whole/Answer-Whole.png'),
+(null, './Icons/PreK-K/Whole/Whole1.png','2','4','3','5','4','./Icons/PreK-K/Whole/Answer-Whole1.png'),
+(null, './Icons/PreK-K/Whole/Whole2.png','5','6','7','8','6','./Icons/PreK-K/Whole/Answer-Whole2.png'),
+(null, './Icons/PreK-K/Whole/Whole3.png','1','2','3','4','3','./Icons/PreK-K/Whole/Answer-Whole3.png'),
+(null, './Icons/PreK-K/Whole/Whole4.png','2','4','5','6','6','./Icons/PreK-K/Whole/Answer-Whole4.png'),
+(null, './Icons/PreK-K/Whole/Whole5.png','11','12','10','13','12','./Icons/PreK-K/Whole/Answer-Whole5.png'),
+(null, './Icons/PreK-K/Whole/Whole6.png','5','7','5','4','7','./Icons/PreK-K/Whole/Answer-Whole6.png'),
+(null, './Icons/PreK-K/Whole/Whole7.png','4','5','6','7','5','./Icons/PreK-K/Whole/Answer-Whole7.png'),
+(null, './Icons/PreK-K/Whole/Whole8.png','1','2','3','4','3','./Icons/PreK-K/Whole/Answer-Whole8.png'),
+(null, './Icons/PreK-K/Whole/Whole9.png','1','2','3','4','2','./Icons/PreK-K/Whole/Answer-Whole9.png'),
+(null, './Icons/PreK-K/Whole/Whole10.png','2','3','4','5','4','./Icons/PreK-K/Whole/Answer-Whole10.png'),
+(null, './Icons/PreK-K/Whole/Whole11.png','3','4','5','6','4','./Icons/PreK-K/Whole/Answer-Whole11.png'),
+(null, './Icons/PreK-K/Whole/Whole12.png','10','11','12','9','10','./Icons/PreK-K/Whole/Answer-Whole12.png'),
+(null, './Icons/PreK-K/Whole/Whole13.png','5','6','7','8','8','./Icons/PreK-K/Whole/Answer-Whole13.png'),
+(null, './Icons/PreK-K/Whole/Whole14.png','4','5','6','7','6','./Icons/PreK-K/Whole/Answer-Whole14.png'),
+(null, './Icons/PreK-K/Whole/Whole15.png','1','2','3','4','4','./Icons/PreK-K/Whole/Answer-Whole15.png'),
+(null, './Icons/PreK-K/Whole/Whole16.png','1','2','3','4','2','./Icons/PreK-K/Whole/Answer-Whole16.png'),
+(null, './Icons/PreK-K/Sequence/Line.png','First','Second','Third','Fifth','Fifth','./Icons/PreK-K/Sequence/Answer-Line.png'),
+(null, './Icons/PreK-K/Sequence/Line1.png','First','Second','Third','Fourth','Fourth','./Icons/PreK-K/Sequence/Answer-Line1.png'),
+(null, './Icons/PreK-K/Sequence/Line2.png','First','Second','Third','Fourth','Third','./Icons/PreK-K/Sequence/Answer-Line2.png'),
+(null, './Icons/PreK-K/Sequence/Line3.png','First','Second','Third','Fourth','Second','./Icons/PreK-K/Sequence/Answer-Line3.png'),
+(null, './Icons/PreK-K/Sequence/Line4.png','First','Second','Third','Fourth','First','./Icons/PreK-K/Sequence/Answer-Line4.png'),
+(null, './Icons/PreK-K/Sequence/Line5.png','First','Second','Third','Fourth','First','./Icons/PreK-K/Sequence/Answer-Line5.png'),
+(null, './Icons/PreK-K/Sequence/Line6.png','Fourth','Second','Third','Fifth','Fourth','./Icons/PreK-K/Sequence/Answer-Line6.png'),
+(null, './Icons/PreK-K/Sequence/Line7.png','First','Second','Third','Fourth','Second','./Icons/PreK-K/Sequence/Answer-Line7.png'),
+(null, './Icons/PreK-K/Sequence/Line8.png','First','Second','Third','Fifth','Third','./Icons/PreK-K/Sequence/Answer-Line8.png'),
+(null, './Icons/PreK-K/Sequence/Line9.png','First','Second','Third','Fourth','First','./Icons/PreK-K/Sequence/Answer-Line9.png'),
+(null, './Icons/PreK-K/Sequence/Line10.png','First','Second','Third','Fifth','Third','./Icons/PreK-K/Sequence/Answer-Line10.png'),
+(null, './Icons/PreK-K/Sequence/Line11.png','First','Second','Third','Fourth','First','./Icons/PreK-K/Sequence/Answer-Line11.png'),
+(null, './Icons/PreK-K/Sequence/Line12.png','First','Second','Third','Fifth','Second','./Icons/PreK-K/Problems/Answer-Line12.png'),
+(null, './Icons/PreK-K/Problems/Add1.png','12','7','4','6','7','./Icons/PreK-K/Problems/Answer-Add1.png'),
+(null, './Icons/PreK-K/Problems/Add2.png','8','7','9','6','8','./Icons/PreK-K/Problems/Answer-Add2.png'),
+(null, './Icons/PreK-K/Problems/Add3.png','5','8','4','6','8','./Icons/PreK-K/Problems/Answer-Add3.png'),
+(null, './Icons/PreK-K/Problems/Add4.png','5','7','4','6','5','./Icons/PreK-K/Problems/Answer-Add4.png'),
+(null, './Icons/PreK-K/Problems/Add5.png','12','10','9','11','10','./Icons/PreK-K/Problems/Answer-Add5.png'),
+(null, './Icons/PreK-K/Problems/Add6.png','9','7','8','10','9','./Icons/PreK-K/Problems/Answer-Add6.png'),
+(null, './Icons/PreK-K/Problems/Add7.png','2','1','4','5','2','./Icons/PreK-K/Problems/Answer-Add7.png'),
+(null, './Icons/PreK-K/Problems/Sub1.png','2','1','4','5','1','./Icons/PreK-K/Problems/Answer-Sub1.png'),
+(null, './Icons/PreK-K/Problems/Sub2.png','2','3','4','5','3','./Icons/PreK-K/Problems/Answer-Sub2.png'),
+(null, './Icons/PreK-K/Problems/Sub3.png','2','0','1','4','0','./Icons/PreK-K/Problems/Answer-Sub3.png'),
+(null, './Icons/PreK-K/Problems/Sub4.png','2','1','4','3','3','./Icons/PreK-K/Problems/Answer-Sub4.png'),
+(null, './Icons/PreK-K/Problems/Sub5.png','2','1','3','4','2','./Icons/PreK-K/Problems/Answer-Sub5.png'),
+(null, './Icons/PreK-K/Problems/Sub6.png','2','1','4','3','1','./Icons/PreK-K/Problems/Answer-Sub6.png'),
+(null, './Icons/PreK-K/Problems/Sub7.png','5','6','4','7','6','./Icons/PreK-K/Problems/Answer-Sub7.png'),
+(null, './Icons/PreK-K/Numbers/Number0.png','Zero','One','Two','Three','Zero','./Icons/PreK-K/Numbers/Number0.png'),
+(null, './Icons/PreK-K/Numbers/Number1.png','Zero','One','Two','Four','One','./Icons/PreK-K/Numbers/Number1.png'),
+(null, './Icons/PreK-K/Numbers/Number2.png','Zero','One','Three','Two','Two','./Icons/PreK-K/Numbers/Number2.png'),
+(null, './Icons/PreK-K/Numbers/Number3.png','Two','One','Three','Four','Three','./Icons/PreK-K/Numbers/Number3.png'),
+(null, './Icons/PreK-K/Numbers/Number4.png','Three','One','Two','Four','Four','./Icons/PreK-K/Numbers/Number4.png'),
+(null, './Icons/PreK-K/Numbers/Number5.png','Four','Five','Three','Six','Five','./Icons/PreK-K/Numbers/Number5.png'),
+(null, './Icons/PreK-K/Numbers/Number6.png','Four','Five','Three','Six','Six','./Icons/PreK-K/Numbers/Number6.png'),
+(null, './Icons/PreK-K/Numbers/Number7.png','Four','Five','Seven','Six','Seven','./Icons/PreK-K/Numbers/Number7.png'),
+(null, './Icons/PreK-K/Numbers/Number8.png','Eight','Five','Seven','Six','Eight','./Icons/PreK-K/Numbers/Number8.png'),
+(null, './Icons/PreK-K/Numbers/Number9.png','Nine','Seven','Eight','Six','Nine','./Icons/PreK-K/Numbers/Number9.png'),
+(null, './Icons/PreK-K/Numbers/Number10.png','Seven','Eight','Nine','Ten','Ten','./Icons/PreK-K/Numbers/Number10.png'),
+(null, './Icons/PreK-K/Numbers/Number11.png','Seven','Nine','Ten','Eleven','Eleven','./Icons/PreK-K/Numbers/Number11.png'),
+(null, './Icons/PreK-K/Numbers/Number12.png','Nine','Ten','Eleven','Twelve','Twelve','./Icons/PreK-K/Numbers/Number12.png'),
+(null, './Icons/PreK-K/Numbers/Number13.png','Ten','Eleven','Twelve','Thirteen','Thirteen','./Icons/PreK-K/Numbers/Number13.png'),
+(null, './Icons/PreK-K/Numbers/Number14.png','Fourteen','Twelve','Thirteen','Sixteen','Fourteen','./Icons/PreK-K/Numbers/Number14.png'),
+(null, './Icons/PreK-K/Numbers/Number15.png','Twelve','Thirteen','Fourteen','Fifteen','Fifteen','./Icons/PreK-K/Numbers/Number15.png'),
+(null, './Icons/PreK-K/Numbers/Number16.png','Sixteen','Thirteen','Fourteen','Fifteen','Sixteen','./Icons/PreK-K/Numbers/Number16.png'),
+(null, './Icons/PreK-K/Numbers/Number17.png','Fifteen','Twenty','Fourteen','Seventeen','Seventeen','./Icons/PreK-K/Numbers/Number17.png'),
+(null, './Icons/PreK-K/Numbers/Number18.png','Nineteen','Seventeen','Sixteen','Eighteen','Eighteen','./Icons/PreK-K/Numbers/Number18.png'),
+(null, './Icons/PreK-K/Numbers/Number19.png','Eighteen','Seventeen','Nineteen','Twenty','Nineteen','./Icons/PreK-K/Numbers/Number19.png'),
+(null, './Icons/PreK-K/Numbers/Number20.png','Seventeen','Eighteen','Twenty','Nineteen','Twenty','./Icons/PreK-K/Numbers/Number20.png'),
+(null, './Icons/PreK-K/Estimate/Estimate1.png','5','10','20','30','20','./Icons/PreK-K/Estimate/Answer-Estimate1.png'),
+(null, './Icons/PreK-K/Estimate/Estimate2.png','10','30','20','45','30','./Icons/PreK-K/Estimate/Answer-Estimate2.png'),
+(null, './Icons/PreK-K/Estimate/Estimate3.png','18','30','5','45','18','./Icons/PreK-K/Estimate/Answer-Estimate3.png'),
+(null, './Icons/PreK-K/Estimate/Estimate4.png','5','10','20','35','10','./Icons/PreK-K/Estimate/Answer-Estimate4.png'),
+(null, './Icons/PreK-K/Estimate/Estimate5.png','14','39','28','45','28','./Icons/PreK-K/Estimate/Answer-Estimate5.png'),
+(null, './Icons/PreK-K/Estimate/Estimate6.png','2','15','10','5','5','./Icons/PreK-K/Estimate/Answer-Estimate6.png'),
+(null, './Icons/PreK-K/Estimate/Estimate7.png','10','30','20','5','10','./Icons/PreK-K/Estimate/Answer-Estimate7.png'),
+(null, './Icons/PreK-K/Estimate/Estimate8.png','10','35','25','40','25','./Icons/PreK-K/Estimate/Answer-Estimate8.png'),
+(null, './Icons/PreK-K/Count/Count1.png','1','3','2','5','1','./Icons/PreK-K/Count/Answer-Count1.png'),
+(null, './Icons/PreK-K/Count/Count2.png','1','5','4','2','2','./Icons/PreK-K/Count/Answer-Count2.png'),
+(null, './Icons/PreK-K/Count/Count3.png','4','3','7','5','3','./Icons/PreK-K/Count/Answer-Count3.png'),
+(null, './Icons/PreK-K/Count/Count4.png','3','5','4','6','4','./Icons/PreK-K/Count/Answer-Count4.png'),
+(null, './Icons/PreK-K/Count/Count5.png','7','6','3','5','5','./Icons/PreK-K/Count/Answer-Count5.png'),
+(null, './Icons/PreK-K/Count/Count6.png','6','3','2','5','6','./Icons/PreK-K/Count/Answer-Count6.png'),
+(null, './Icons/PreK-K/Count/Count7.png','9','6','5','7','7','./Icons/PreK-K/Count/Answer-Count7.png'),
+(null, './Icons/PreK-K/Count/Count8.png','10','8','6','9','8','./Icons/PreK-K/Count/Answer-Count8.png'),
+(null, './Icons/PreK-K/Count/Count9.png','10','8','9','11','9','./Icons/PreK-K/Count/Answer-Count9.png'),
+(null, './Icons/PreK-K/Count/Count10.png','11','10','12','8','10','./Icons/PreK-K/Count/Answer-Count10.png'),
+(null, './Icons/PreK-K/Count/Count11.png','11','12','10','15','11','./Icons/PreK-K/Count/Answer-Count11.png'),
+(null, './Icons/PreK-K/Count/Count12.png','11','13','12','15','12','./Icons/PreK-K/Count/Answer-Count12.png'),
+(null, './Icons/PreK-K/Count/Count13.png','11','13','12','15','13','./Icons/PreK-K/Count/Answer-Count13.png'),
+(null, './Icons/PreK-K/Count/Count14.png','14','13','12','15','14','./Icons/PreK-K/Count/Answer-Count14.png'),
+(null, './Icons/PreK-K/Count/Count15.png','17','13','14','15','15','./Icons/PreK-K/Count/Answer-Count15.png'),
+(null, './Icons/PreK-K/Count/Count16.png','18','13','16','15','16','./Icons/PreK-K/Count/Answer-Count16.png'),
+(null, './Icons/PreK-K/Count/Count17.png','17','15','16','19','17','./Icons/PreK-K/Count/Answer-Count17.png'),
+(null, './Icons/PreK-K/Count/Count18.png','19','18','15','17','18','./Icons/PreK-K/Count/Answer-Count18.png'),
+(null, './Icons/PreK-K/Count/Count19.png','19','17','20','21','19','./Icons/PreK-K/Count/Answer-Count19.png'),
+(null, './Icons/PreK-K/Count/Count20.png','19','21','20','18','20','./Icons/PreK-K/Count/Answer-Count20.png'),
+(null, './Icons/PreK-K/Compare/Compare.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare.png'),
+(null, './Icons/PreK-K/Compare/Compare1.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare1.png'),
+(null, './Icons/PreK-K/Compare/Compare2.png','More','Less','Same','------','Same','./Icons/PreK-K/Compare/Answer-Compare2.png'),
+(null, './Icons/PreK-K/Compare/Compare3.png','More','Less','Same','------','More','./Icons/PreK-K/Compare/Answer-Compare3.png'),
+(null, './Icons/PreK-K/Compare/Compare4.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare4.png'),
+(null, './Icons/PreK-K/Compare/Compare5.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare5.png'),
+(null, './Icons/PreK-K/Compare/Compare6.png','More','Less','Same','------','Same','./Icons/PreK-K/Compare/Answer-Compare6.png'),
+(null, './Icons/PreK-K/Compare/Compare7.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare7.png'),
+(null, './Icons/PreK-K/Compare/Compare8.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare8.png'),
+(null, './Icons/PreK-K/Compare/Compare9.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare9.png'),
+(null, './Icons/PreK-K/Compare/Compare10.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare10.png'),
+(null, './Icons/PreK-K/Compare/Compare11.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare11.png'),
+(null, './Icons/PreK-K/Compare/Compare12.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare12.png'),
+(null, './Icons/PreK-K/Compare/Compare13.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare13.png'),
+(null, './Icons/PreK-K/Compare/Compare14.png','More','Less','Same','------','More','./Icons/PreK-K/Compare/Answer-Compare14.png'),
+(null, './Icons/PreK-K/Compare/Compare15.png','More','Less','Same','------','More','./Icons/PreK-K/Compare/Answer-Compare15.png'),
+(null, './Icons/PreK-K/Compare/Compare16.png','More','Less','Same','------','More','./Icons/PreK-K/Compare/Answer-Compare16.png'),
+(null, './Icons/PreK-K/Compare/Compare17.png','More','Less','Same','------','Less','./Icons/PreK-K/Compare/Answer-Compare17.png'),
+(null, './Icons/PreK-K/Coins/Coins.png','41 Cents','39 Cents','25 Cents','11 Cents','41 Cents','./Icons/PreK-K/Coins/Coins.png'),
+(null, './Icons/PreK-K/Coins/Coins1.png','23 Cents','12 Cents','15 Cents','18 Cents','15 Cents','./Icons/PreK-K/Coins/Coins1.png'),
+(null, './Icons/PreK-K/Coins/Dime.png','Nickle','Dime','Quarter','Penny','Dime','./Icons/PreK-K/Coins/Dime.png'),
+(null, './Icons/PreK-K/Coins/Dime1.png','11 Cents','40 Cents','15 Cents','10 Cents','10 Cents','./Icons/PreK-K/Coins/Dime1.png'),
+(null, './Icons/PreK-K/Coins/Nickle.png','Dime','Quarter','Nickle','Penny','Nickle','./Icons/PreK-K/Coins/Nickle.png'),
+(null, './Icons/PreK-K/Coins/Nickle1.png','5 Cents','8 Cents','11 Cents','10 Cents','5 Cents','./Icons/PreK-K/Coins/Nickle1.png'),
+(null, './Icons/PreK-K/Coins/Penny.png','Dime','Quarter','Nickle','Penny','Penny','./Icons/PreK-K/Coins/Penny.png'),
+(null, './Icons/PreK-K/Coins/Penny1.png','3 Cents','1 Cent','5 Cents','11 Cents','1 Cent','./Icons/PreK-K/Coins/Penny1.png'),
+(null, './Icons/PreK-K/Coins/Quarter.png','Quarter','Dime','Nickle','Penny','Quarter','./Icons/PreK-K/Coins/Quarter.png'),
+(null, './Icons/PreK-K/Coins/Quarter1.png','24 Cents','25 Cents','29 Cents','15 Cents','25 Cents','./Icons/PreK-K/Coins/Quarter1.png'),
+(null, './Icons/PreK-K/Coins/Coins.png','41 Cents','39 Cents','25 Cents','11 Cents','41 Cents','./Icons/PreK-K/Coins/Coins.png'),
+(null, './Icons/PreK-K/Coins/Coins1.png','23 Cents','12 Cents','15 Cents','18 Cents','15 Cents','./Icons/PreK-K/Coins/Coins1.png'),
+(null, './Icons/PreK-K/Coins/Dime.png','Nickle','Dime','Quarter','Penny','Dime','./Icons/PreK-K/Coins/Dime.png'),
+(null, './Icons/PreK-K/Coins/Dime1.png','11 Cents','40 Cents','15 Cents','10 Cents','10 Cents','./Icons/PreK-K/Coins/Dime1.png'),
+(null, './Icons/PreK-K/Coins/Nickle.png','Dime','Quarter','Nickle','Penny','Nickle','./Icons/PreK-K/Coins/Nickle.png'),
+(null, './Icons/PreK-K/Coins/Nickle1.png','5 Cents','8 Cents','11 Cents','10 Cents','5 Cents','./Icons/PreK-K/Coins/Nickle1.png'),
+(null, './Icons/PreK-K/Coins/Penny.png','Dime','Quarter','Nickle','Penny','Penny','./Icons/PreK-K/Coins/Penny.png'),
+(null, './Icons/PreK-K/Coins/Penny1.png','3 Cents','1 Cent','5 Cents','11 Cents','1 Cent','./Icons/PreK-K/Coins/Penny1.png'),
+(null, './Icons/PreK-K/Coins/Quarter.png','Quarter','Dime','Nickle','Penny','Quarter','./Icons/PreK-K/Coins/Quarter.png'),
+(null, './Icons/PreK-K/Coins/Quarter1.png','24 Cents','25 Cents','29 Cents','15 Cents','25 Cents','./Icons/PreK-K/Coins/Quarter1.png');
+
+CREATE TABLE Compare1
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Compare1
+Values
+(null, './Icons/Grade1-3/Grade1Compare/Compare1.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare1.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare2.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare2.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare3.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare3.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare4.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare4.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare5.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare5.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare6.png','>','<','=','-----','=','./Icons/Grade1-3/Grade1Compare/Compare6.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare7.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare7.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare8.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare8.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare9.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare9.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare10.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare10.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare11.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare11.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare12.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare12.png'),
+(null, './Icons/Grade1-3/Grade1Compare/Compare13.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare13.png');
+
+
+CREATE TABLE Misc1
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Misc1
+Values
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png');
+
+
+CREATE TABLE Misc2
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Misc2
+Values
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png');
+
+CREATE TABLE Misc3
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Misc3
+Values
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png');
+
+CREATE TABLE Misc4
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Misc4
+Values
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png');
+
+CREATE TABLE Misc5
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
+
+
+INSERT INTO Misc5
+Values
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
+(null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png');
+
+

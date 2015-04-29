@@ -41,6 +41,9 @@ public class Account {
     public void setIcon(Icon icon) {
         this.icon = icon;
     }
+    public boolean isCompleted(String name){
+        return true;
+    }
     
     
 }

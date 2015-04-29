@@ -23,8 +23,8 @@ import javax.sound.sampled.LineListener;
  */
 public class SeeWrongLayer extends HelpLayerAbstract{
         private Clip clip;
-        public SeeWrongLayer(ArrayList<testForm> test,Login frame){
-        SeeWrongPane pane = new SeeWrongPane(test,frame,this);
+        public SeeWrongLayer(int numOfQuestion, ArrayList<testForm> test,Login frame){
+        SeeWrongPane pane = new SeeWrongPane(numOfQuestion, test,frame,this);
         setPreferredSize(new Dimension(600,600));
         pane.setBounds(0, 0, 600, 600);
         add(pane);

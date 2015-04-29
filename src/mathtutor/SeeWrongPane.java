@@ -23,15 +23,16 @@ import javax.swing.JPanel;
  * @author Eric Sullivan
  */
 public class SeeWrongPane extends javax.swing.JPanel {
-    ArrayList<testForm> test;
-    ArrayList<testForm> wrongs;
-    Login frame;
-    SeeWrongPane here;
-    SeeWrongLayer layer;
+    private ArrayList<testForm> test;
+    private ArrayList<testForm> wrongs;
+    private Login frame;
+    private SeeWrongPane here;
+    private SeeWrongLayer layer;
+    private int numOfQuestion;
     /**
      * Creates new form SeeWrongPane
      */
-    public SeeWrongPane() {
+    public SeeWrongPane(int numOfQuestion) {
         initComponents();
         jPanel1.setLayout(new GridLayout(6,1));
     }
@@ -41,21 +42,22 @@ public class SeeWrongPane extends javax.swing.JPanel {
      * @param frame
      * @param parent 
      */
-    public SeeWrongPane(ArrayList<testForm> test,Login frame,SeeWrongLayer parent) {
+    public SeeWrongPane(int numOfQuestion, ArrayList<testForm> test,Login frame,SeeWrongLayer parent) {
         initComponents();
+        this.numOfQuestion=numOfQuestion;
         layer  = parent;
         wrongs = new ArrayList<>();
         this.test = test;
         this.frame = frame;
         here = this;
-        jPanel1.setLayout(new GridLayout(6, 1,10,10));
+        jPanel1.setLayout(new GridLayout(numOfQuestion, 1,10,10));
         populate();
     }
     /**
      * Builds a Click able JPanel for each question that got wrong
      */
     public void populate() {
-        for(int i = 0; i<6;i++){
+        for(int i = 0; i<numOfQuestion;i++){
             if(test.get(i).isCorrect()==0){
                 WrongAnswer temp = new WrongAnswer(""+test.get(i).getNumber());
                 temp.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -126,7 +128,7 @@ public class SeeWrongPane extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 501, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -145,8 +147,8 @@ public class SeeWrongPane extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

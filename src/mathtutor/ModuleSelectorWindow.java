@@ -64,11 +64,24 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
             if (frame.getAccountPanel().getUserAccount().Complete("Prek K")) {
                 JPanel pane = new JPanel(new GridLayout(1, 1, 10, 10));
                 pane.setBackground(new Color(144, 210, 144));
-                Module temp = new Module("PreK-K", "Final Test");
+                Module temp = new Module("PreK-K", "FinalTest");
                 temp.addMouseListener(new Listener());
                 pane.add(temp);
                 jPanel1.add(pane);
             }
+        }
+        else if(grade.equals("Grade 1-2")) {
+            System.out.println(grade);
+            modules.add(new Module("Grade 1-2", "Compare1"));
+            modules.add(new Module("Grade 1-2", "Misc1"));
+            modules.add(new Module("Grade 1-2", "Misc2"));
+            modules.add(new Module("Grade 1-2", "Misc3"));
+        }
+        else if(grade.equals("Grade 3-4")){
+            modules.add(new Module("Grade 3-4", "Fractions"));
+            modules.add(new Module("Grade 3-4", "Misc1"));
+            modules.add(new Module("Grade 3-4", "Misc2"));
+            modules.add(new Module("Grade 3-4", "Misc3"));
         }
         JPanel pane = new JPanel(new GridLayout(2,2,10,10));
         pane.setBackground(new Color(144,210,144));
@@ -88,6 +101,16 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
     public class Listener extends MouseAdapter {
 
         public void mouseClicked(MouseEvent e) {
+            if(((Module)e.getSource()).getjLabel1().getText().equals("FinalTest")){
+                            layer.clipStop();
+            frame.remove(layer);
+            frame.getLastPane().push(layer);
+            frame.setCurrentPane(new TestGeneral(((Module) e.getSource()).getjLabel1().getText(),((Module) e.getSource()).getGrade(), frame));
+            frame.add(frame.getCurrentPane());
+            frame.repaint();
+            frame.pack();
+            }
+            else{
             layer.clipStop();
             frame.remove(layer);
             frame.getLastPane().push(layer);
@@ -95,6 +118,7 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();
+        }
         }
 
         public void mouseEntered(MouseEvent e) {

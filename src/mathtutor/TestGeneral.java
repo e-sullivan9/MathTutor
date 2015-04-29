@@ -40,6 +40,7 @@ public class TestGeneral extends HelpLayerAbstract {
     private Login frame;
     private Clip clip;
     private String grade;
+    private int numOfQuestions;
     /**
      * sets up the TestGeneral and audio and testForms
      * @param testName
@@ -47,6 +48,7 @@ public class TestGeneral extends HelpLayerAbstract {
      * @param frame 
      */
     public TestGeneral(String testName,String grade, Login frame) {
+        System.out.println(testName);
         cl = new CardLayout();
         index = 0;
         setLayout(cl);
@@ -54,6 +56,10 @@ public class TestGeneral extends HelpLayerAbstract {
         test = new ArrayList<>();
         this.testName = testName;
         this.frame = frame;
+        numOfQuestions=6;
+        if(testName.equals("FinalTest")){
+            numOfQuestions=10;
+        }
         setPreferredSize(new Dimension(600,600));
         setUpClip();
         buildTest();
@@ -72,7 +78,7 @@ public class TestGeneral extends HelpLayerAbstract {
             //Create a test question and adds it to the test line
             while (rs.next()) {
                 String[] questions = {rs.getString("answer1"), rs.getString("answer2"), rs.getString("answer3"), rs.getString("answer4")};
-                for (int i = 0; i < 100; i++) {
+                for (int i = 0; i < 20; i++) {
                     Random rng = new Random();
                     int a = rng.nextInt(3);
                     int b = rng.nextInt(3);
@@ -88,7 +94,7 @@ public class TestGeneral extends HelpLayerAbstract {
             //shuffles the array list
             Collections.shuffle(test);
             //pull the first 6 to be the test question
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < numOfQuestions; j++) {
                 add(test.get(j));
                 test.get(j).setNumber(j+1);
             }
@@ -164,14 +170,14 @@ public class TestGeneral extends HelpLayerAbstract {
      */
     public void next() {
         int temp = 0;
-        if (index < 5) {
+        if (index < numOfQuestions-1) {
             cl.next(this);
             index = (index + 1);
 
         } else {
             ArrayList<Integer> incorrect = new ArrayList<>();
             ArrayList<Integer> q_number = new ArrayList<>();
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < numOfQuestions; i++) {
                 temp += test.get(i).isCorrect();
                 if (test.get(i).isCorrect() == 0) {
                     incorrect.add(test.get(i).question_id);
@@ -180,7 +186,7 @@ public class TestGeneral extends HelpLayerAbstract {
             }
 
             frame.remove(this);
-            frame.setCurrentPane(new RewardLayer(temp, testName,grade, test, frame));
+            frame.setCurrentPane(new RewardLayer(temp,numOfQuestions, testName,grade, test, frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();

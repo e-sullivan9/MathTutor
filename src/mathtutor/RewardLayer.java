@@ -32,7 +32,7 @@ import javax.swing.SwingUtilities;
 public class RewardLayer extends HelpLayerAbstract {
 
     private int correct;
-    private String reward;
+    private String testName;
     private ArrayList<testForm> test;
     private Login frame;
     private Clip clip;
@@ -43,12 +43,12 @@ public class RewardLayer extends HelpLayerAbstract {
  * @param test
  * @param frame 
  */
-    public RewardLayer(int correct, String reward, String grade, ArrayList<testForm> test, Login frame) {
+    public RewardLayer(int correct, int numberOfQuestions, String testName, String grade, ArrayList<testForm> test, Login frame) {
         this.correct = correct;
-        this.reward = reward;
+        this.testName = testName;
         this.test = test;
         this.frame = frame;
-        Reward pane = new Reward(correct, reward,grade, test, frame, this);
+        Reward pane = new Reward(correct, numberOfQuestions, testName,grade, test, frame, this);
         setPreferredSize(new Dimension(600, 600));
         pane.setBounds(0, 0, 600, 600);
         add(pane);

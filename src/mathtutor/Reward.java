@@ -10,6 +10,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -27,25 +31,56 @@ public class Reward extends JPanel{
     private ArrayList<testForm> test;
     private Login frame;
     private RewardLayer layer;
+    private String reward;
+    private int numberOfQuestions;
 /**
  * Constructor check the number of question the user got correct and build the page accordingly 
  * @param correct
- * @param reward
+ * @param testName
  * @param grade
  * @param test
  * @param frame
  * @param parent 
  */
-    public Reward(int correct,String reward,String grade, ArrayList<testForm> test,Login frame,RewardLayer parent) {
+    public Reward(int correct,int numberOfQuestions,String testName,String grade, ArrayList<testForm> test,Login frame,RewardLayer parent) {
         initComponents();
         this.test=test;
         this.frame=frame;
         this.layer=parent;
+        this.numberOfQuestions=numberOfQuestions;
         seeWrongPane.addMouseListener(new Listener());
-        numCorrect.setText(""+correct+"/6 correct!");
+        numCorrect.setText(""+correct+"/"+numberOfQuestions+" correct!");
         print.addMouseListener(new ListenerPrint());
-        if(correct>=4){
-            icon.setIcon(new ImageIcon(".\\Icons\\Icons\\Stickers\\"+grade+reward+".png"));
+        if((double)correct/(double)numberOfQuestions>=0.6){
+            //gets reward from database
+            try{
+                // opens a checker in the user connecter class
+                DataBaseUserConnector dbcon =new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/MathTutorDB", "TutorAdmin", "Tut0r4dm1n"); //change password for it to work.
+            //gets test reward details
+            String sql = "Select * from modules where name ='"+testName+"'";
+            //querys database
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            reward =rs.getString("reward");
+            //ask if the user already has the reward for this section
+            if(dbcon.isModuleComplete(testName)){
+                //insert the reward in there account
+            sql = "INSERT INTO completed VALUES('"+frame.getAccountPanel().getUserAccount().getUsername()+"','"+testName+"','"+grade+"','"+reward+"')";
+            rs.close();
+            stmt.executeUpdate(sql);
+            }
+            icon.setIcon(new ImageIcon(reward));
+            con.close();
+            stmt.close();
+            
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+                
+            }
         }
         else{
             icon.setIcon(new ImageIcon("frown.png"));
@@ -70,7 +105,7 @@ public class Reward extends JPanel{
             layer.clipStop();
             frame.remove(layer);
             frame.getLastPane().push(layer);
-            frame.setCurrentPane(new SeeWrongLayer(test, frame));
+            frame.setCurrentPane(new SeeWrongLayer(numberOfQuestions,test, frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();

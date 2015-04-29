@@ -67,15 +67,15 @@ public class DataBaseUserConnector
         public boolean isModuleComplete(String test)
         {
             Statement state =null;
-            String sql = "select * from modules where name="+"'" + test + "'";
+            String sql = "select * from completed where name="+"'" + test + "'";
             ResultSet rs = null;
-            boolean bCompleted = false;
+            boolean bCompleted = true;
             try
             {
                 state = con.createStatement();
                 rs = state.executeQuery(sql);
                 if(rs.first())
-                    bCompleted = true;
+                    bCompleted = false;
                 //push push push!
             }
             catch(SQLException e)

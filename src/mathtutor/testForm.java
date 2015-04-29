@@ -18,7 +18,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import static javax.swing.JLayeredPane.getLayer;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
@@ -156,7 +155,7 @@ public class testForm extends HelpLayerAbstract {
     }
 
     public void back() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int isCorrect() {
@@ -226,6 +225,8 @@ public class testForm extends HelpLayerAbstract {
             case "Sequences":
                 butters = new HelpPane("Test Time! This test will ask you to find the position that \nan animal has in line for ice cream.");
                 break;
+            case "FinalTest":
+                butters = new HelpPane("Final Test Time! this test will ask you to use the skills you learned in this grade section");
             default:
                 butters = new HelpPane("Test Time! This test will ask you to count whole and halves. Careful they question can be a bit tricky.");
                 break;
