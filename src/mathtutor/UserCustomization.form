@@ -41,14 +41,6 @@
                       <Component id="jlTFThree" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jlTFFour" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlTFFive" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlTFSix" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlTFSeven" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlTFEight" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
@@ -59,14 +51,6 @@
                       <Component id="jlOTThree" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jlOTFour" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTFive" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTSix" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTSeven" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlOTEight" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel34" alignment="0" min="-2" pref="540" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
@@ -77,17 +61,9 @@
                       <Component id="jlPKThree" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jlPKFour" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKFive" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKSix" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKSeven" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlPKEight" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="60" max="32767" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -106,10 +82,6 @@
                   <Component id="jlTFTwo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlTFThree" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlTFFour" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlTFFive" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlTFSix" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlTFSeven" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlTFEight" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
@@ -119,10 +91,6 @@
                   <Component id="jlOTTwo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlOTThree" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlOTFour" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlOTFive" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlOTSix" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlOTSeven" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlOTEight" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
@@ -132,12 +100,8 @@
                   <Component id="jlPKTwo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlPKThree" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlPKFour" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlPKFive" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlPKSix" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlPKSeven" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlPKEight" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="397" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -184,17 +148,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlTFFour">
     </Component>
-    <Component class="javax.swing.JLabel" name="jlTFFive">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlTFSix">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlTFSeven">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlTFEight">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -213,17 +166,6 @@
     <Component class="javax.swing.JLabel" name="jlOTThree">
     </Component>
     <Component class="javax.swing.JLabel" name="jlOTFour">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlOTFive">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlOTSix">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlOTSeven">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlOTEight">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel34">
       <Properties>
@@ -258,26 +200,6 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jlPKFive"/>
       </AccessibilityProperties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlPKFive">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlPKSix">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlPKSeven">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlPKEight">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

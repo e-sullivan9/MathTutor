@@ -6,7 +6,7 @@
 package mathtutor;
 
 import javax.swing.ImageIcon;
-
+import java.util.ArrayList;
 /**
  *
  * @author
@@ -16,7 +16,8 @@ public class UserCustomization extends javax.swing.JPanel {
     /**
      * Creates new form UserCustomization
      */
-    private Account account;
+    private final Account account;
+    private ArrayList<Stickers> stickerList;
     public UserCustomization(Account account) {
         initComponents();
         this.account = account;
@@ -29,7 +30,6 @@ public class UserCustomization extends javax.swing.JPanel {
        byte[] bStickers = con.getStickersForUser(account);
        for(int i = 0; i < bStickers.length; ++i)
            System.out.println(bStickers[i]);
-           System.out.println(jlTFOne.getName());
        con.closeDBConnection();
     }
     //private static final int ICON_HEIGHT = 100;
@@ -52,15 +52,6 @@ public class UserCustomization extends javax.swing.JPanel {
         //jlTFFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        //jlTFFive.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlTFFive.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
-        //jlTFSix.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlTFSix.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
-        //jlTFSeven.setSize(ICON_HEIGHT, ICON_WIDTH);
-        jlTFSeven.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
         //jlOTOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
@@ -73,18 +64,6 @@ public class UserCustomization extends javax.swing.JPanel {
         //jlOTFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
-        //jlOTFive.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlOTFive.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
-        //jlOTSix.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlOTSix.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
-        //jlOTSeven.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlOTSeven.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
-        //jlOTEight.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlOTEight.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
         //jlPKOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         
@@ -96,19 +75,6 @@ public class UserCustomization extends javax.swing.JPanel {
         
         //jlPKFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
-        //jlPKFive.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlPKFive.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
-        //jlPKSix.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlPKSix.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
-        //jlPKSeven.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlPKSeven.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
-        //jlPKEight.setSize(ICON_HEIGHT,ICON_WIDTH);
-        jlPKEight.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
         
     }
     /**
@@ -127,28 +93,16 @@ public class UserCustomization extends javax.swing.JPanel {
         jlTFTwo = new javax.swing.JLabel();
         jlTFThree = new javax.swing.JLabel();
         jlTFFour = new javax.swing.JLabel();
-        jlTFFive = new javax.swing.JLabel();
-        jlTFSix = new javax.swing.JLabel();
-        jlTFSeven = new javax.swing.JLabel();
-        jlTFEight = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jlOTOne = new javax.swing.JLabel();
         jlOTTwo = new javax.swing.JLabel();
         jlOTThree = new javax.swing.JLabel();
         jlOTFour = new javax.swing.JLabel();
-        jlOTFive = new javax.swing.JLabel();
-        jlOTSix = new javax.swing.JLabel();
-        jlOTSeven = new javax.swing.JLabel();
-        jlOTEight = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jlPKOne = new javax.swing.JLabel();
         jlPKTwo = new javax.swing.JLabel();
         jlPKThree = new javax.swing.JLabel();
         jlPKFour = new javax.swing.JLabel();
-        jlPKFive = new javax.swing.JLabel();
-        jlPKSix = new javax.swing.JLabel();
-        jlPKSeven = new javax.swing.JLabel();
-        jlPKEight = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(144, 210, 144));
         setMinimumSize(new java.awt.Dimension(600, 600));
@@ -166,13 +120,9 @@ public class UserCustomization extends javax.swing.JPanel {
 
         jlTFOne.setToolTipText("");
 
-        jlTFFive.setToolTipText("");
-
         jLabel22.setFont(new java.awt.Font("Stencil Std", 1, 38)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Grade 1-2 Awards");
-
-        jlOTSix.setToolTipText("");
 
         jLabel34.setFont(new java.awt.Font("Stencil Std", 1, 38)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
@@ -185,14 +135,6 @@ public class UserCustomization extends javax.swing.JPanel {
         jlPKThree.setToolTipText("");
 
         jlPKFour.setToolTipText("");
-
-        jlPKFive.setToolTipText("");
-
-        jlPKSix.setToolTipText("");
-
-        jlPKSeven.setToolTipText("");
-
-        jlPKEight.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -211,15 +153,7 @@ public class UserCustomization extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jlTFThree)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlTFFour)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlTFFive)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlTFSix)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlTFSeven)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlTFEight))
+                        .addComponent(jlTFFour))
                     .addComponent(jLabel22)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlOTOne)
@@ -228,15 +162,7 @@ public class UserCustomization extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jlOTThree)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTFour)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTFive)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTSix)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTSeven)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlOTEight))
+                        .addComponent(jlOTFour))
                     .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlPKOne)
@@ -245,16 +171,8 @@ public class UserCustomization extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jlPKThree)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKFour)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKFive)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKSix)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKSeven)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlPKEight)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addComponent(jlPKFour)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,11 +188,7 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addComponent(jlTFOne)
                     .addComponent(jlTFTwo)
                     .addComponent(jlTFThree)
-                    .addComponent(jlTFFour)
-                    .addComponent(jlTFFive)
-                    .addComponent(jlTFSix)
-                    .addComponent(jlTFSeven)
-                    .addComponent(jlTFEight))
+                    .addComponent(jlTFFour))
                 .addGap(0, 0, 0)
                 .addComponent(jLabel22)
                 .addGap(0, 0, 0)
@@ -282,11 +196,7 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addComponent(jlOTOne)
                     .addComponent(jlOTTwo)
                     .addComponent(jlOTThree)
-                    .addComponent(jlOTFour)
-                    .addComponent(jlOTFive)
-                    .addComponent(jlOTSix)
-                    .addComponent(jlOTSeven)
-                    .addComponent(jlOTEight))
+                    .addComponent(jlOTFour))
                 .addGap(0, 0, 0)
                 .addComponent(jLabel34)
                 .addGap(0, 0, 0)
@@ -294,12 +204,8 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addComponent(jlPKOne)
                     .addComponent(jlPKTwo)
                     .addComponent(jlPKThree)
-                    .addComponent(jlPKFour)
-                    .addComponent(jlPKFive)
-                    .addComponent(jlPKSix)
-                    .addComponent(jlPKSeven)
-                    .addComponent(jlPKEight))
-                .addContainerGap(397, Short.MAX_VALUE))
+                    .addComponent(jlPKFour))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jlabelUserIcon.getAccessibleContext().setAccessibleName("jlUserIcon");
@@ -312,28 +218,16 @@ public class UserCustomization extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jlOTEight;
-    private javax.swing.JLabel jlOTFive;
     private javax.swing.JLabel jlOTFour;
     private javax.swing.JLabel jlOTOne;
-    private javax.swing.JLabel jlOTSeven;
-    private javax.swing.JLabel jlOTSix;
     private javax.swing.JLabel jlOTThree;
     private javax.swing.JLabel jlOTTwo;
-    private javax.swing.JLabel jlPKEight;
-    private javax.swing.JLabel jlPKFive;
     private javax.swing.JLabel jlPKFour;
     private javax.swing.JLabel jlPKOne;
-    private javax.swing.JLabel jlPKSeven;
-    private javax.swing.JLabel jlPKSix;
     private javax.swing.JLabel jlPKThree;
     private javax.swing.JLabel jlPKTwo;
-    private javax.swing.JLabel jlTFEight;
-    private javax.swing.JLabel jlTFFive;
     private javax.swing.JLabel jlTFFour;
     private javax.swing.JLabel jlTFOne;
-    private javax.swing.JLabel jlTFSeven;
-    private javax.swing.JLabel jlTFSix;
     private javax.swing.JLabel jlTFThree;
     private javax.swing.JLabel jlTFTwo;
     private javax.swing.JLabel jlabelUserIcon;
