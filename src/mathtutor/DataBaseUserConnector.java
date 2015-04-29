@@ -73,7 +73,11 @@ public class DataBaseUserConnector
             {
                 state = con.createStatement();
                 ResultSet rs = state.executeQuery(sql);
-                System.out.println(rs.getString("PID"));
+                rs.next();
+                aList.add(rs.getString("fav1"));
+                aList.add(rs.getString("fav2"));
+                aList.add(rs.getString("fav3"));
+                aList.add(rs.getString("fav4"));
             }
             catch(SQLException e)
             {
