@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.event.MouseListener;
@@ -22,13 +23,14 @@ public class UserCustomization extends javax.swing.JPanel {
      * Creates new form UserCustomization
      */
     private final Account account;
-    private ArrayList<Stickers> stickerList;
     private JLabel[] favorites;
-    private OnAction onAction;
+    private final OnAction onAction;
+    private final OnMouse onMouse;
     public UserCustomization(Account account) {
         initComponents();
         this.account = account;
         onAction = new OnAction();
+        onMouse = new OnMouse();
         initLabels();
         loadModuleIconsFromDB();
         loadFavoriteIcons();
@@ -38,10 +40,9 @@ public class UserCustomization extends javax.swing.JPanel {
     {
        DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
        ArrayList<String> aList = con.getFavoriteStickers(account);
-       System.out.println(aList.size());
        con.closeDBConnection();
        
-   for(int i = 0; i < favorites.length; ++i)
+       for(int i = 0; i < favorites.length; ++i)
        {
            if(!aList.get(i).equalsIgnoreCase("lock"))
            {
@@ -68,39 +69,41 @@ public class UserCustomization extends javax.swing.JPanel {
         
         //jlTFOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        jlTFOne.setName("jlTFOne");
+        
+        jlTFOne.addMouseListener(onMouse);
        // jlTFTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFTwo.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlTFTwo.addMouseListener(onMouse);
         //jlTFThree.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFThree.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlTFThree.addMouseListener(onMouse);
         //jlTFFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlTFFour.addMouseListener(onMouse);
         //jlOTOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlOTOne.addMouseListener(onMouse);
         //jlOTTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTTwo.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlOTTwo.addMouseListener(onMouse);
         //jlOTThree.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTThree.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlOTThree.addMouseListener(onMouse);
         //jlOTFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlOTFour.addMouseListener(onMouse);
         //jlPKOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlPKOne.addMouseListener(onMouse);
         //jlPKTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKTwo.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlPKTwo.addMouseListener(onMouse);
         //jlPKThree.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKThree.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+        jlPKThree.addMouseListener(onMouse);
         //jlPKFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
+        jlPKFour.addMouseListener(onMouse);
         
         jLabel2.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jLabel3.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
@@ -113,38 +116,98 @@ public class UserCustomization extends javax.swing.JPanel {
         favorites[3] = jLabel5;
         
         jButton1.addActionListener(onAction);
-        
+        for(int i = 0; i < favorites.length; ++i)
+            favorites[i].addMouseListener(onMouse);
     }
-    private class OnAction implements ActionListener
+    public String addExtraSlash(String path) {
+        char curr[] = path.toCharArray();
+        String temp = "";
+        int k = 0;
+        for (int i = 0; i < path.length(); ++i) {
+            temp += curr[i];
+            if (curr[i] == '\\') {
+                temp += '\\';
+
+            }
+        }
+        return temp;
+
+    }
+    private class OnMouse implements MouseListener
     {
         private JLabel selected;
         @Override
-        public void actionPerformed(ActionEvent e)
+        public void mouseClicked(MouseEvent e)
         {
-            if(e.getSource() == jButton1)
             {
-                
-            }
-            else
-            {
-                
+                System.out.println(((JLabel)e.getSource()).getIcon().toString());
                 if(selected != null)
                 {
-                    selected.setIcon(((JLabel)e.getSource()).getIcon());
+                    for(int i = 0; i < favorites.length; ++i)
+                    {
+                        if(((JLabel)e.getSource()).getIcon().toString().equals(favorites[i].getIcon().toString()))
+                        {
+                            selected = null;
+                        }
+                    }
+                    if(selected == null)
+                    {
+                        JOptionPane.showMessageDialog(null,"You already have this icon as your favorite!");
+                    }
+                    else
+                    {
+                        selected.setIcon(((JLabel)e.getSource()).getIcon());
+                        DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
+                        ArrayList<String> aList = new ArrayList<>();
+                        for(int i = 0; i < favorites.length; ++i)
+                            aList.add(addExtraSlash(favorites[i].getIcon().toString()));
+                        con.updateFavoriteIcons(account, aList);
+                        con.closeDBConnection();
+                    }
                     selected = null;
                 }
                 else
                 {
                     for(int i = 0; i < favorites.length; ++i)
                     {
-                        if(e.getSource() != favorites[i])
+                        if(e.getSource() == favorites[i])
                         {
-                            selected = null;
-                            JOptionPane.showMessageDialog(null,"You can only select a favorite icon!");
+                            selected = favorites[i];
                         }
                     }
+                    if(selected == null)
+                    {
+                        JOptionPane.showMessageDialog(null,"You can only select a favorite icon!");
+                    }
+                    
                 }
             }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+        
+    }
+    private class OnAction implements ActionListener
+    {
+        
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            
         }
     }
     /**
