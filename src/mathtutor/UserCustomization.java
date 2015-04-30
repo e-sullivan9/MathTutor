@@ -66,6 +66,7 @@ public class UserCustomization extends javax.swing.JPanel {
             if (stickerList.get(i).getGrade().equals("PreK-K")) {
                 if (j < 4) {
                     pk.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
+                    stickerList.get(i).setVisibility(true);
                     ++j;
                 }
             }
@@ -75,6 +76,7 @@ public class UserCustomization extends javax.swing.JPanel {
             if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 1-2")) {
                 if (j < 4) {
                     ot.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
+                    stickerList.get(i).setVisibility(true);
                     ++j;
                 }
             }
@@ -84,6 +86,7 @@ public class UserCustomization extends javax.swing.JPanel {
             if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 3-4")) {
                 if (j < 4) {
                     tf.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
+                    stickerList.get(i).setVisibility(true);
                     ++j;
                 }
             }
