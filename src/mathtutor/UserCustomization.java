@@ -57,7 +57,10 @@ public class UserCustomization extends javax.swing.JPanel {
         loadFavoriteIcons();
 
     }
-
+    /*
+    *Loads the user's favorite icons from the database
+    *This method is called automatically from the constructor
+    */
     private void loadFavoriteIcons() {
         DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
         ArrayList<String> aList = con.getFavoriteStickers(account);
@@ -68,7 +71,11 @@ public class UserCustomization extends javax.swing.JPanel {
         }
 
     }
-
+    /*
+    *Loads the users completed module stickers from the database
+    *This method is called from the constructor
+    *The user will also be able to set favorite icons from this list
+    */
     private void loadModuleIconsFromDB() {
         DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
         stickerList = con.getStickersForUser(account);
@@ -110,6 +117,11 @@ public class UserCustomization extends javax.swing.JPanel {
 
     //private static final int ICON_HEIGHT = 100;
     //private static final int ICON_WIDTH = 100;
+    /*
+    *Initialize all the labels to a lock icon on start up.
+    *This method is called from the constructor
+    *These icons are subject to change depending on the user's completed modules
+    */
     private void initLabels() {
         //Make sure to display correct user icon later
         //jlabelUserIcon.setSize(ICON_HEIGHT,ICON_WIDTH);
@@ -197,7 +209,7 @@ public class UserCustomization extends javax.swing.JPanel {
         return temp;
 
     }
-
+    
     private class OnMouse implements MouseListener {
 
         private JLabel selected;
@@ -205,6 +217,13 @@ public class UserCustomization extends javax.swing.JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             {
+                /*
+                *A user can click on a current favorite Icon they'd like to switch
+                *With one from their completed module stickers.
+                *They can then click on the target icon they'd like to switch their 
+                *current favorite to.
+                *The 'selected' icon is the icon the user is willing to swap with their target.
+                */
                 if (selected != null) {
                     for (int i = 0; i < favorites.length; ++i) {
                         if (((JLabel) e.getSource()).getIcon().toString().equals(favorites[i].getIcon().toString())) {
@@ -259,6 +278,11 @@ public class UserCustomization extends javax.swing.JPanel {
 
     private class OnAction implements ActionListener {
 
+        /*
+        *The user can hit the "More" button to display the rest of their icons.
+        *The button will toggle between icons currently visible and not visible
+        *The icons will be displayed four at a time.
+        */
         @Override
         public void actionPerformed(ActionEvent e) {
             int i = 0;
@@ -498,11 +522,12 @@ public class UserCustomization extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlOTOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlOTTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlOTThree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlOTFour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlOTFour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jlOTOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlOTTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlOTThree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
