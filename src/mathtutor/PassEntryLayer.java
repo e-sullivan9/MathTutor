@@ -41,7 +41,7 @@ public class PassEntryLayer extends HelpLayerAbstract {
      * @param icon
      * @param frame 
      */
-    public PassEntryLayer(String name, Icon icon, Login frame) {
+    public PassEntryLayer(String name, String icon, Login frame) {
         this.frame = frame;
         here = this;
         pane = new PasswordEntryPane(name, icon, frame, here);

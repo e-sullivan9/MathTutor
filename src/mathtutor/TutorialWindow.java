@@ -139,6 +139,9 @@ public class TutorialWindow extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(144, 210, 144));
+
+        jLabel1.setBackground(new java.awt.Color(144, 210, 144));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

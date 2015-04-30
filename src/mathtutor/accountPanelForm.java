@@ -17,7 +17,7 @@ import javax.swing.border.BevelBorder;
  * @author Eric Sullivan
  */
 public class accountPanelForm extends javax.swing.JPanel {
-
+    private String iconLabel;
     /**
      * Creates new form accountPanelForm
      */
@@ -33,7 +33,8 @@ public class accountPanelForm extends javax.swing.JPanel {
     public accountPanelForm(String name,String icon){
         initComponents();
         this.Name.setText(name);
-        this.icon.setIcon(new ImageIcon(icon));
+        this.iconLabel=icon;
+        this.icon.setIcon(new ImageIcon(""+icon));
         setBackground(Color.GREEN);
         setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         
@@ -49,8 +50,8 @@ public class accountPanelForm extends javax.swing.JPanel {
      * gets JLabel icon
      * @return icon
      */
-    public Icon getJLabelIcon(){
-        return icon.getIcon();
+    public String getJLabelIcon(){
+        return iconLabel;
     }
 
     /**

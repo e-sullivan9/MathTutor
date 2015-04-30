@@ -71,11 +71,10 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
             }
         }
         else if(grade.equals("Grade 1-2")) {
-            System.out.println(grade);
-            modules.add(new Module("Grade 1-2", "Compare1"));
-            modules.add(new Module("Grade 1-2", "Misc1"));
-            modules.add(new Module("Grade 1-2", "Misc2"));
-            modules.add(new Module("Grade 1-2", "Misc3"));
+            modules.add(new Module("Grade1-3", "Compare1"));
+            modules.add(new Module("Grade1-3", "Misc1"));
+            modules.add(new Module("Grade1-3", "Misc2"));
+            modules.add(new Module("Grade1-3", "Misc3"));
         }
         else if(grade.equals("Grade 3-4")){
             modules.add(new Module("Grade 3-4", "Fractions"));

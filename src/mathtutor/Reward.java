@@ -50,6 +50,8 @@ public class Reward extends JPanel{
         this.numberOfQuestions=numberOfQuestions;
         seeWrongPane.addMouseListener(new Listener());
         numCorrect.setText(""+correct+"/"+numberOfQuestions+" correct!");
+        module.setText(testName);
+        print.setIcon(new ImageIcon(".\\Buttons\\print.png"));
         print.addMouseListener(new ListenerPrint());
         if((double)correct/(double)numberOfQuestions>=0.6){
             //gets reward from database
@@ -72,7 +74,8 @@ public class Reward extends JPanel{
             rs.close();
             stmt.executeUpdate(sql);
             }
-            icon.setIcon(new ImageIcon(reward));
+            icon.setIcon(new ImageIcon(reward+"-large.png"));
+            
             con.close();
             stmt.close();
             
@@ -133,7 +136,7 @@ public class Reward extends JPanel{
 
         banner = new javax.swing.JLabel();
         icon = new javax.swing.JLabel();
-        Module = new javax.swing.JLabel();
+        module = new javax.swing.JLabel();
         numCorrect = new javax.swing.JLabel();
         seeWrongPane = new javax.swing.JPanel();
         seeWrong = new javax.swing.JLabel();
@@ -150,10 +153,11 @@ public class Reward extends JPanel{
         icon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         icon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        Module.setBackground(new java.awt.Color(144, 210, 144));
-        Module.setFont(new java.awt.Font("Comic Sans MS", 1, 25)); // NOI18N
-        Module.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Module.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        module.setBackground(new java.awt.Color(144, 210, 144));
+        module.setFont(new java.awt.Font("Comic Sans MS", 1, 30)); // NOI18N
+        module.setForeground(java.awt.Color.white);
+        module.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        module.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         numCorrect.setFont(new java.awt.Font("Comic Sans MS", 0, 28)); // NOI18N
         numCorrect.setForeground(java.awt.Color.white);
@@ -184,7 +188,6 @@ public class Reward extends JPanel{
 
         print.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         print.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        print.setText("Print");
         print.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -193,15 +196,15 @@ public class Reward extends JPanel{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Module, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(module, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(numCorrect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(seeWrongPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(37, 37, 37)
-                        .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(banner, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)))
@@ -210,27 +213,26 @@ public class Reward extends JPanel{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Module, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(module, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(banner, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(banner, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(numCorrect, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(seeWrongPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(numCorrect, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(print, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(seeWrongPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Module;
     private javax.swing.JLabel banner;
     private javax.swing.JLabel icon;
+    private javax.swing.JLabel module;
     private javax.swing.JLabel numCorrect;
     private javax.swing.JLabel print;
     private javax.swing.JLabel seeWrong;

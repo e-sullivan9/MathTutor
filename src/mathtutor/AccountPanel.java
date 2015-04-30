@@ -103,7 +103,6 @@ public class AccountPanel extends JPanel{
     public class ImageHandler extends MouseAdapter {
         public void mouseClicked(MouseEvent e)  {
             if(e.getSource()==back&&!frame.getLastPane().isEmpty()){
-                System.out.println(frame.getLastPane());
                 ((HelpLayerAbstract)frame.getCurrentPane()).clipStop();
                 frame.remove(frame.getCurrentPane());
                 frame.setCurrentPane(frame.getLastPane().pop());
@@ -117,7 +116,7 @@ public class AccountPanel extends JPanel{
             if(e.getSource()==name){
             frame.remove(frame.getCurrentPane());
             frame.getLastPane().push(frame.getCurrentPane());
-            frame.setCurrentPane(new UserCustomization(userAccount));
+            frame.setCurrentPane(new UserCustomizationLayer(userAccount));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();

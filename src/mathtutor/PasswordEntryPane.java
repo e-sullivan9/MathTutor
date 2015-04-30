@@ -33,7 +33,7 @@ import javax.swing.JOptionPane;
  * @author Eric Sullivan
  */
 public class PasswordEntryPane extends javax.swing.JPanel {
-
+    private String icon;
     /**
      * Creates new form PasswordEntryPane
      */
@@ -48,14 +48,16 @@ public class PasswordEntryPane extends javax.swing.JPanel {
      * @param frame
      * @param parent 
      */
-    public PasswordEntryPane(String name,Icon icon,Login frame,PassEntryLayer parent){
+    public PasswordEntryPane(String name,String icon,Login frame,PassEntryLayer parent){
         setPreferredSize(new Dimension(800,600));
         initComponents();
         this.parent = parent;
         this.name=name;
         this.frame = frame;
+        this.icon=icon;
         title.setText("Hi "+name+"!");
-        userIcon.setIcon(icon);
+        String[] split = icon.split(".");
+        userIcon.setIcon(new ImageIcon(icon+"-large.png"));
         back.addMouseListener(new Listener());
         help.addMouseListener(new Listener());
         next.addMouseListener(new Listener());
@@ -167,7 +169,7 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                             BoxLayout bl = new BoxLayout(frame.getContentPane(),BoxLayout.X_AXIS);
                             frame.setLayout(bl);
                             frame.setCurrentPane( new GradeChooserLayer(frame,99));
-                            frame.setAccountPanel(new AccountPanel(new Account(name,userIcon.getIcon()),frame));
+                            frame.setAccountPanel(new AccountPanel(new Account(name,new ImageIcon(icon)),frame));
                             frame.add(frame.getAccountPanel());
                             frame.add(frame.getCurrentPane());
                             frame.repaint();

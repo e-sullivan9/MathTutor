@@ -135,6 +135,13 @@ public class ToTLayer extends HelpLayerAbstract {
                 butters = new HelpPane("Oh Boy, the ice cream shop. I'd get you some but its\nanimals only."
                         + " But it does give us the chance to learn about Sequences by counting where the animal is in line.");
                 break;
+            case "Compare1":
+                butters = new HelpPane("Compare Vally again! but this time youll be learning the >, <, = symbols");
+                break;
+            case "Fractions":
+                butters = new HelpPane("Oh Geez this is the partial plains. This place is full of halve and halve of halve. weird but it does make for a prefect to learn about "
+                        + "Fractions!");
+                break;
             default:
                 butters = new HelpPane("Its the kitchen. Here we can learn about wholes and halve while getting a little hungry.");
                 break;

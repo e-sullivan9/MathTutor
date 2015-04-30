@@ -48,7 +48,6 @@ public class TestGeneral extends HelpLayerAbstract {
      * @param frame 
      */
     public TestGeneral(String testName,String grade, Login frame) {
-        System.out.println(testName);
         cl = new CardLayout();
         index = 0;
         setLayout(cl);

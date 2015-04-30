@@ -23,7 +23,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Module" alignment="1" max="32767" attributes="0"/>
+                  <Component id="module" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -31,8 +31,8 @@
                           <Component id="icon" max="32767" attributes="0"/>
                           <Component id="seeWrongPane" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="print" min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="print" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -46,19 +46,17 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="Module" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="module" min="-2" pref="47" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="banner" min="-2" pref="101" max="-2" attributes="0"/>
+              <Component id="banner" min="-2" pref="89" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="icon" min="-2" pref="211" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="numCorrect" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="seeWrongPane" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="print" min="-2" pref="67" max="-2" attributes="0"/>
+              <Component id="icon" min="-2" pref="211" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Component id="numCorrect" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="print" max="32767" attributes="0"/>
+                  <Component id="seeWrongPane" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
           </Group>
@@ -87,13 +85,16 @@
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Module">
+    <Component class="javax.swing.JLabel" name="module">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="90" green="d2" red="90" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Comic Sans MS" size="25" style="1"/>
+          <Font name="Comic Sans MS" size="30" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -160,7 +161,6 @@
           <Font name="Comic Sans MS" size="14" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Print"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>

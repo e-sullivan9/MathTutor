@@ -7,10 +7,18 @@ package mathtutor;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.sql.*;
 import java.util.Stack;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 
 /**
  * This is the program Frame and main.
@@ -34,14 +42,22 @@ public class Login extends javax.swing.JFrame {
         lastPane = new Stack<>();
         currentPane = mainPane;
         loadAccounts();
+        //card layout for the middle panels
         cl = new CardLayout();
         accountPane.setLayout(cl);
+        //icons for the bottom buttons
         back.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\back.png"));
         next.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\forward.png"));
         logout.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\quit.png"));
+        help.setIcon(new ImageIcon(".\\Icons\\Icons\\Buttons\\help.png"));
+        // Action Listener
         back.addMouseListener(new NextPrev());
         next.addMouseListener(new NextPrev());
         logout.addMouseListener(new NextPrev());
+        help.addMouseListener(new NextPrev());
+        
+        setUpClip();
+        
         setLocationRelativeTo(null);
         setResizable(false);
         
@@ -94,6 +110,8 @@ public class Login extends javax.swing.JFrame {
         next = new javax.swing.JLabel();
         logoutPane = new javax.swing.JPanel();
         logout = new javax.swing.JLabel();
+        helpPane = new javax.swing.JPanel();
+        help = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,26 +193,50 @@ public class Login extends javax.swing.JFrame {
             .addComponent(logout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
         );
 
+        helpPane.setBackground(new java.awt.Color(144, 210, 144));
+
+        help.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout helpPaneLayout = new javax.swing.GroupLayout(helpPane);
+        helpPane.setLayout(helpPaneLayout);
+        helpPaneLayout.setHorizontalGroup(
+            helpPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(helpPaneLayout.createSequentialGroup()
+                .addComponent(help, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        helpPaneLayout.setVerticalGroup(
+            helpPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, helpPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(help, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
         mainPaneLayout.setHorizontalGroup(
             mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPaneLayout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(title)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(mainPaneLayout.createSequentialGroup()
-                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPaneLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(250, 250, 250)
+                        .addComponent(title)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(mainPaneLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(backPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(mainPaneLayout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(mainPaneLayout.createSequentialGroup()
+                                .addComponent(helpPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(backPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(logoutPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(logoutPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         mainPaneLayout.setVerticalGroup(
             mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,14 +245,18 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(title)
                 .addGap(88, 88, 88)
                 .addComponent(accountPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(backPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nextPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(logoutPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPaneLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(backPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nextPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(mainPaneLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logoutPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(helpPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,7 +302,7 @@ public class Login extends javax.swing.JFrame {
                 accountPanels.add(apf);
             }
 
-            accountPanels.add(new accountPanelForm("New Account", "sticker.png"));
+            accountPanels.add(new accountPanelForm("New Account", ".\\Icons\\Icons\\Icons\\new.png"));
             accountPanels.get(accountPanels.size() - 1).addMouseListener(new NewAccountListener());
             if (accountPanels.size() % 4 != 0) {
                 int needed = 4 - accountPanels.size() % 4;
@@ -268,11 +314,9 @@ public class Login extends javax.swing.JFrame {
             }
             
             for (int i = 0; i < accountPanels.size(); i++) {
-                //System.out.println("here");
                 usp.add(accountPanels.get(i));
                 accountPane.add(usp);
                 if (i % 4 == 3 && i != 0) {
-                    //System.out.println("added at " + i);
                     accountPane.add(usp);
                     usp = new userSwitchPane();
                 }
@@ -319,7 +363,7 @@ public class Login extends javax.swing.JFrame {
             ((accountPanelForm)e.getSource()).setBackground(Color.GREEN);
         }
         public void mouseClicked(MouseEvent e) {
-            // System.out.println(((accountPanelForm)e.getSource()).getJLabelName());
+            clipStop();
             getContentPane().removeAll();
             getContentPane().setLayout(new GridLayout(1,1));
             lastPane.push(currentPane);
@@ -339,14 +383,15 @@ public class Login extends javax.swing.JFrame {
         public void mouseClicked(MouseEvent e){
             if(e.getSource()==back){
                 cl.previous(accountPane);
-               // System.out.println("jLabel3 Clicked");
             }
             if(e.getSource()==next){
                 cl.next(accountPane);
-               // System.out.println("jLabel4 Clicked");
             }
             if(e.getSource()==logout){
                 System.exit(0);
+            }
+            if(e.getSource()==help){
+                help();
             }
         }
         public void mouseEntered(MouseEvent e) {
@@ -359,6 +404,9 @@ public class Login extends javax.swing.JFrame {
             if(e.getSource()==logout){
             logoutPane.setBackground(new Color(255, 150, 15));
             }
+            if(e.getSource()==help){
+            helpPane.setBackground(new Color(255, 150, 15));
+            }
         }
         public void mouseExited(MouseEvent e) {
             if(e.getSource()==back){
@@ -370,12 +418,56 @@ public class Login extends javax.swing.JFrame {
             if(e.getSource()==logout){
             logoutPane.setBackground(new Color(144, 210, 144));
             }
+            if(e.getSource()==help){
+            helpPane.setBackground(new Color(144, 210, 144));
+            }
         }
         
                 
                 
         
     }// </editor-fold>
+     public void setUpClip() {
+        try {
+            File yourFile = new File(".\\Help\\SelectUser.wav");
+            AudioInputStream stream;
+            AudioFormat format;
+            DataLine.Info info;
+
+            stream = AudioSystem.getAudioInputStream(yourFile);
+            format = stream.getFormat();
+            info = new DataLine.Info(Clip.class, format);
+            clip = (Clip) AudioSystem.getLine(info);
+            LineListener listener = new LineListener() {
+                public void update(LineEvent e) {
+                    if (e.getType() == LineEvent.Type.STOP) {
+                        clip.close();
+                        setUpClip();
+                    }
+                }
+            };
+            clip.addLineListener(listener);
+            clip.open(stream);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+     }
+    public void help() {
+        try {
+            if(clip.isRunning()){
+            clip.stop();
+            clip.close();
+            setUpClip();
+            }
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void clipStop() {
+        clip.stop();
+    }
     
     /**
      * @param args the command line arguments
@@ -414,7 +506,7 @@ public class Login extends javax.swing.JFrame {
     
     
     
-    
+    private Clip clip;
     private CardLayout cl;
     private Login frame;
     private ArrayList<JPanel> accountPanels;
@@ -425,6 +517,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel accountPane;
     private javax.swing.JLabel back;
     private javax.swing.JPanel backPane;
+    private javax.swing.JLabel help;
+    private javax.swing.JPanel helpPane;
     private javax.swing.JLabel logout;
     private javax.swing.JPanel logoutPane;
     private javax.swing.JPanel mainPane;

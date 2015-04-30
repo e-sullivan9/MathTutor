@@ -57,7 +57,7 @@ public class testForm extends HelpLayerAbstract {
         this.correctAnswer = correctAnswer;
 
         getButters();
-        butters.setBounds(0, 170, 610, 212);
+        butters.setBounds(0, 170, 600, 212);
         butters.addMouseListener(new AnswerHandler());
         add(top, Integer.valueOf(0));
         add(bot, Integer.valueOf(0));
@@ -70,7 +70,7 @@ public class testForm extends HelpLayerAbstract {
 
     private void buildTop() {
         top = new JPanel();
-        top.setBounds(0, 0, 624, 280);
+        top.setBounds(0, 0, 610, 280);
         top.setLayout(new BoxLayout(top, BoxLayout.X_AXIS));
         top.setBackground(new Color(144, 210, 144));
         top.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
@@ -92,7 +92,7 @@ public class testForm extends HelpLayerAbstract {
     private void buildBot() {
         GridLayout gl = new GridLayout(2, 2);
         bot = new JPanel(gl);
-        bot.setBounds(0, 280, 624, 310);
+        bot.setBounds(0, 280, 610, 310);
         bot.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         bot.setBackground(new Color(144, 210, 144));
         gl.setHgap(10);
@@ -117,14 +117,14 @@ public class testForm extends HelpLayerAbstract {
     }
 
     public void buildBack() {
-        correct = new JLabel(new ImageIcon("correct.png"));
-        wrong = new JLabel(new ImageIcon("incorrect.png"));
+        correct = new JLabel(new ImageIcon("sun.png"));
+        wrong = new JLabel(new ImageIcon("frown.png"));
 
-        correct.setBounds(155, 70, 300, 205);
+        correct.setBounds(105, 70, 400, 300);
         correct.addMouseListener(new AnswerHandler());
         correct.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        wrong.setBounds(155, 70, 300, 205);
+        wrong.setBounds(105, 70, 400, 300);
         wrong.addMouseListener(new AnswerHandler());
         wrong.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
@@ -227,6 +227,13 @@ public class testForm extends HelpLayerAbstract {
                 break;
             case "FinalTest":
                 butters = new HelpPane("Final Test Time! this test will ask you to use the skills you learned in this grade section");
+                break;
+            case "Compare1":
+                butters = new HelpPane("Test Time! and this ones a toughy its all about those greater, lesser and equal to signs");
+                break;
+            case "Fractions":
+                butters = new HelpPane("Test Time! Fractions are hard but important!");
+                break;
             default:
                 butters = new HelpPane("Test Time! This test will ask you to count whole and halves. Careful they question can be a bit tricky.");
                 break;
