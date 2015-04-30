@@ -64,24 +64,33 @@ public class UserCustomization extends javax.swing.JPanel {
         for (i = 0; i < stickerList.size(); ++i) {
 
             if (stickerList.get(i).getGrade().equals("PreK-K")) {
-
+                if(j < 3)
+                {
                 pk.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
                 ++j;
+                }
             }
         }
         j = 0;
         for (i = 0; i < stickerList.size(); ++i) {
-            if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 1-2")) {
-
+            if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 1-2"))
+            {
+                if(j < 3)
+                {
                 ot.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
                 ++j;
+                }
             }
         }
         j = 0;
         for (i = 0; i < stickerList.size(); ++i) {
-            if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 3-4")) {
+            if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 3-4"))
+            {
+                if(j < 3)
+                {
                 tf.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
                 ++j;
+                }
             }
         }
     }
