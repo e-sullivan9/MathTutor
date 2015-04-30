@@ -58,12 +58,35 @@ public class UserCustomization extends javax.swing.JPanel {
     {
        DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
        ArrayList<Stickers> aList = con.getStickersForUser(account);
-       for(Stickers s : aList)
-       {
-           //Need to create some algorithm for this
-       }
        con.closeDBConnection();
-       
+       int i = 0;
+       int j = 0;
+       for(i = 0; i < aList.size(); ++i)
+       {
+           if(aList.get(i).getGrade().equalsIgnoreCase("PreK-K"))
+           {
+               pk.get(j).setIcon(new ImageIcon(aList.get(i).getReward()));
+               ++j;
+           }
+       }
+       j = 0;
+       for(i = 0; i < aList.size(); ++i)
+       {
+           if(aList.get(i).getGrade().equalsIgnoreCase("Grade 1-2"))
+           {
+               ot.get(j).setIcon(new ImageIcon(aList.get(i).getReward()));
+               ++j;
+           }
+       }
+       j = 0;
+       for(i = 0; i < aList.size(); ++i)
+       {
+           if(aList.get(i).getGrade().equalsIgnoreCase("Grade 3-4"))
+           {
+               tf.get(j).setIcon(new ImageIcon(aList.get(i).getReward()));
+               ++j;
+           }
+       }
     }
     //private static final int ICON_HEIGHT = 100;
     //private static final int ICON_WIDTH = 100;
