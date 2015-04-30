@@ -175,7 +175,7 @@ public class CreateNewUser extends javax.swing.JPanel {
                     String pid = firstNameTF.getText() + " " + lastNameTF.getText().charAt(0);
                     if(!con.isUserExistant(pid))
                     {
-                    String pass = new String(jPasswordField1.getPassword());
+                    String pass = Xor.encrypt(new String(jPasswordField1.getPassword()));
                     String lock = "./Icons/Icons/icons/lock.png";
                     String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + pass + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "','" + lock + "','" + lock + "','" + lock + "','" + lock + "'";
 
