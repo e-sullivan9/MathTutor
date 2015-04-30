@@ -36,7 +36,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import java.util.Random;
+
 /**
  * This Class creates a new user by letting the user create a username and password. They can also select a avatar for their account.
  * Color scheme: blue, Orange and Green
@@ -187,11 +187,14 @@ public class CreateNewUser extends javax.swing.JPanel {
                     String table = "users";
                     String pid = firstNameTF.getText() + " " + lastNameTF.getText().charAt(0);
                     {
-                        Random rand = new Random();
+                        
+                        int i = 0;
+                        String temp = pid;
                         while(con.isPIDExistant(pid))
                         {
-                            pid+=Integer.toString(rand.nextInt(9));
-                            System.out.println(pid);
+                            pid = temp;
+                            pid+=Integer.toString(i);
+                            ++i;
                         }
                     String pass = Xor.encrypt(new String(jPasswordField1.getPassword()));
                     String lock = "./Icons/Icons/icons/lock.png";
