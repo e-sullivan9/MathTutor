@@ -92,8 +92,7 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                         for(int i=0;i<chartemp.length;i++){
                             temp+=chartemp[i];
                         }
-                        //checks if the strings are the same.
-                        if(temp.equals(rs.getString("pass"))){
+                        if(temp.equals(Xor.decrypt(rs.getString("pass")))){
                             
                             JOptionPane.showMessageDialog(null, "Login successful");
                             frame.getContentPane().removeAll();
@@ -161,7 +160,8 @@ public class PasswordEntryPane extends javax.swing.JPanel {
                         }
                         
                         //checks password field against the databasse
-                        if(temp.equals(rs.getString("pass"))){
+                        
+                        if(temp.equals(Xor.decrypt(rs.getString("pass")))){
                             parent.clipStop();
                             JOptionPane.showMessageDialog(null, "Login Successful");
                             frame.getContentPane().removeAll();
