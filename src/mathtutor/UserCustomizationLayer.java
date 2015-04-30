@@ -9,7 +9,6 @@ package mathtutor;
 import java.awt.Dimension;
 import java.awt.print.*;
 import java.io.File;
-import java.util.ArrayList;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
