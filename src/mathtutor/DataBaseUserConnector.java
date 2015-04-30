@@ -276,12 +276,12 @@ public class DataBaseUserConnector
         }
     }
     /**
-     * check and see if a user with same name already exists
+     * check and see if a pid already exists in the database
      * pid = fname + last inital
      * @param pid
      * @return 
      */
-    public boolean isUserExistant(String pid)
+    public boolean isPIDExistant(String pid)
     {
         Statement state = null;
         boolean bUserExists = false;
