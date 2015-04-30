@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package mathtutor;
 
 import java.awt.BorderLayout;
@@ -19,97 +18,115 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- * This class shows the user how many question they got right on the test. If they got enough correct they will be given a pic that is added to their account
- * this Contains:
- * ArrayList of test questions
- * Login Frame
- * print button
+ * This class shows the user how many question they got right on the test. If
+ * they got enough correct they will be given a pic that is added to their
+ * account this Contains: ArrayList of test questions Login Frame print button
  * Click able JPanel to see question you got wrong
+ *
  * @author Eric Sullivan
  */
-public class Reward extends JPanel{
+public class Reward extends JPanel {
+
     private ArrayList<testForm> test;
     private Login frame;
     private RewardLayer layer;
     private String reward;
     private int numberOfQuestions;
-/**
- * Constructor check the number of question the user got correct and build the page accordingly 
- * @param correct
- * @param testName
- * @param grade
- * @param test
- * @param frame
- * @param parent 
- */
-    public Reward(int correct,int numberOfQuestions,String testName,String grade, ArrayList<testForm> test,Login frame,RewardLayer parent) {
+
+    /**
+     * Constructor check the number of question the user got correct and build
+     * the page accordingly
+     *
+     * @param correct
+     * @param testName
+     * @param grade
+     * @param test
+     * @param frame
+     * @param parent
+     */
+    public Reward(int correct, int numberOfQuestions, String testName, String grade, ArrayList<testForm> test, Login frame, RewardLayer parent) {
         initComponents();
-        this.test=test;
-        this.frame=frame;
-        this.layer=parent;
-        this.numberOfQuestions=numberOfQuestions;
+        this.test = test;
+        this.frame = frame;
+        this.layer = parent;
+        this.numberOfQuestions = numberOfQuestions;
         seeWrongPane.addMouseListener(new Listener());
-        numCorrect.setText(""+correct+"/"+numberOfQuestions+" correct!");
+        numCorrect.setText("" + correct + "/" + numberOfQuestions + " correct!");
         module.setText(testName);
         print.setIcon(new ImageIcon(".\\Buttons\\print.png"));
         print.addMouseListener(new ListenerPrint());
         System.out.println(grade);
-        if((double)correct/(double)numberOfQuestions>=0.6){
+        if ((double) correct / (double) numberOfQuestions >= 0.6) {
             //gets reward from database
-            try{
+            try {
                 // opens a checker in the user connecter class
-                DataBaseUserConnector dbcon =new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/MathTutorDB", "TutorAdmin", "Tut0r4dm1n"); //change password for it to work.
-            //gets test reward details
-            String sql = "Select * from modules where name ='"+testName+"'";
-            //querys database
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            rs.next();
-            reward =rs.getString("reward");
-            //ask if the user already has the reward for this section
-            if(dbcon.isModuleComplete(testName)){
-                //insert the reward in there account
-            sql = "INSERT INTO completed VALUES('"+frame.getAccountPanel().getUserAccount().getUsername()+"','"+testName+"','"+grade+"','"+reward+"')";
-            rs.close();
-            stmt.executeUpdate(sql);
-            }
-            icon.setIcon(new ImageIcon(reward+"-large.png"));
-            
-            con.close();
-            stmt.close();
-            
-            }
-            catch(Exception ex){
+                DataBaseUserConnector dbcon = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/MathTutorDB", "TutorAdmin", "Tut0r4dm1n"); //change password for it to work.
+                //gets test reward details
+                String sql = "Select * from modules where name ='" + testName + "'";
+                //querys database
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                rs.next();
+                reward = rs.getString("reward");
+                //ask if the user already has the reward for this section
+                if (dbcon.isModuleComplete(testName, frame.getAccountPanel().getUserAccount().getUsername())) {
+                    //insert the reward in there account
+                    sql = "INSERT INTO completed VALUES('" + frame.getAccountPanel().getUserAccount().getUsername() + "','" + testName + "','" + grade + "','" + addExtraSlash(reward) + "')";
+                    rs.close();
+                    stmt.executeUpdate(sql);
+                }
+                icon.setIcon(new ImageIcon(reward + "-large.png"));
+
+                con.close();
+                stmt.close();
+                dbcon.closeDBConnection();
+
+            } catch (Exception ex) {
                 ex.printStackTrace();
-                
+
             }
-        }
-        else{
+        } else {
             icon.setIcon(new ImageIcon("frown.png"));
             banner.setText("Try Again!!");
         }
     }
+
     /**
-     * MouseAdapter for the see wrong Answer Panel.
-     * If the panel is hovered it will change color
-     * if clicked removes this panel and adds a seeWrongLayer
+     * MouseAdapter for the see wrong Answer Panel. If the panel is hovered it
+     * will change color if clicked removes this panel and adds a seeWrongLayer
      */
-        public class ListenerPrint extends MouseAdapter {
+    public class ListenerPrint extends MouseAdapter {
 
         public void mouseClicked(MouseEvent e) {
             layer.printer();
         }
-        
+
+    }
+
+    public String addExtraSlash(String path) {
+        char curr[] = path.toCharArray();
+        String temp = "";
+        int k = 0;
+        for (int i = 0; i < path.length(); ++i) {
+            temp += curr[i];
+            if (curr[i] == '\\') {
+                temp += '\\';
+
+            }
         }
+        return temp;
+
+    }
+
     public class Listener extends MouseAdapter {
 
         public void mouseClicked(MouseEvent e) {
             layer.clipStop();
             frame.remove(layer);
             frame.getLastPane().push(layer);
-            frame.setCurrentPane(new SeeWrongLayer(numberOfQuestions,test, frame));
+            frame.setCurrentPane(new SeeWrongLayer(numberOfQuestions, test, frame));
             frame.add(frame.getCurrentPane());
             frame.repaint();
             frame.pack();
@@ -124,7 +141,6 @@ public class Reward extends JPanel{
             ((JPanel) e.getSource()).setBackground(Color.green);
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

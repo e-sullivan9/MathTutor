@@ -63,10 +63,10 @@ public class DataBaseUserConnector
         }
     }
     
-    public boolean isModuleComplete(String test)
+    public boolean isModuleComplete(String test,String name)
     {
         Statement state =null;
-        String sql = "select * from completed where name="+"'" + test + "'";
+        String sql = "select * from completed where name="+"'" + test + "' and user_id = '"+name+"'";
         ResultSet rs = null;
         boolean bCompleted = true;
         try
@@ -142,7 +142,7 @@ public class DataBaseUserConnector
             
             while(rs.next())
             {
-                aList.add(new Stickers(rs.getString(4),rs.getString(3))); 
+                aList.add(new Stickers(rs.getString("grade"),rs.getString("reward"))); 
             }
         }
         catch(SQLException e)
