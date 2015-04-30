@@ -39,6 +39,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+
+/**
+ * wrongForm class
+ * This is where test questions that were incorrect load the correct answers and highlight them
+ * loaded when a user clicks to see the right answer for the question they got wrong
+ */
 public class wrongForm extends HelpLayerAbstract {
 
     private JPanel top, bot, questionPane, help1, help2;
@@ -51,6 +57,11 @@ public class wrongForm extends HelpLayerAbstract {
     private Login frame;
     private Clip clip;
 
+    /**
+     * Constructor for wrongForm
+     * @param test
+     * @param frame 
+     */
     public wrongForm(testForm test, Login frame) {
         setPreferredSize(new Dimension(600,600));
         setBackground(new Color(144, 210, 144));
@@ -82,7 +93,9 @@ public class wrongForm extends HelpLayerAbstract {
          }
          done++;*/
     }
-
+/**
+ * builds the top half of the panel which is the question
+ */
     private void buildTop() {
         top = new JPanel();
         top.setBounds(0, 0, 600, 280);
@@ -104,6 +117,10 @@ public class wrongForm extends HelpLayerAbstract {
 
     }
 
+    /**
+     * builds the bottom half of the panel which are the questions
+     * highlights the correct answer
+     */
     private void buildBot() {
         GridLayout gl = new GridLayout(2, 2);
         bot = new JPanel(gl);
@@ -130,6 +147,9 @@ public class wrongForm extends HelpLayerAbstract {
         }
 
     }
+    /**
+     * Loads the help file that plays when help is clicked
+     */
           public void setUpClip() {
         try {
             File yourFile = new File(".\\Help\\wrongForm.wav");
@@ -159,6 +179,9 @@ public class wrongForm extends HelpLayerAbstract {
 
 
     @Override
+    /**
+     * plays the help file
+     */
     public void help() {
         try {
             if(clip.isRunning()){
@@ -174,6 +197,9 @@ public class wrongForm extends HelpLayerAbstract {
     }
 
     @Override
+    /**
+     * stops the help file
+     */
     public void clipStop() {
         clip.stop();
     }

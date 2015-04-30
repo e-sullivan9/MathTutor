@@ -19,19 +19,28 @@
 package mathtutor;
 
 /**
- *
- * @author
+ *Stickers class
+ *gets the sticker based on the grade/reward for module
  */
 public class Stickers {
     private final String grade;
     private final String reward;
     private boolean isShown;
+    /**
+     * constructor for the stickers class
+     * @param grade
+     * @param reward 
+     */
     public Stickers(String grade,String reward)
     {
         this.grade = grade;
         this.reward = reward;
         isShown = false;
     }
+    /**
+     * Getters and setters for various functions
+     * @return 
+     */
     public String getReward()
     {
         return reward;

@@ -24,9 +24,19 @@ package mathtutor;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * starts connection with the database
+ * 
+ */
 public class DataBaseUserConnector
 {
     private Connection con;
+    /**
+     * constructor for databaseUserConnector
+     * @param dbUrl
+     * @param username
+     * @param password 
+     */
     public DataBaseUserConnector(String dbUrl,String username,String password)
     {
         try
@@ -46,10 +56,20 @@ public class DataBaseUserConnector
             e.printStackTrace();
         }
     }
+    /**
+     * opens connection to database
+     * @param dbUrl
+     * @param username
+     * @param password
+     * @throws SQLException 
+     */
     private void openDBConnection(String dbUrl,String username, String password) throws SQLException
     {
         con = DriverManager.getConnection(dbUrl,username,password);
     }
+    /**
+     * closes the connection to the database
+     */
     public void closeDBConnection()
     {
         try
@@ -76,6 +96,12 @@ public class DataBaseUserConnector
         }
     }
     
+    /**
+     * check and see if a user has completed modules 
+     * @param test
+     * @param name
+     * @return 
+     */
     public boolean isModuleComplete(String test,String name)
     {
         Statement state =null;
@@ -108,6 +134,12 @@ public class DataBaseUserConnector
         }
         return bCompleted;
     }
+    /**
+     * loads the favorite stickers from the database
+     * Each user has 4 favorite stickers saved in the database
+     * @param account
+     * @return 
+     */
     public ArrayList<String> getFavoriteStickers(Account account)
     {
         Statement state =null;
@@ -142,6 +174,12 @@ public class DataBaseUserConnector
         }
         return aList;
     }
+    /**
+     * loads all of the stickers that have been earned by completing tests
+     * loads them into an arraylist
+     * @param account
+     * @return 
+     */
     public ArrayList<Stickers> getStickersForUser(Account account)
     {
         Statement state =null;
@@ -177,6 +215,11 @@ public class DataBaseUserConnector
         }
         return aList;
     }
+    /**
+     * updates the favorites icons when they are changed from the hall of fame screen 
+     * @param account
+     * @param favIcons 
+     */
     public void updateFavoriteIcons(Account account, ArrayList<String> favIcons)
     {
         Statement state = null;
@@ -209,6 +252,11 @@ public class DataBaseUserConnector
             terminate(state);
         }
     }
+    /**
+     * Inserts the entry in the table specified
+     * @param table
+     * @param entry 
+     */
     public void insertIntoDB(String table,String entry)
     {
         Statement state = null;
@@ -227,6 +275,12 @@ public class DataBaseUserConnector
             terminate(state);
         }
     }
+    /**
+     * check and see if a user with same name already exists
+     * pid = fname + last inital
+     * @param pid
+     * @return 
+     */
     public boolean isUserExistant(String pid)
     {
         Statement state = null;

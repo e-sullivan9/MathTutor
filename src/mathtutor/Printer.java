@@ -23,6 +23,10 @@ import java.awt.*;
 import java.awt.print.*;
 import java.awt.print.Printable;
 
+/**
+ * printer class
+ * 
+ */
 public class Printer implements Printable {
     final Component comp;
 
@@ -31,6 +35,10 @@ public class Printer implements Printable {
     }
 
     @Override
+    /**
+     * prints the component of the page that the button is clicked from 
+     * gets the component size and prints based on that
+     */
     public int print(Graphics g, PageFormat format, int page_index) 
             throws PrinterException {
         if (page_index > 0) {

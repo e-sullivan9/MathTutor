@@ -49,7 +49,7 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
         initComponents();
     }
     /**
-     * 
+     * selects the module based on the grade and adds it to the frame
      * @param grade
      * @param frame
      * @param parent 
@@ -108,6 +108,7 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
         }
     }
     /**
+     * listener to see which module was selected and loads the frame on the screen
      * 
      */
     public class Listener extends MouseAdapter {
@@ -144,7 +145,8 @@ public class ModuleSelectorWindow extends javax.swing.JPanel {
     }
 
     /**
-     *
+     *scroll between different modules
+     * hover effect- changes colors if hovering over module
      */
     public class NextPrev extends MouseAdapter {
 

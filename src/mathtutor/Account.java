@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import javax.swing.Icon;
 
 /**
- *
- * @author Eric Sullivan
+ * account class
+ * gets information of the account
+ * the user name, icon, favorites
  */
 public class Account {
     private String username;
@@ -19,24 +20,41 @@ public class Account {
     private ArrayList<Icon> topFour;
     private ArrayList<String> favorites;
     
+    /**
+     * account constructor 
+     * @param username
+     * @param icon 
+     */
     public Account(String username, Icon icon){
         this.username = username;
         this.icon = icon;
         getFavoritesfromdb();
     }
+    /**
+     * gets the favorite stickers based on the user
+     */
     private void getFavoritesfromdb()
     {
        DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
        favorites = con.getFavoriteStickers(this);
        con.closeDBConnection();
     }
+    /**
+     * returns the favorite stickers as an arraylist
+     * 
+    */
     public ArrayList<String> getFavorites(){
         getFavoritesfromdb();
         return favorites;
     }
+    /**
+     * gets the user name
+     * @return 
+     */
     public String getUsername() {
         return username;
     }
+    
     public boolean Complete(String grade){
         DataBaseUserConnector db = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
         if(db.getStickersForUser(this).size()>=8){
@@ -48,6 +66,10 @@ public class Account {
         }
     }
 
+    /**
+     * various getters and setters
+     *
+     */
     public void setUsername(String username) {
         this.username = username;
     }

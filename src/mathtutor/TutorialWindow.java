@@ -42,6 +42,12 @@ public class TutorialWindow extends javax.swing.JPanel {
         initComponents();
     }
 
+    /**
+     * constructor for tutorial window
+     * @param image
+     * @param frame
+     * @param parent 
+     */
     public TutorialWindow(String image, Login frame, TutorialLayer parent) {
         this.image = image;
         this.frame = frame;
@@ -51,6 +57,11 @@ public class TutorialWindow extends javax.swing.JPanel {
         tutorial();
     }
 
+    /**
+     * loads the sound clip for the tutorials
+     * problems has two so it has to be handled differently 
+     * else load the clip and start playing based on name of module
+     */
     public synchronized void tutorial() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -135,7 +146,9 @@ public class TutorialWindow extends javax.swing.JPanel {
 
     }
                 
-
+/**
+ * stops running the help clip
+ */
     public void StopClip() {
         clip.stop();
     }

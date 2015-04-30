@@ -31,6 +31,10 @@ public class HelpPane extends javax.swing.JPanel {
     public HelpPane() {
         initComponents();
     }
+    /**
+     * constructor for helpPAne
+     * @param Text 
+     */
     public HelpPane(String Text) {
         initComponents();
         jTextArea1.setText(Text);

@@ -51,6 +51,15 @@ public class testForm extends HelpLayerAbstract {
     TestGeneral pane;
     String correctImage;
 
+    /**
+     * TestForm constructor
+     * @param id
+     * @param question
+     * @param answers
+     * @param correctAnswer
+     * @param correctImage
+     * @param pane 
+     */
     public testForm(int id, String question, String[] answers, String correctAnswer,String correctImage, TestGeneral pane) {
         setBackground(new Color(144, 210, 144));
         question_id = id;
@@ -77,6 +86,9 @@ public class testForm extends HelpLayerAbstract {
         add(butters, Integer.valueOf(-300));
     }
 
+    /**
+     * builds the top part of the test which is the question
+     */
     private void buildTop() {
         top = new JPanel();
         top.setBounds(0, 0, 610, 280);
@@ -98,6 +110,9 @@ public class testForm extends HelpLayerAbstract {
 
     }
 
+    /**
+     * builds the bottom part of the panel which is 
+     */
     private void buildBot() {
         GridLayout gl = new GridLayout(2, 2);
         bot = new JPanel(gl);
@@ -125,6 +140,9 @@ public class testForm extends HelpLayerAbstract {
 
     }
 
+    /**
+     * builds the pop up correct or incorrect after completing a test question
+     */
     public void buildBack() {
         correct = new JLabel(new ImageIcon("sun.png"));
         wrong = new JLabel(new ImageIcon("frown.png"));
@@ -142,6 +160,10 @@ public class testForm extends HelpLayerAbstract {
 
     }
 
+    /**
+     * Getters and setters for various functions used through the test
+     * first one loads the helpful prompt that describes what the activity is about
+     */
     public void firstOne() {
         setLayer(butters, 300);
     }
@@ -208,9 +230,13 @@ public class testForm extends HelpLayerAbstract {
     }
 
     @Override
+    
     public void clipStop() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    /**
+     * loads the dialog for Mr.Butters to display for the appropriate module
+     */
         private void getButters() {
         switch (pane.getTestName()) {
             case "Coins":
@@ -249,7 +275,9 @@ public class testForm extends HelpLayerAbstract {
         }
     }
     
-
+/**
+ * creates the hover effect of answers 
+ */
     public class AnswerHandler extends MouseAdapter {
 
         @Override
@@ -271,6 +299,9 @@ public class testForm extends HelpLayerAbstract {
         }
 
         @Override
+        /**
+         * changes the color of answers back to green when back
+         */
         public void mouseExited(MouseEvent e) {
             if (getLayer(correct) != 300 && getLayer(wrong) != 300 && getLayer(butters) != 300) {
                 if (e.getSource() == answerP.get(0)) {
@@ -289,6 +320,9 @@ public class testForm extends HelpLayerAbstract {
         }
 
         @Override
+        /**
+         * handles the answer being clicked and prompting if correct or incorrect
+         */
         public void mouseClicked(MouseEvent e) {
             if (getLayer(correct) != 300 && getLayer(wrong) != 300 && getLayer(butters) != 300) {
                 if (e.getSource() == answerP.get(0)) {

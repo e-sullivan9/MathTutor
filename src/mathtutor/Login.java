@@ -465,6 +465,9 @@ public class Login extends javax.swing.JFrame {
             ex.printStackTrace();
         }
      }
+     /**
+      * loads help clip
+      */
     public void help() {
         try {
             if(clip.isRunning()){
@@ -478,6 +481,9 @@ public class Login extends javax.swing.JFrame {
         }
 
     }
+    /**
+     * stops clip from playing
+     */
     public void clipStop() {
         clip.stop();
     }

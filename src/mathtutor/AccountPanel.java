@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
- *
- * @author Eric Sullivan
+ * This is the account panel on the left side of each frame
+ * 
  */
 public class AccountPanel extends JPanel{
     Font myFont;
@@ -34,6 +34,10 @@ public class AccountPanel extends JPanel{
     JPanel top, bot, buttons, account;
     private Account userAccount;
     private Login frame;
+    
+    /**
+     * account panel constructor
+     */
     public AccountPanel(){
         myFont = new Font("Comic Sans MS", Font.BOLD,50);      
        
@@ -48,6 +52,11 @@ public class AccountPanel extends JPanel{
 	add(buttons,BorderLayout.SOUTH);
         
     }
+    /**
+     * account panel constructor
+     * @param userAccount
+     * @param frame 
+     */
     public AccountPanel(Account userAccount,Login frame){
         this.frame = frame;
         this.userAccount = userAccount;
@@ -67,6 +76,9 @@ public class AccountPanel extends JPanel{
         add(bot,BorderLayout.CENTER);
 	add(buttons,BorderLayout.SOUTH);
     }
+    /**
+     * builds the top portion which is the name of the user
+     */
     private void buildTop() {
         top = new JPanel(new BorderLayout());
         top.setBackground(new Color(144,210,144));
@@ -86,6 +98,10 @@ public class AccountPanel extends JPanel{
         top.add(accountPic,BorderLayout.CENTER);
         top.add(section,BorderLayout.SOUTH);
     } 
+    /**
+     * builds the bottom portion of the account panel which is the user favorites
+     * in a grid
+     */
     private void buildBot() {
         bot = new JPanel(new GridLayout(3,2,10,10));
         sticker = new ArrayList<>();
@@ -98,6 +114,10 @@ public class AccountPanel extends JPanel{
         }
         
     }
+    /**
+     * updates the favorite part of the frame if they user changed it from the hall of fame
+     * 
+     */
     public void update(){
         remove(bot);
         buildBot();
@@ -106,6 +126,9 @@ public class AccountPanel extends JPanel{
         frame.pack();
     }
 
+    /**
+     * builds the back and help buttons on the panel and adds listeners
+     */
     private void buildButtons() {
         buttons = new JPanel(new GridLayout(1,2,25,10));
         buttons.setAlignmentX(Component.BOTTOM_ALIGNMENT);
@@ -146,10 +169,17 @@ public class AccountPanel extends JPanel{
         }
 }
 
+    /**
+     * gets the user account
+     * @return 
+     */
     public Account getUserAccount() {
         return userAccount;
     }
-
+/**
+ * sets the user account
+ * @param userAccount 
+ */
     public void setUserAccount(Account userAccount) {
         this.userAccount = userAccount;
     }
