@@ -131,17 +131,18 @@ public class DataBaseUserConnector
     }
     public ArrayList<Stickers> getStickersForUser(Account account)
     {
-        PreparedStatement pst=null;
-        ResultSet rs = null;
+        Statement state =null;
+        String sql = "select * from completed where user_id="+"'" + account.getUsername() + "'";
         ArrayList<Stickers> aList = new ArrayList<>();
+        ResultSet rs = null;
         try
         {
-            pst = con.prepareStatement("select * from completed where user_id=? ");
-            pst.setString(1,account.getUsername());
-            rs = pst.executeQuery();
+            state = con.createStatement();
+            rs = state.executeQuery(sql);
+            
             while(rs.next())
             {
-                aList.add(new Stickers(rs.getString(2),rs.getString(3)));
+                aList.add(new Stickers(rs.getString(4),rs.getString(3))); 
             }
         }
         catch(SQLException e)
@@ -151,10 +152,11 @@ public class DataBaseUserConnector
         {
             try
             {
+                if(state != null)
+                    state.close();
                 if(rs != null)
-                rs.close();
-                if(pst != null)
-                pst.close();
+                    rs.close();
+                
             }
             catch(SQLException e)
             {
