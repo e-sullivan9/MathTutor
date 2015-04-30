@@ -58,15 +58,11 @@ public class UserCustomization extends javax.swing.JPanel {
        con.closeDBConnection();
        int i = 0;
        int j = 0;
-        System.out.println(aList.size());
-        System.out.println(aList.get(0).getReward());
-        System.out.println(aList.get(0).getGrade());
+ 
         for (i = 0; i < aList.size(); ++i) {
-            System.out.println(aList.get(i).getReward());
-            System.out.println(aList.get(i).getGrade());
+
             if (aList.get(i).getGrade().equals("PreK-K")) {
-                System.out.println(aList.get(i).getReward());
-                System.out.println(aList.get(i).getGrade());
+ 
                 pk.get(j).setIcon(new ImageIcon(aList.get(i).getReward()));
                 ++j;
             }
