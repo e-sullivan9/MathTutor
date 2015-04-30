@@ -146,10 +146,10 @@ public class UserCustomization extends javax.swing.JPanel {
         pk.add(jlPKTwo);
         pk.add(jlPKThree);
         pk.add(jlPKFour);
-        jLabel2.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        jLabel3.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        jLabel4.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        jLabel5.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
+        jLabel2.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\bear.png"));
+        jLabel3.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\elephant.png"));
+        jLabel4.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\pig.png"));
+        jLabel5.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\fox.png"));
         favorites = new JLabel[4];
         favorites[0] = jLabel2;
         favorites[1] = jLabel3;
