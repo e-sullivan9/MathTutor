@@ -65,8 +65,9 @@ public class AccountPanel extends JPanel{
         name.addMouseListener(new ImageHandler());
         accountPic = new JLabel(userAccount.getIcon());
         
-        section = new JLabel("", JLabel.CENTER);
+        section = new JLabel("Hall of Fame", JLabel.CENTER);
         myFont = new Font("Comic Sans MS", Font.BOLD,25);
+        section.setForeground(Color.WHITE);
         section.setFont(myFont);
         
         top.add(name,BorderLayout.NORTH);
@@ -78,7 +79,7 @@ public class AccountPanel extends JPanel{
         sticker = new ArrayList<>();
         bot.setBackground(new Color(144,210,144));
         for(int i = 0;i<4;i++){
-            sticker.add(new JLabel(new ImageIcon("sticker.png")));
+            sticker.add(new JLabel(new ImageIcon(".\\Icons\\Stickers\\trex.png")));
             sticker.get(i).setAlignmentX(Component.CENTER_ALIGNMENT);
             bot.add(sticker.get(i));
         }

@@ -677,4 +677,33 @@ Values
 (null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png'),
 (null, './Icons/Grade1-3/NotDone.png','?','?','?','?','?','./Icons/Grade1-3/NotDone.png');
 
+CREATE TABLE Fractions
+(
+question_id int AUTO_INCREMENT,
+questionImage varchar(255) NOT NULL,
+answer1 varchar(255) NOT NULL,
+answer2 varchar(255) NOT NULL, 
+answer3 varchar(255) NOT NULL,
+answer4 varchar(255) NOT NULL,
+correctAnswer varchar(255) NOT NULL,
+correctAnswerImage varchar(255) NOT NULL,
+PRIMARY KEY (question_id)
+);
 
+INSERT INTO Fractions
+Values
+(null,'./Icons/grade 3-4/Grade3Fractions/fifth.png','1/10','1/2','1/5','1/3','1/5','./Icons/grade 3-4/Grade3Fractions/fifth.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/fifth1.png','1/10','1/2','1/5','1/3','1/5','./Icons/grade 3-4/Grade3Fractions/fifth1.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/fifth2.png','fifth','half','fourth','tenth','fifth','./Icons/grade 3-4/Grade3Fractions/fifth2.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/fourth.png','1/4','1/2','1/5','1/3','1/4','./Icons/grade 3-4/Grade3Fractions/fourth.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/fourth1.png','1/4','1/2','1/5','1/3','1/4','./Icons/grade 3-4/Grade3Fractions/fourth1.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/fourth2.png','fourth','third','half','fifth','fourth','./Icons/grade 3-4/Grade3Fractions/fourth2.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/Half.png','1/4','1/2','1/5','1/3','1/2','./Icons/grade 3-4/Grade3Fractions/Half.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/Half1.png','1/4','1/2','1/5','1/3','1/2','./Icons/grade 3-4/Grade3Fractions/Half1.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/Half2.png','fourth','tenth','half','fifth','half','./Icons/grade 3-4/Grade3Fractions/Half2.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/Tenth.png','1/4','1/2','1/10','1/3','1/10','./Icons/grade 3-4/Grade3Fractions/Tenth.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/Tenth1.png','1/4','1/4','1/10','1/3','1/10','./Icons/grade 3-4/Grade3Fractions/Tenth1.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/Tenth2.png','fourth','tenth','fifth','half','tenth','./Icons/grade 3-4/Grade3Fractions/Tenth2.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/Third.png','1/4','1/2','1/10','1/3','1/3','./Icons/grade 3-4/Grade3Fractions/Third.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/Third1.png','1/4','1/2','1/10','1/3','1/3','./Icons/grade 3-4/Grade3Fractions/Third1.png'),
+(null,'./Icons/grade 3-4/Grade3Fractions/Third2.png','fourth','tenth','fifth','third','third','./Icons/grade 3-4/Grade3Fractions/Third2.png');

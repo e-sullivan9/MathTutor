@@ -62,10 +62,6 @@ public class testForm extends HelpLayerAbstract {
         add(top, Integer.valueOf(0));
         add(bot, Integer.valueOf(0));
         add(butters, Integer.valueOf(-300));
-        /*if (done != 0) {
-         setLayer(butters, -300);
-         }
-         done++;*/
     }
 
     private void buildTop() {
