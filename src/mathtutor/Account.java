@@ -17,12 +17,19 @@ public class Account {
     private String username;
     private Icon icon;
     private ArrayList<Icon> topFour;
+    private ArrayList<String> favorites;
     
     public Account(String username, Icon icon){
         this.username = username;
         this.icon = icon;
+        getFavorites();
     }
-
+    private void getFavorites()
+    {
+       DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
+       favorites = con.getFavoriteStickers(this);
+       con.closeDBConnection();
+    }
     public String getUsername() {
         return username;
     }
