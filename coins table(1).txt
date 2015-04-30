@@ -516,19 +516,19 @@ PRIMARY KEY (question_id)
 
 INSERT INTO Compare1
 Values
-(null, './Icons/Grade1-3/Grade1Compare/Compare1.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare1.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare2.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare2.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare3.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare3.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare4.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare4.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare5.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare5.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare6.png','>','<','=','-----','=','./Icons/Grade1-3/Grade1Compare/Compare6.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare7.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare7.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare8.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare8.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare9.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare9.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare10.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare10.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare11.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare11.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare12.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare12.png'),
-(null, './Icons/Grade1-3/Grade1Compare/Compare13.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare13.png');
+(null, './Icons/Grade 1-2/Grade1Compare/Compare1.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare1.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare2.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare2.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare3.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare3.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare4.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare4.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare5.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare5.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare6.png','>','<','=','-----','=','./Icons/Grade1-3/Grade1Compare/Compare6.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare7.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare7.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare8.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare8.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare9.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare9.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare10.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare10.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare11.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare11.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare12.png','>','<','=','-----','>','./Icons/Grade1-3/Grade1Compare/Compare12.png'),
+(null, './Icons/Grade 1-2/Grade1Compare/Compare13.png','>','<','=','-----','<','./Icons/Grade1-3/Grade1Compare/Compare13.png');
 
 
 CREATE TABLE Misc1

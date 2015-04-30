@@ -77,6 +77,7 @@ public class TestGeneral extends HelpLayerAbstract {
             //Create a test question and adds it to the test line
             while (rs.next()) {
                 String[] questions = {rs.getString("answer1"), rs.getString("answer2"), rs.getString("answer3"), rs.getString("answer4")};
+                //shuffle answers
                 for (int i = 0; i < 20; i++) {
                     Random rng = new Random();
                     int a = rng.nextInt(3);

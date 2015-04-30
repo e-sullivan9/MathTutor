@@ -22,13 +22,16 @@ public class Account {
     public Account(String username, Icon icon){
         this.username = username;
         this.icon = icon;
-        getFavorites();
+        getFavoritesfromdb();
     }
-    private void getFavorites()
+    private void getFavoritesfromdb()
     {
        DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
        favorites = con.getFavoriteStickers(this);
        con.closeDBConnection();
+    }
+    public ArrayList<String> getFavorites(){
+        return favorites;
     }
     public String getUsername() {
         return username;

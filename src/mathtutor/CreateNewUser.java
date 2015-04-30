@@ -176,8 +176,8 @@ public class CreateNewUser extends javax.swing.JPanel {
                     if(!con.isUserExistant(pid))
                     {
                     String pass = new String(jPasswordField1.getPassword());
-                    
-                    String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + pass + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "','" + "lock" + "','" + "lock" + "','" + "lock" + "','" + "lock" + "'";
+                    String lock = "./Icons/Icons/icons/lock.png";
+                    String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + pass + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "','" + lock + "','" + lock + "','" + lock + "','" + lock + "'";
 
                     JOptionPane.showMessageDialog(null, "" + pid + " Created");
                     con.insertIntoDB(table, entry);

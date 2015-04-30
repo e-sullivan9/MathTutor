@@ -53,6 +53,7 @@ public class Reward extends JPanel{
         module.setText(testName);
         print.setIcon(new ImageIcon(".\\Buttons\\print.png"));
         print.addMouseListener(new ListenerPrint());
+        System.out.println(grade);
         if((double)correct/(double)numberOfQuestions>=0.6){
             //gets reward from database
             try{

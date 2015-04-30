@@ -56,7 +56,6 @@ public class PasswordEntryPane extends javax.swing.JPanel {
         this.frame = frame;
         this.icon=icon;
         title.setText("Hi "+name+"!");
-        String[] split = icon.split(".");
         userIcon.setIcon(new ImageIcon(icon+"-large.png"));
         back.addMouseListener(new Listener());
         help.addMouseListener(new Listener());

@@ -78,8 +78,9 @@ public class AccountPanel extends JPanel{
         bot = new JPanel(new GridLayout(3,2,10,10));
         sticker = new ArrayList<>();
         bot.setBackground(new Color(144,210,144));
+        ArrayList<String> favorites = userAccount.getFavorites();
         for(int i = 0;i<4;i++){
-            sticker.add(new JLabel(new ImageIcon(".\\Icons\\Stickers\\trex.png")));
+            sticker.add(new JLabel(new ImageIcon(favorites.get(i))));
             sticker.get(i).setAlignmentX(Component.CENTER_ALIGNMENT);
             bot.add(sticker.get(i));
         }
