@@ -12,10 +12,12 @@ package mathtutor;
 public class Stickers {
     private final String grade;
     private final String reward;
+    private boolean isShown;
     public Stickers(String grade,String reward)
     {
         this.grade = grade;
         this.reward = reward;
+        isShown = false;
     }
     public String getReward()
     {
@@ -25,4 +27,13 @@ public class Stickers {
     {
         return grade;
     }
+    public boolean getVisibility()
+    {
+        return isShown;
+    }
+    public void setVisibility(boolean isShown)
+    {
+        this.isShown = isShown;
+    }
+    
 }
