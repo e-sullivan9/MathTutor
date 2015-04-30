@@ -31,6 +31,7 @@ public class Account {
        con.closeDBConnection();
     }
     public ArrayList<String> getFavorites(){
+        getFavoritesfromdb();
         return favorites;
     }
     public String getUsername() {

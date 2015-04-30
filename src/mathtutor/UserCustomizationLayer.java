@@ -39,10 +39,10 @@ public class UserCustomizationLayer extends HelpLayerAbstract {
  * @param test
  * @param frame 
  */
-    public UserCustomizationLayer(Account user) {
+    public UserCustomizationLayer(Account user, Login frame) {
 
         this.frame = frame;
-        UserCustomization pane = new UserCustomization(user);
+        UserCustomization pane = new UserCustomization(user,frame);
         setPreferredSize(new Dimension(600, 600));
         pane.setBounds(0, 0, 600, 600);
         add(pane);

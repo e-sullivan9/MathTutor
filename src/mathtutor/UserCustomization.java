@@ -30,10 +30,12 @@ public class UserCustomization extends javax.swing.JPanel {
     private ArrayList<JLabel> pk;
     private ArrayList<JLabel> ot;
     private ArrayList<JLabel> tf;
-    ArrayList<Stickers> stickerList = null;
+    private ArrayList<Stickers> stickerList = null;
+    private Login frame;
 
-    public UserCustomization(Account account) {
+    public UserCustomization(Account account,Login frame) {
         initComponents();
+        this.frame= frame;
         this.account = account;
         onAction = new OnAction();
         onMouse = new OnMouse();
@@ -207,6 +209,7 @@ public class UserCustomization extends javax.swing.JPanel {
                             aList.add(addExtraSlash(favorites[i].getIcon().toString()));
                         }
                         con.updateFavoriteIcons(account, aList);
+                        frame.getAccountPanel().update();
                         con.closeDBConnection();
                     }
                     selected = null;
@@ -254,6 +257,7 @@ public class UserCustomization extends javax.swing.JPanel {
                 if (stickerList.get(i).getGrade().equals("PreK-K")) {
                     if (!stickerList.get(i).getVisibility()) {
                         if (j < 4) {
+                            stickerList.get(i).setVisibility(true);
                             pk.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
                             ++j;
                         }
@@ -267,6 +271,7 @@ public class UserCustomization extends javax.swing.JPanel {
                 if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 1-2")) {
                     if (stickerList.get(i).getVisibility()) {
                         if (j < 4) {
+                            stickerList.get(i).setVisibility(true);
                             ot.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
                             ++j;
                         }
@@ -280,6 +285,7 @@ public class UserCustomization extends javax.swing.JPanel {
                 if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 3-4")) {
                     if (!stickerList.get(i).getVisibility()) {
                         if (j < 4) {
+                            stickerList.get(i).setVisibility(true);
                             tf.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
                             ++j;
                         }
