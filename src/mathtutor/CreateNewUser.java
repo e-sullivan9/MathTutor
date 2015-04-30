@@ -36,7 +36,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
+import java.util.Random;
 /**
  * This Class creates a new user by letting the user create a username and password. They can also select a avatar for their account.
  * Color scheme: blue, Orange and Green
@@ -186,8 +186,13 @@ public class CreateNewUser extends javax.swing.JPanel {
                 if (errors.isEmpty()) {
                     String table = "users";
                     String pid = firstNameTF.getText() + " " + lastNameTF.getText().charAt(0);
-                    if(!con.isUserExistant(pid))
                     {
+                        Random rand = new Random();
+                        while(con.isPIDExistant(pid))
+                        {
+                            pid+=Integer.toString(rand.nextInt(1000));
+                            System.out.println(pid);
+                        }
                     String pass = Xor.encrypt(new String(jPasswordField1.getPassword()));
                     String lock = "./Icons/Icons/icons/lock.png";
                     String entry = "'" + pid + "','" + firstNameTF.getText() + "','" + lastNameTF.getText() + "','" + pass + "','" + addExtraSlash(((ImageIcon) selectedIcon.getIcon()).toString()) + "','" + lock + "','" + lock + "','" + lock + "','" + lock + "'";
@@ -207,10 +212,7 @@ public class CreateNewUser extends javax.swing.JPanel {
                     frame.pack();
                     layer.clipStop();
                     }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(null,"User " + firstNameTF.getText() + " " + lastNameTF.getText() + " already exists!");
-                    }
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, errors);
                 }
