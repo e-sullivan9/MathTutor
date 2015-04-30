@@ -122,6 +122,9 @@ public class ToTLayer extends HelpLayerAbstract {
         clip.stop();
     }
 
+    /**
+     * gets the dialog for Mr. butters that will be displayed when loaded in the module
+     */
     private void getButters() {
         switch (module) {
             case "Coins":
