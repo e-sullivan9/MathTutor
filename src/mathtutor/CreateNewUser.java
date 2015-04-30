@@ -190,7 +190,7 @@ public class CreateNewUser extends javax.swing.JPanel {
                         Random rand = new Random();
                         while(con.isPIDExistant(pid))
                         {
-                            pid+=Integer.toString(rand.nextInt(1000));
+                            pid+=Integer.toString(rand.nextInt(9));
                             System.out.println(pid);
                         }
                     String pass = Xor.encrypt(new String(jPasswordField1.getPassword()));
