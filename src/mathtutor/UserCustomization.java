@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.event.MouseListener;
+
 /**
  *
  * @author
@@ -29,6 +30,8 @@ public class UserCustomization extends javax.swing.JPanel {
     private ArrayList<JLabel> pk;
     private ArrayList<JLabel> ot;
     private ArrayList<JLabel> tf;
+    ArrayList<Stickers> stickerList = null;
+
     public UserCustomization(Account account) {
         initComponents();
         this.account = account;
@@ -37,69 +40,65 @@ public class UserCustomization extends javax.swing.JPanel {
         initLabels();
         loadModuleIconsFromDB();
         loadFavoriteIcons();
-        
-    }
-    private void loadFavoriteIcons()
-    {
-       DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
-       ArrayList<String> aList = con.getFavoriteStickers(account);
-       con.closeDBConnection();
-       
-       for(int i = 0; i < favorites.length; ++i)
-       {
-           favorites[i].setIcon(new ImageIcon(aList.get(i)));
-       }
-       
-    }
-    private void loadModuleIconsFromDB()
-    {
-       DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
-       ArrayList<Stickers> aList = con.getStickersForUser(account);
-       con.closeDBConnection();
-       int i = 0;
-       int j = 0;
- 
-        for (i = 0; i < aList.size(); ++i) {
 
-            if (aList.get(i).getGrade().equals("PreK-K")) {
- 
-                pk.get(j).setIcon(new ImageIcon(aList.get(i).getReward()));
+    }
+
+    private void loadFavoriteIcons() {
+        DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
+        ArrayList<String> aList = con.getFavoriteStickers(account);
+        con.closeDBConnection();
+
+        for (int i = 0; i < favorites.length; ++i) {
+            favorites[i].setIcon(new ImageIcon(aList.get(i)));
+        }
+
+    }
+
+    private void loadModuleIconsFromDB() {
+        DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
+        stickerList = con.getStickersForUser(account);
+        con.closeDBConnection();
+        int i = 0;
+        int j = 0;
+
+        for (i = 0; i < stickerList.size(); ++i) {
+
+            if (stickerList.get(i).getGrade().equals("PreK-K")) {
+
+                pk.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
                 ++j;
             }
         }
         j = 0;
-       for(i = 0; i < aList.size(); ++i)
-       {
-           if(aList.get(i).getGrade().equalsIgnoreCase("Grade 1-2"))
-           {
-               
-               ot.get(j).setIcon(new ImageIcon(aList.get(i).getReward()));
-               ++j;
-           }
-       }
-       j = 0;
-       for(i = 0; i < aList.size(); ++i)
-       {
-           if(aList.get(i).getGrade().equalsIgnoreCase("Grade 3-4"))
-           {
-               tf.get(j).setIcon(new ImageIcon(aList.get(i).getReward()));
-               ++j;
-           }
-       }
+        for (i = 0; i < stickerList.size(); ++i) {
+            if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 1-2")) {
+
+                ot.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
+                ++j;
+            }
+        }
+        j = 0;
+        for (i = 0; i < stickerList.size(); ++i) {
+            if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 3-4")) {
+                tf.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
+                ++j;
+            }
+        }
     }
+
     //private static final int ICON_HEIGHT = 100;
     //private static final int ICON_WIDTH = 100;
-    private void initLabels()
-    {
+
+    private void initLabels() {
         //Make sure to display correct user icon later
         //jlabelUserIcon.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlabelUserIcon.setIcon(account.getIcon());
-        
+
         //jlTFOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
-        
+
         jlTFOne.addMouseListener(onMouse);
-       // jlTFTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
+        // jlTFTwo.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFTwo.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jlTFTwo.addMouseListener(onMouse);
         //jlTFThree.setSize(ICON_HEIGHT,ICON_WIDTH);
@@ -130,7 +129,7 @@ public class UserCustomization extends javax.swing.JPanel {
         ot.add(jlOTTwo);
         ot.add(jlOTThree);
         ot.add(jlOTFour);
-        
+
         //jlPKOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jlPKOne.addMouseListener(onMouse);
@@ -157,11 +156,13 @@ public class UserCustomization extends javax.swing.JPanel {
         favorites[1] = jLabel3;
         favorites[2] = jLabel4;
         favorites[3] = jLabel5;
-        
+
         jButton1.addActionListener(onAction);
-        for(int i = 0; i < favorites.length; ++i)
+        for (int i = 0; i < favorites.length; ++i) {
             favorites[i].addMouseListener(onMouse);
+        }
     }
+
     public String addExtraSlash(String path) {
         char curr[] = path.toCharArray();
         String temp = "";
@@ -175,53 +176,44 @@ public class UserCustomization extends javax.swing.JPanel {
         return temp;
 
     }
-    private class OnMouse implements MouseListener
-    {
+
+    private class OnMouse implements MouseListener {
+
         private JLabel selected;
+
         @Override
-        public void mouseClicked(MouseEvent e)
-        {
+        public void mouseClicked(MouseEvent e) {
             {
-                System.out.println(((JLabel)e.getSource()).getIcon().toString());
-                if(selected != null)
-                {
-                    for(int i = 0; i < favorites.length; ++i)
-                    {
-                        if(((JLabel)e.getSource()).getIcon().toString().equals(favorites[i].getIcon().toString()))
-                        {
+                System.out.println(((JLabel) e.getSource()).getIcon().toString());
+                if (selected != null) {
+                    for (int i = 0; i < favorites.length; ++i) {
+                        if (((JLabel) e.getSource()).getIcon().toString().equals(favorites[i].getIcon().toString())) {
                             selected = null;
                         }
                     }
-                    if(selected == null)
-                    {
-                        JOptionPane.showMessageDialog(null,"You already have this icon as your favorite!");
-                    }
-                    else
-                    {
-                        selected.setIcon(((JLabel)e.getSource()).getIcon());
+                    if (selected == null) {
+                        JOptionPane.showMessageDialog(null, "You already have this icon as your favorite!");
+                    } else {
+                        selected.setIcon(((JLabel) e.getSource()).getIcon());
                         DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
                         ArrayList<String> aList = new ArrayList<>();
-                        for(int i = 0; i < favorites.length; ++i)
+                        for (int i = 0; i < favorites.length; ++i) {
                             aList.add(addExtraSlash(favorites[i].getIcon().toString()));
+                        }
                         con.updateFavoriteIcons(account, aList);
                         con.closeDBConnection();
                     }
                     selected = null;
-                }
-                else
-                {
-                    for(int i = 0; i < favorites.length; ++i)
-                    {
-                        if(e.getSource() == favorites[i])
-                        {
+                } else {
+                    for (int i = 0; i < favorites.length; ++i) {
+                        if (e.getSource() == favorites[i]) {
                             selected = favorites[i];
                         }
                     }
-                    if(selected == null)
-                    {
-                        JOptionPane.showMessageDialog(null,"You can only select a favorite icon!");
+                    if (selected == null) {
+                        JOptionPane.showMessageDialog(null, "You can only select a favorite icon!");
                     }
-                    
+
                 }
             }
         }
@@ -241,17 +233,58 @@ public class UserCustomization extends javax.swing.JPanel {
         @Override
         public void mouseExited(MouseEvent e) {
         }
-        
+
     }
-    private class OnAction implements ActionListener
-    {
-        
+
+    private class OnAction implements ActionListener {
+
         @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            
+        public void actionPerformed(ActionEvent e) {
+            int i = 0;
+            int j = 0;
+
+            for (i = 0; i < stickerList.size(); ++i) {
+
+                if (stickerList.get(i).getGrade().equals("PreK-K")) 
+                {
+                    if(!stickerList.get(i).getVisibility())
+                    {
+                        pk.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
+                        ++j;
+                    }
+                    else
+                        stickerList.get(i).setVisibility(false);
+                }
+            }
+            j = 0;
+            for (i = 0; i < stickerList.size(); ++i) {
+                if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 1-2")) 
+                {
+                    if(stickerList.get(i).getVisibility())
+                    {
+                    ot.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
+                    ++j;
+                    }
+                    else
+                        stickerList.get(i).setVisibility(false);
+                }
+            }
+            j = 0;
+            for (i = 0; i < stickerList.size(); ++i) {
+                if (stickerList.get(i).getGrade().equalsIgnoreCase("Grade 3-4")) 
+                {
+                    if(!stickerList.get(i).getVisibility())
+                    {
+                    tf.get(j).setIcon(new ImageIcon(stickerList.get(i).getReward()));
+                    ++j;
+                    }
+                    else
+                        stickerList.get(i).setVisibility(false);
+                }
+            }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
