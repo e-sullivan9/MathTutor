@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class DataBaseUserConnector
 {
 	private Connection con;
-        private static final int STICKER_COUNT = 24;
+        
 	public DataBaseUserConnector(String dbUrl,String username,String password)
 	{
 		try
