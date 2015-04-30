@@ -26,6 +26,9 @@ public class UserCustomization extends javax.swing.JPanel {
     private JLabel[] favorites;
     private final OnAction onAction;
     private final OnMouse onMouse;
+    private ArrayList<JLabel> pk;
+    private ArrayList<JLabel> ot;
+    private ArrayList<JLabel> tf;
     public UserCustomization(Account account) {
         initComponents();
         this.account = account;
@@ -55,7 +58,10 @@ public class UserCustomization extends javax.swing.JPanel {
     {
        DataBaseUserConnector con = new DataBaseUserConnector("MathTutorDB", "TutorAdmin", "Tut0r4dm1n");
        ArrayList<Stickers> aList = con.getStickersForUser(account);
-       
+       for(Stickers s : aList)
+       {
+           //Need to create some algorithm for this
+       }
        con.closeDBConnection();
        
     }
@@ -80,6 +86,11 @@ public class UserCustomization extends javax.swing.JPanel {
         //jlTFFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlTFFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jlTFFour.addMouseListener(onMouse);
+        tf = new ArrayList<>();
+        tf.add(jlTFOne);
+        tf.add(jlTFTwo);
+        tf.add(jlTFThree);
+        tf.add(jlTFFour);
         //jlOTOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jlOTOne.addMouseListener(onMouse);
@@ -92,6 +103,12 @@ public class UserCustomization extends javax.swing.JPanel {
         //jlOTFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlOTFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jlOTFour.addMouseListener(onMouse);
+        ot = new ArrayList<>();
+        ot.add(jlOTOne);
+        ot.add(jlOTTwo);
+        ot.add(jlOTThree);
+        ot.add(jlOTFour);
+        
         //jlPKOne.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKOne.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jlPKOne.addMouseListener(onMouse);
@@ -104,7 +121,11 @@ public class UserCustomization extends javax.swing.JPanel {
         //jlPKFour.setSize(ICON_HEIGHT,ICON_WIDTH);
         jlPKFour.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jlPKFour.addMouseListener(onMouse);
-        
+        pk = new ArrayList<>();
+        pk.add(jlPKOne);
+        pk.add(jlPKTwo);
+        pk.add(jlPKThree);
+        pk.add(jlPKFour);
         jLabel2.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jLabel3.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
         jLabel4.setIcon(new ImageIcon(".\\Icons\\Icons\\icons\\lock.png"));
@@ -122,7 +143,6 @@ public class UserCustomization extends javax.swing.JPanel {
     public String addExtraSlash(String path) {
         char curr[] = path.toCharArray();
         String temp = "";
-        int k = 0;
         for (int i = 0; i < path.length(); ++i) {
             temp += curr[i];
             if (curr[i] == '\\') {
@@ -285,20 +305,18 @@ public class UserCustomization extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jlabelUserIcon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5))
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jlabelUserIcon)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel5))
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
