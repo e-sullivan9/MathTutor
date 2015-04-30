@@ -47,10 +47,7 @@ public class UserCustomization extends javax.swing.JPanel {
        
        for(int i = 0; i < favorites.length; ++i)
        {
-           if(!aList.get(i).equalsIgnoreCase("lock"))
-           {
-               favorites[i].setIcon(new ImageIcon(aList.get(i)));
-           }
+           favorites[i].setIcon(new ImageIcon(aList.get(i)));
        }
        
     }
